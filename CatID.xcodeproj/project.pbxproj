@@ -46,6 +46,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		215FEE822346022C00917288 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				218D6571233D650400ACDD34 /* CatIdController.swift */,
+				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		215FEE832346024200917288 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				218D6573233D650400ACDD34 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		218D6561233D650400ACDD34 = {
 			isa = PBXGroup;
 			children = (
@@ -69,12 +86,11 @@
 			children = (
 				218D656D233D650400ACDD34 /* AppDelegate.swift */,
 				218D656F233D650400ACDD34 /* SceneDelegate.swift */,
-				218D6571233D650400ACDD34 /* CatIdController.swift */,
-				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
-				218D6573233D650400ACDD34 /* Main.storyboard */,
+				21FC2CC6233F9F9600E69124 /* Model */,
+				215FEE832346024200917288 /* View */,
+				215FEE822346022C00917288 /* Controller */,
 				218D657B233D650500ACDD34 /* Info.plist */,
 				21FC2CC7233F9FAE00E69124 /* Supporting Files */,
-				21FC2CC6233F9F9600E69124 /* Model */,
 			);
 			path = CatID;
 			sourceTree = "<group>";
