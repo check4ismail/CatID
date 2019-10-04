@@ -10,7 +10,7 @@ import UIKit
 
 class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-	// Outlets	
+	// Outlets
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 	// Members
@@ -23,6 +23,9 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+		
+		// Tap gesture
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
 		
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
@@ -40,24 +43,48 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 		catSectionTitles = [String](catBreedDictionary.keys)
 		catSectionTitles = catSectionTitles.sorted(by: { $0 < $1 })
 		
+		view.addGestureRecognizer(tap)
 		searchBar.delegate = self
+		searchBar.showsCancelButton = true
 		tableView.delegate = self
 		tableView.dataSource = self
 		
 		tableView.reloadData()
 	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		if let index = self.tableView.indexPathForSelectedRow {
+			self.tableView.deselectRow(at: index, animated: true)
+		}
+	}
+	
+	// @obc added because of #selector
+	@objc func dismissKeyboard() {
+		searchBar.endEditing(true)
+		searchActive = false
+	}
 
 	//MARK: Segue to Cat Breed Controller
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
 		performSegue(withIdentifier: "goToCatBreed", sender: self)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		let destinationVC = segue.destination as! CatBreedController
 		
-		if let indexPath = tableView.indexPathForSelectedRow {
-			destinationVC.selectedBreed = catBreeds[indexPath.row]
+		if let indexPath = self.tableView.indexPathForSelectedRow {
+			if searchActive {
+				// Pass cell that was selected from search
+				let currentCell = tableView.cellForRow(at: indexPath)
+				destinationVC.selectedBreed = currentCell?.textLabel?.text
+			} else {
+				// Pass cell from ordered dictionary
+				let catKey = catSectionTitles[indexPath.section]
+				if let catValues = catBreedDictionary[catKey] {
+					print("Catvlaue: \(catValues[indexPath.row])")
+					destinationVC.selectedBreed = catValues[indexPath.row]
+				}
+			}
 		}
 	}
 	
@@ -90,10 +117,9 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
-		
+		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive {
 			cell.textLabel?.text = filtered[indexPath.row]
-			print(cell)
 		} else {
 			let catKey = catSectionTitles[indexPath.section]
 			if let catValues = catBreedDictionary[catKey] {
@@ -128,14 +154,17 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
 		searchActive = false
-	}
-	
-	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-		searchActive = false
+		print("Did editing end? \(searchActive)")
 	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		searchActive = false
+		searchBar.endEditing(true)
+	}
+	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		searchActive = false
+		searchBar.endEditing(true)
 	}
 	
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -145,7 +174,7 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
             return range.location != NSNotFound
 		})
 		if(filtered.count == 0){
-			isSearchBarEmpty()
+			searchActive = isSearchBarEmpty()
         } else {
             searchActive = true;
         }
@@ -153,11 +182,11 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.reloadData()
 	}
 	
-	func isSearchBarEmpty() {
+	func isSearchBarEmpty() -> Bool {
 		if searchBar.text != "" {
-			searchActive = true
+			return true
 		} else {
-			searchActive = false
+			return false
 		}
 	}
 }
