@@ -44,7 +44,8 @@ class CatBreedController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		self.title = selectedBreed
 		
-		if let breed = selectedBreed {
+		if var breed = selectedBreed {
+			breed = breed.replacingOccurrences(of: " ", with: "_")
 			breedUrl = breedUrl + breed
 				getCatInfo()
 		}
