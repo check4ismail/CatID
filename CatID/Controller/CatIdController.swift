@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class CatIdController: UIViewController {
 
 	// Outlets
 	@IBOutlet weak var searchBar: UISearchBar!
@@ -18,14 +18,14 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 	private var catSectionTitles = [String]()
 	private var catBreedDictionary = [String: [String]]()
 	private var searchActive: Bool = false
-	var filtered:[String] = []
-	
+	private var filtered:[String] = []
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		
-		// Tap gesture
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+		//MARK: Tap outside of search bar to dismiss keyboard without overriding tableview touch
+		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
@@ -43,13 +43,17 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 		catSectionTitles = [String](catBreedDictionary.keys)
 		catSectionTitles = catSectionTitles.sorted(by: { $0 < $1 })
 		
-		view.addGestureRecognizer(tap)
 		searchBar.delegate = self
 		searchBar.showsCancelButton = true
+		view.addSubview(searchBar)
+		
 		tableView.delegate = self
 		tableView.dataSource = self
-		
 		tableView.reloadData()
+		
+		// Does not override touch for ui elements in view
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -58,17 +62,7 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 		}
 	}
 	
-	// @obc added because of #selector
-	@objc func dismissKeyboard() {
-		searchBar.endEditing(true)
-		searchActive = false
-	}
-
-	//MARK: Segue to Cat Breed Controller
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		performSegue(withIdentifier: "goToCatBreed", sender: self)
-	}
-	
+	//MARK: Prepare segue
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		let destinationVC = segue.destination as! CatBreedController
 		
@@ -81,14 +75,20 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 				// Pass cell from ordered dictionary
 				let catKey = catSectionTitles[indexPath.section]
 				if let catValues = catBreedDictionary[catKey] {
-					print("Catvlaue: \(catValues[indexPath.row])")
 					destinationVC.selectedBreed = catValues[indexPath.row]
 				}
 			}
 		}
 	}
-	
+}
+
+extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	//MARK: TableView methods
+	
+	// Segue based on row selected
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		performSegue(withIdentifier: "goToCatBreed", sender: self)
+	}
 	
 	// Number of sections
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -145,21 +145,24 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 		}
 		return catSectionTitles
 	}
-	
+}
+
+extension CatIdController: UISearchBarDelegate {
 	//MARK: search bar functions
 	
 	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 		searchActive = true
 	}
 	
+	// Touch outside search bar calls this method
+	// triggering isSearchBarEmpty() to ensure correct searchActive status
 	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-		searchActive = false
-		print("Did editing end? \(searchActive)")
+		searchActive = isSearchBarEmpty()
 	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-		searchActive = false
-		searchBar.endEditing(true)
+		searchActive = true
+		searchBar.endEditing(true)	// Dismiss keyboard
 	}
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -190,4 +193,3 @@ class CatIdController: UIViewController, UITableViewDelegate, UITableViewDataSou
 		}
 	}
 }
-
