@@ -13,19 +13,26 @@ import AlamofireImage
 
 class CatBreedController: UIViewController {
 	
-	
 	@IBOutlet weak var catImage: UIImageView!
-	@IBOutlet var temperament: UITextView!
+	@IBOutlet weak var temperament: UITextView!
 	
 	@IBOutlet weak var childFriendlyTextField: UITextField!
 	@IBOutlet weak var groomingTextField: UITextField!
-	@IBOutlet weak var lapTextField: UITextField!
 	@IBOutlet weak var sheddingTextField: UITextField!
 	
 	@IBOutlet weak var childRatingTextField: UITextField!
 	@IBOutlet weak var groomingRatingTextField: UITextField!
-	@IBOutlet weak var lapRatingTextField: UITextField!
 	@IBOutlet weak var sheddingRatingTextField: UITextField!
+	//	@IBOutlet weak var catImage: UIImageView!
+//	@IBOutlet var temperament: UITextView!
+	
+//	@IBOutlet weak var childFriendlyTextField: UITextField!
+//	@IBOutlet weak var groomingTextField: UITextField!
+//	@IBOutlet weak var sheddingTextField: UITextField!
+//
+//	@IBOutlet weak var childRatingTextField: UITextField!
+//	@IBOutlet weak var groomingRatingTextField: UITextField!
+//	@IBOutlet weak var sheddingRatingTextField: UITextField!
 	
 	var selectedBreed: String?
 	let bulletPoint: String = "🔵 "
@@ -62,16 +69,21 @@ class CatBreedController: UIViewController {
 					if let breedId = json[0,"id"].string {
 						self.imageUrl = self.imageUrl + breedId
 						self.getCatPhoto()
+						print("Getting that breedid")
 					}
+					print("Before filling temperament")
 					if let temperament = json[0,"temperament"].string,
 						let childFriendly = json[0,"child_friendly"].int,
 						let grooming = json[0,"grooming"].int,
-						let lap = json[0,"lap"].int,
 						let sheddingLevel = json[0,"shedding_level"].int
 					{
+						print("Im here in temperament if")
 						self.temperament.text = temperament
-						
-						self.fillRating([Int](arrayLiteral: childFriendly, grooming, lap, sheddingLevel))
+						print(temperament)
+						print(childFriendly)
+						print(grooming)
+						print(sheddingLevel)
+						self.fillRating([Int](arrayLiteral: childFriendly, grooming, sheddingLevel))
 					}
 				})
 			
@@ -92,6 +104,7 @@ class CatBreedController: UIViewController {
 					if let imageUrl = json[0,"url"].string {
 						let downloadURL = NSURL(string: imageUrl)!
 						self.catImage.af_setImage(withURL: downloadURL as URL)
+						print("Filling cat photo")
 					}
 				}
 			
@@ -102,8 +115,8 @@ class CatBreedController: UIViewController {
 	}
 	
 	func fillRating(_ ratingArray: [Int]) {
-		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, lapTextField, sheddingTextField]
-		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, lapRatingTextField, sheddingRatingTextField]
+		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, sheddingTextField]
+		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, sheddingRatingTextField]
 		
 		for i in 0..<ratingArray.count {
 			arrayEnableTextFields[i].isHidden = false
