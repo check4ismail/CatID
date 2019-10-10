@@ -15,24 +15,20 @@ class CatBreedController: UIViewController {
 	
 	@IBOutlet weak var catImage: UIImageView!
 	@IBOutlet weak var temperament: UITextView!
+	@IBOutlet weak var summaryTextView: UITextView!
 	
 	@IBOutlet weak var childFriendlyTextField: UITextField!
 	@IBOutlet weak var groomingTextField: UITextField!
+	@IBOutlet weak var intelligenceTextField: UITextField!
 	@IBOutlet weak var sheddingTextField: UITextField!
+	@IBOutlet weak var socialNeedsTextField: UITextField!
 	
 	@IBOutlet weak var childRatingTextField: UITextField!
 	@IBOutlet weak var groomingRatingTextField: UITextField!
+	@IBOutlet weak var intelligenceRatingTextField: UITextField!
 	@IBOutlet weak var sheddingRatingTextField: UITextField!
-	//	@IBOutlet weak var catImage: UIImageView!
-//	@IBOutlet var temperament: UITextView!
+	@IBOutlet weak var socialNeedsRatingTextField: UITextField!
 	
-//	@IBOutlet weak var childFriendlyTextField: UITextField!
-//	@IBOutlet weak var groomingTextField: UITextField!
-//	@IBOutlet weak var sheddingTextField: UITextField!
-//
-//	@IBOutlet weak var childRatingTextField: UITextField!
-//	@IBOutlet weak var groomingRatingTextField: UITextField!
-//	@IBOutlet weak var sheddingRatingTextField: UITextField!
 	
 	var selectedBreed: String?
 	let bulletPoint: String = "🔵 "
@@ -75,15 +71,16 @@ class CatBreedController: UIViewController {
 					if let temperament = json[0,"temperament"].string,
 						let childFriendly = json[0,"child_friendly"].int,
 						let grooming = json[0,"grooming"].int,
-						let sheddingLevel = json[0,"shedding_level"].int
+						let intelligence = json[0,"intelligence"].int,
+						let sheddingLevel = json[0,"shedding_level"].int,
+						let socialNeeds = json[0,"social_needs"].int,
+						let description = json[0,"description"].string
 					{
-						print("Im here in temperament if")
 						self.temperament.text = temperament
-						print(temperament)
-						print(childFriendly)
-						print(grooming)
-						print(sheddingLevel)
-						self.fillRating([Int](arrayLiteral: childFriendly, grooming, sheddingLevel))
+						self.fillRating([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
+						
+						self.summaryTextView.text = description
+						self.summaryTextView.isHidden = false
 					}
 				})
 			
@@ -115,8 +112,8 @@ class CatBreedController: UIViewController {
 	}
 	
 	func fillRating(_ ratingArray: [Int]) {
-		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, sheddingTextField]
-		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, sheddingRatingTextField]
+		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, intelligenceTextField, sheddingTextField, socialNeedsTextField]
+		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, intelligenceRatingTextField, sheddingRatingTextField, socialNeedsTextField]
 		
 		for i in 0..<ratingArray.count {
 			arrayEnableTextFields[i].isHidden = false
