@@ -29,7 +29,6 @@ class CatBreedController: UIViewController {
 	@IBOutlet weak var sheddingRatingTextField: UITextField!
 	@IBOutlet weak var socialNeedsRatingTextField: UITextField!
 	
-	
 	var selectedBreed: String?
 	let bulletPoint: String = "🔵 "
 	
@@ -113,7 +112,7 @@ class CatBreedController: UIViewController {
 	
 	func fillRating(_ ratingArray: [Int]) {
 		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, intelligenceTextField, sheddingTextField, socialNeedsTextField]
-		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, intelligenceRatingTextField, sheddingRatingTextField, socialNeedsTextField]
+		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, intelligenceRatingTextField, sheddingRatingTextField, socialNeedsRatingTextField]
 		
 		for i in 0..<ratingArray.count {
 			arrayEnableTextFields[i].isHidden = false

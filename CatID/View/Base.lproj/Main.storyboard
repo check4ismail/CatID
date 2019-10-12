@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="45" width="375" height="1155"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-Az-vXJ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1376.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1315"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="it8-yV-Nln" userLabel="Cat Image View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
@@ -99,7 +99,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKv-hi-tsf" userLabel="Breed Info View">
-                                                <rect key="frame" x="0.0" y="357" width="375" height="1019.5"/>
+                                                <rect key="frame" x="0.0" y="357" width="375" height="958"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKN-vB-f0H">
                                                         <rect key="frame" x="15" y="17" width="344" height="37"/>
@@ -116,17 +116,17 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Intelligence" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n2V-UH-4Mt">
+                                                    <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Intelligence" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n2V-UH-4Mt">
                                                         <rect key="frame" x="16" y="190" width="82" height="22"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Shedding level" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cml-MQ-jyq">
+                                                    <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Shedding level" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cml-MQ-jyq">
                                                         <rect key="frame" x="16" y="233" width="107" height="22"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Social Needs" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2DY-pE-58g">
+                                                    <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Social Needs" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2DY-pE-58g">
                                                         <rect key="frame" x="16" y="274" width="97" height="22"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -151,17 +151,17 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OpS-9Z-1C1" userLabel="Social Needs Rating Text Field">
-                                                        <rect key="frame" x="216" y="272" width="143" height="21"/>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-zY-Twc" userLabel="Social Needs Rating TextField">
+                                                        <rect key="frame" x="216" y="274" width="143" height="22"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYC-S6-Y5o">
-                                                        <rect key="frame" x="36" y="339" width="303" height="591.5"/>
+                                                        <rect key="frame" x="27" y="339" width="324" height="530"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <attributedString key="attributedText">
                                                             <fragment>
-                                                                <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f the end</mutableString>
+                                                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f the end</string>
                                                                 <attributes>
                                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
@@ -172,7 +172,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="WIKIPEDIA" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SIX-Gg-GLY">
-                                                        <rect key="frame" x="87" y="973" width="200" height="22"/>
+                                                        <rect key="frame" x="87" y="911.5" width="200" height="22"/>
                                                         <color key="textColor" red="1" green="0.43441106800000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -180,57 +180,53 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="vYC-S6-Y5o" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="36" id="0Wt-td-QfV"/>
+                                                    <constraint firstItem="vYC-S6-Y5o" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="27" id="0Wt-td-QfV"/>
                                                     <constraint firstItem="2DY-pE-58g" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="1la-dE-IGD"/>
                                                     <constraint firstItem="mjh-XW-raH" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="15" id="2dI-GO-9vO"/>
                                                     <constraint firstItem="w6K-X5-re6" firstAttribute="top" secondItem="JKN-vB-f0H" secondAttribute="bottom" constant="52" id="3hx-FL-Kkk"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="leading" secondItem="mjh-XW-raH" secondAttribute="leading" id="4ER-6e-oh1"/>
                                                     <constraint firstItem="cml-MQ-jyq" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="4Gf-f7-fVH"/>
-                                                    <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="OpS-9Z-1C1" secondAttribute="bottom" constant="46" id="5Fa-Ui-PIq"/>
                                                     <constraint firstItem="2DY-pE-58g" firstAttribute="top" secondItem="cml-MQ-jyq" secondAttribute="bottom" constant="19" id="5TV-P9-ifZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="xJI-xp-cxK" secondAttribute="trailing" constant="16" id="5Vs-2k-erX"/>
                                                     <constraint firstItem="SIX-Gg-GLY" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="87" id="5dp-26-6j6"/>
                                                     <constraint firstAttribute="bottom" secondItem="SIX-Gg-GLY" secondAttribute="bottom" constant="24.5" id="6dC-1e-UDJ"/>
                                                     <constraint firstItem="aAf-Xo-Ypp" firstAttribute="top" secondItem="w6K-X5-re6" secondAttribute="bottom" constant="20" id="9Je-lw-T9M"/>
                                                     <constraint firstItem="cml-MQ-jyq" firstAttribute="top" secondItem="n2V-UH-4Mt" secondAttribute="bottom" constant="21" id="9Jx-hh-mC9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ltg-zY-Twc" secondAttribute="trailing" constant="16" id="BdT-MV-OAI"/>
                                                     <constraint firstAttribute="trailing" secondItem="w6K-X5-re6" secondAttribute="trailing" constant="16" id="C1V-rG-UOD"/>
                                                     <constraint firstItem="cml-MQ-jyq" firstAttribute="top" secondItem="n2V-UH-4Mt" secondAttribute="bottom" constant="21" id="Dab-Sq-aIt"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="top" secondItem="9pR-j4-jb5" secondAttribute="bottom" constant="23" id="EIF-jL-0ID"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="EXw-ij-k1C"/>
-                                                    <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="OpS-9Z-1C1" secondAttribute="bottom" constant="46" id="G9V-MP-ywL"/>
                                                     <constraint firstItem="aAf-Xo-Ypp" firstAttribute="leading" secondItem="6Gw-8z-hIH" secondAttribute="trailing" constant="128" id="HG9-kv-MEn"/>
                                                     <constraint firstAttribute="trailing" secondItem="aAf-Xo-Ypp" secondAttribute="trailing" constant="16" id="Hux-M2-GgM"/>
+                                                    <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="ltg-zY-Twc" secondAttribute="bottom" constant="43" id="I1g-nk-9DX"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="top" secondItem="9pR-j4-jb5" secondAttribute="bottom" constant="23" id="IcT-iU-jHs"/>
                                                     <constraint firstAttribute="trailing" secondItem="SIX-Gg-GLY" secondAttribute="trailing" constant="88" id="LAd-8d-eST"/>
                                                     <constraint firstItem="n2V-UH-4Mt" firstAttribute="top" secondItem="6Gw-8z-hIH" secondAttribute="bottom" constant="20" id="Ptq-EB-0ul"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OpS-9Z-1C1" secondAttribute="trailing" constant="16" id="QRt-fE-cQh"/>
-                                                    <constraint firstAttribute="trailing" secondItem="vYC-S6-Y5o" secondAttribute="trailing" constant="36" id="Txw-UA-WWH"/>
-                                                    <constraint firstItem="OpS-9Z-1C1" firstAttribute="leading" secondItem="2DY-pE-58g" secondAttribute="trailing" constant="103" id="UPE-hq-Qgy"/>
+                                                    <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="ltg-zY-Twc" secondAttribute="bottom" constant="43" id="TGf-50-LFf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vYC-S6-Y5o" secondAttribute="trailing" constant="24" id="Txw-UA-WWH"/>
                                                     <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="bottom" constant="43" id="Uwd-b8-AZv"/>
-                                                    <constraint firstItem="OpS-9Z-1C1" firstAttribute="leading" secondItem="2DY-pE-58g" secondAttribute="trailing" constant="103" id="V4f-cp-ooc"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="15" id="Zdx-oE-Ydk"/>
                                                     <constraint firstItem="n2V-UH-4Mt" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="fZG-cD-gPj"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="leading" secondItem="cml-MQ-jyq" secondAttribute="trailing" constant="93" id="fxf-Si-1BV"/>
-                                                    <constraint firstItem="OpS-9Z-1C1" firstAttribute="top" secondItem="xJI-xp-cxK" secondAttribute="bottom" constant="19" id="gt2-RZ-4Bl"/>
-                                                    <constraint firstItem="OpS-9Z-1C1" firstAttribute="leading" secondItem="2DY-pE-58g" secondAttribute="trailing" constant="103" id="hhm-d2-bGW"/>
+                                                    <constraint firstItem="ltg-zY-Twc" firstAttribute="top" secondItem="xJI-xp-cxK" secondAttribute="bottom" constant="21" id="haq-AP-kjk"/>
                                                     <constraint firstItem="mjh-XW-raH" firstAttribute="top" secondItem="JKN-vB-f0H" secondAttribute="bottom" constant="52" id="iI9-wP-KZf"/>
                                                     <constraint firstAttribute="trailing" secondItem="9pR-j4-jb5" secondAttribute="trailing" constant="16" id="iZB-TO-f3P"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="ite-Gx-gXL"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="top" secondItem="aAf-Xo-Ypp" secondAttribute="bottom" constant="20" id="jHU-gE-NhP"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="top" secondItem="aAf-Xo-Ypp" secondAttribute="bottom" constant="20" id="l0w-SD-sEp"/>
+                                                    <constraint firstItem="ltg-zY-Twc" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="top" id="lgC-Uu-ue7"/>
                                                     <constraint firstAttribute="trailing" secondItem="JKN-vB-f0H" secondAttribute="trailing" constant="16" id="mVZ-qn-1AN"/>
+                                                    <constraint firstItem="ltg-zY-Twc" firstAttribute="leading" secondItem="2DY-pE-58g" secondAttribute="trailing" constant="103" id="nu4-ov-Xzu"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="oFv-df-29H"/>
                                                     <constraint firstItem="JKN-vB-f0H" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="15" id="oHI-yA-BHh"/>
                                                     <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="bottom" constant="43" id="oOJ-V2-Lwz"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="leading" secondItem="n2V-UH-4Mt" secondAttribute="trailing" constant="118" id="p7z-od-dAh"/>
                                                     <constraint firstItem="2DY-pE-58g" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="rSk-xM-CJd"/>
                                                     <constraint firstItem="w6K-X5-re6" firstAttribute="leading" secondItem="mjh-XW-raH" secondAttribute="trailing" constant="107" id="s9o-dV-fEh"/>
-                                                    <constraint firstItem="OpS-9Z-1C1" firstAttribute="top" secondItem="xJI-xp-cxK" secondAttribute="bottom" constant="19" id="sKd-du-SUV"/>
-                                                    <constraint firstItem="2DY-pE-58g" firstAttribute="top" secondItem="cml-MQ-jyq" secondAttribute="bottom" constant="19" id="tQo-Ab-Tpr"/>
                                                     <constraint firstItem="2DY-pE-58g" firstAttribute="top" secondItem="cml-MQ-jyq" secondAttribute="bottom" constant="19" id="uwS-pK-YRM"/>
                                                     <constraint firstItem="n2V-UH-4Mt" firstAttribute="top" secondItem="6Gw-8z-hIH" secondAttribute="bottom" constant="20" id="vQf-uB-Sge"/>
                                                     <constraint firstItem="SIX-Gg-GLY" firstAttribute="top" secondItem="vYC-S6-Y5o" secondAttribute="bottom" constant="42.5" id="wHn-VB-Igm"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OpS-9Z-1C1" secondAttribute="trailing" constant="16" id="wLn-dl-fnR"/>
                                                     <constraint firstItem="JKN-vB-f0H" firstAttribute="top" secondItem="tKv-hi-tsf" secondAttribute="top" constant="17" id="y6B-cq-pDF"/>
                                                 </constraints>
                                             </view>
@@ -281,7 +277,7 @@
                         <outlet property="intelligenceTextField" destination="n2V-UH-4Mt" id="k31-ph-jea"/>
                         <outlet property="sheddingRatingTextField" destination="xJI-xp-cxK" id="n3h-zf-yE5"/>
                         <outlet property="sheddingTextField" destination="cml-MQ-jyq" id="f3g-a4-Zif"/>
-                        <outlet property="socialNeedsRatingTextField" destination="OpS-9Z-1C1" id="7hP-Ne-1dg"/>
+                        <outlet property="socialNeedsRatingTextField" destination="ltg-zY-Twc" id="JEr-Hv-MDW"/>
                         <outlet property="socialNeedsTextField" destination="2DY-pE-58g" id="qfJ-Oi-9Zq"/>
                         <outlet property="summaryTextView" destination="vYC-S6-Y5o" id="MzM-yu-NfY"/>
                         <outlet property="temperament" destination="JKN-vB-f0H" id="zMr-2B-ZcH"/>
