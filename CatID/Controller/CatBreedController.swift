@@ -29,6 +29,13 @@ class CatBreedController: UIViewController {
 	@IBOutlet weak var sheddingRatingTextField: UITextField!
 	@IBOutlet weak var socialNeedsRatingTextField: UITextField!
 	
+	@IBOutlet weak var wikiTextView: UITextView!
+	
+	@IBOutlet weak var noInternetView: UIView!
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var contentView: UIView!
+	
+	
 	var selectedBreed: String?
 	let bulletPoint: String = "🔵 "
 	
@@ -46,11 +53,26 @@ class CatBreedController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		self.title = selectedBreed
 		
-		if var breed = selectedBreed {
-			breed = breed.replacingOccurrences(of: " ", with: "_")
-			breedUrl = breedUrl + breed
+		// By default, views are hidden
+		setAllViewsInvisible()
+		if Connectivity.isConnectedToInternet {
+			// If connected to internet, display as expected
+			if var breed = selectedBreed {
+				scrollView.isHidden = false
+				contentView.isHidden = false
+				breed = breed.replacingOccurrences(of: " ", with: "_")
+				breedUrl = breedUrl + breed
 				getCatInfo()
+			}
+		} else {	// No internet view displayed
+			noInternetView.isHidden = false
 		}
+	}
+	
+	func setAllViewsInvisible() {
+		noInternetView.isHidden = true
+		scrollView.isHidden = true
+		contentView.isHidden = true
 	}
 	
 	func getCatInfo() {
@@ -73,11 +95,12 @@ class CatBreedController: UIViewController {
 						let intelligence = json[0,"intelligence"].int,
 						let sheddingLevel = json[0,"shedding_level"].int,
 						let socialNeeds = json[0,"social_needs"].int,
-						let description = json[0,"description"].string
+						let description = json[0,"description"].string,
+						let wikiLink = json[0,"wikipedia_url"].string
 					{
 						self.temperament.text = temperament
-						self.fillRating([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
-						
+						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
+						self.setWikiLink(wikiLink)
 						self.summaryTextView.text = description
 						self.summaryTextView.isHidden = false
 					}
@@ -110,7 +133,7 @@ class CatBreedController: UIViewController {
 		}
 	}
 	
-	func fillRating(_ ratingArray: [Int]) {
+	func fillRatings(_ ratingArray: [Int]) {
 		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, intelligenceTextField, sheddingTextField, socialNeedsTextField]
 		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, intelligenceRatingTextField, sheddingRatingTextField, socialNeedsRatingTextField]
 		
@@ -123,5 +146,20 @@ class CatBreedController: UIViewController {
 				}
 			}
 		}
+	}
+	
+	func setWikiLink(_ wikiLink: String) {
+		let url = URL(string: wikiLink)!
+		
+		// Setting up hyperlink, with specific font size
+		let stringWithAttribute = NSMutableAttributedString(string: "WIKIPEDIA", attributes: [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0, weight: UIFont.Weight.light) ] )
+		stringWithAttribute.addAttributes([.link: url], range: NSMakeRange(0, stringWithAttribute.string.count))
+		
+		// Setting attributedText hyperlink
+		wikiTextView.attributedText = stringWithAttribute
+		wikiTextView.isUserInteractionEnabled = true
+		wikiTextView.linkTextAttributes = [
+			.foregroundColor: UIColor.black,
+		]
 	}
 }

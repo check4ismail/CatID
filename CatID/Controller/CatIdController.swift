@@ -20,9 +20,23 @@ class CatIdController: UIViewController {
 	private var searchActive: Bool = false
 	private var filtered:[String] = []
 
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .darkContent
+	}
+	
+//	override func viewDidAppear(_ animated: Bool) {
+//		navigationController?.navigationBar.barStyle = .white
+//	}
+//
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+		
+		navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "58cced")
+		
+		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+		navigationController?.navigationBar.titleTextAttributes = textAttributes
+		navigationController?.navigationBar.tintColor = .black
 		
 		//MARK: Tap outside of search bar to dismiss keyboard without overriding tableview touch
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
@@ -116,6 +130,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		tableView.rowHeight = 50
 		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive {
@@ -124,6 +139,20 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 			let catKey = catSectionTitles[indexPath.section]
 			if let catValues = catBreedDictionary[catKey] {
 				cell.textLabel?.text = catValues[indexPath.row]
+				cell.textLabel?.textColor = UIColor.black
+				let url = "https://cdn2.thecatapi.com/images/yehyXOeid.jpg"
+				if let data = NSURL(string: url) {
+					print("Here")
+					if let imageOfCell = cell.imageView {
+						imageOfCell.af_setImage(withURL: data as URL)
+						imageOfCell.layer.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+						imageOfCell.layer.borderWidth = 1
+						imageOfCell.layer.masksToBounds = false
+						imageOfCell.layer.borderColor = UIColor.black.cgColor
+						imageOfCell.layer.cornerRadius = imageOfCell.bounds.height/2
+						imageOfCell.clipsToBounds = true
+					}
+				}
 			}
 		}
 		
@@ -144,6 +173,12 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 			return nil
 		}
 		return catSectionTitles
+	}
+	
+	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+		view.tintColor = UIColor(hexString: "7bd7f1")
+		let header = view as! UITableViewHeaderFooterView
+		header.textLabel?.textColor = UIColor.black
 	}
 }
 
@@ -192,4 +227,24 @@ extension CatIdController: UISearchBarDelegate {
 			return false
 		}
 	}
+}
+
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt32()
+        Scanner(string: hex).scanHexInt32(&int)
+        let a, r, g, b: UInt32
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
 }

@@ -13,6 +13,7 @@
 		218D6575233D650400ACDD34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218D6573233D650400ACDD34 /* Main.storyboard */; };
 		218D6577233D650500ACDD34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218D6576233D650500ACDD34 /* Assets.xcassets */; };
 		218D657A233D650500ACDD34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218D6578233D650500ACDD34 /* LaunchScreen.storyboard */; };
+		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
 		B97BC824FB884246A269681E /* Pods_CatID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB512DF05F15A4988E2052C4 /* Pods_CatID.framework */; };
@@ -27,6 +28,7 @@
 		218D6576233D650500ACDD34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		218D6579233D650500ACDD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		218D657B233D650500ACDD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
 		8BD78873559C21D179354040 /* Pods-CatID.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatID.release.xcconfig"; path = "Target Support Files/Pods-CatID/Pods-CatID.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				21FC2CC4233F9C2400E69124 /* CatBreeds.swift */,
+				21E887B8235520560068060F /* Connectivity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			files = (
 				21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */,
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
+				21E887B9235520560068060F /* Connectivity.swift in Sources */,
 				218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */,
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
 				21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */,
