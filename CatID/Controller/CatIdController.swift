@@ -130,7 +130,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		tableView.rowHeight = 50
+		tableView.rowHeight = 70
 		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive {
@@ -140,16 +140,22 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 			if let catValues = catBreedDictionary[catKey] {
 				cell.textLabel?.text = catValues[indexPath.row]
 				cell.textLabel?.textColor = UIColor.black
+				// Image in cell
 				let url = "https://cdn2.thecatapi.com/images/yehyXOeid.jpg"
 				if let data = NSURL(string: url) {
-					print("Here")
 					if let imageOfCell = cell.imageView {
 						imageOfCell.af_setImage(withURL: data as URL)
-						imageOfCell.layer.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-						imageOfCell.layer.borderWidth = 1
+						
+						let itemSize:CGSize = CGSize(width: 100, height: 100)
+						UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
+						imageOfCell.image?.draw(in: CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height))
+						cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
+						UIGraphicsEndImageContext()
+						
+						imageOfCell.contentMode = UIView.ContentMode.scaleAspectFit
 						imageOfCell.layer.masksToBounds = false
-						imageOfCell.layer.borderColor = UIColor.black.cgColor
-						imageOfCell.layer.cornerRadius = imageOfCell.bounds.height/2
+						imageOfCell.layer.borderWidth = 1.0
+						imageOfCell.layer.cornerRadius = imageOfCell.frame.size.height/2
 						imageOfCell.clipsToBounds = true
 					}
 				}
@@ -233,7 +239,7 @@ extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
-        Scanner(string: hex).scanHexInt32(&int)
+		Scanner(string: hex).scanHexInt32(&int)
         let a, r, g, b: UInt32
         switch hex.count {
         case 3: // RGB (12-bit)
