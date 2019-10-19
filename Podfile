@@ -9,5 +9,6 @@ target 'CatID' do
 pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'AlamofireImage'
+pod 'RealmSwift'
 
 end
