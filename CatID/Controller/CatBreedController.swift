@@ -39,6 +39,7 @@ class CatBreedController: UIViewController {
 	var selectedBreed: String?
 	let bulletPoint: String = "🔵 "
 	
+	private let catApi = CatApi()
 	private var breedUrl = "https://api.thecatapi.com/v1/breeds/search?q="
 	private var imageUrl = "https://api.thecatapi.com/v1/images/search?breed_id="
 	

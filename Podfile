@@ -10,5 +10,6 @@ pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'AlamofireImage'
 pod 'RealmSwift'
+pod 'PromiseKit/Alamofire', '~> 6.0'
 
 end

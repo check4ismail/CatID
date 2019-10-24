@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CatIdController: UIViewController {
 
@@ -15,6 +16,7 @@ class CatIdController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	// Members
 	private let catBreeds: [String] = CatBreeds().getBreeds()
+	private var realmBreedData = [String: [Breed]]()
 	private var catSectionTitles = [String]()
 	private var catBreedDictionary = [String: [String]]()
 	private var searchActive: Bool = false
@@ -41,6 +43,23 @@ class CatIdController: UIViewController {
 		//MARK: Tap outside of search bar to dismiss keyboard without overriding tableview touch
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		
+		setCatDictionary()
+		setRealmBreedData()
+		
+		searchBar.delegate = self
+		searchBar.showsCancelButton = true
+		view.addSubview(searchBar)
+		
+		tableView.delegate = self
+		tableView.dataSource = self
+		tableView.reloadData()
+		
+		// Does not override touch for ui elements in view
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
+	}
+	
+	private func setCatDictionary() {
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
 			
@@ -56,18 +75,24 @@ class CatIdController: UIViewController {
 		
 		catSectionTitles = [String](catBreedDictionary.keys)
 		catSectionTitles = catSectionTitles.sorted(by: { $0 < $1 })
+	}
+	
+	private func setRealmBreedData() {
+		let realm = try! Realm()
+		let breeds = realm.objects(Breed.self)
 		
-		searchBar.delegate = self
-		searchBar.showsCancelButton = true
-		view.addSubview(searchBar)
-		
-		tableView.delegate = self
-		tableView.dataSource = self
-		tableView.reloadData()
-		
-		// Does not override touch for ui elements in view
-		tap.cancelsTouchesInView = false
-		view.addGestureRecognizer(tap)
+		for breed in breeds {
+			let breedName = breed.breedName
+			let breedKey = String(breedName.prefix(1)) // First letter of string
+			
+			if var breedValues = realmBreedData[breedKey] {
+				breedValues.append(breed)
+				realmBreedData[breedKey] = breedValues
+			} else {
+				realmBreedData[breedKey] = [breed]
+			}
+		}
+		dump(realmBreedData)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -137,28 +162,50 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 			cell.textLabel?.text = filtered[indexPath.row]
 		} else {
 			let catKey = catSectionTitles[indexPath.section]
-			if let catValues = catBreedDictionary[catKey] {
+			if let catValues = catBreedDictionary[catKey], let breedUrls = realmBreedData[catKey] {
 				cell.textLabel?.text = catValues[indexPath.row]
 				cell.textLabel?.textColor = UIColor.black
+				
 				// Image in cell
-				let url = "https://cdn2.thecatapi.com/images/yehyXOeid.jpg"
-				if let data = NSURL(string: url) {
-					if let imageOfCell = cell.imageView {
-						imageOfCell.af_setImage(withURL: data as URL)
-						
-						let itemSize:CGSize = CGSize(width: 100, height: 100)
-						UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
-						imageOfCell.image?.draw(in: CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height))
-						cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
-						UIGraphicsEndImageContext()
-						
-						imageOfCell.contentMode = UIView.ContentMode.scaleAspectFit
-						imageOfCell.layer.masksToBounds = false
-						imageOfCell.layer.borderWidth = 1.0
-						imageOfCell.layer.cornerRadius = imageOfCell.frame.size.height/2
-						imageOfCell.clipsToBounds = true
-					}
-				}
+				print("Breed from Realm: \(breedUrls[indexPath.row].breedName)")
+				print("URL from Realm: \(breedUrls[indexPath.row].url)")
+				guard let url = URL(string: breedUrls[indexPath.row].url) else { return cell }
+				guard let imageOfCell = cell.imageView else { return cell }
+				
+				
+				imageOfCell.af_setImage(withURL: url)
+
+				let itemSize:CGSize = CGSize(width: 75, height: 75)
+				UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
+				imageOfCell.image?.draw(in: CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height))
+				imageOfCell.image = UIGraphicsGetImageFromCurrentImageContext()
+				UIGraphicsEndImageContext()
+
+				imageOfCell.contentMode = UIView.ContentMode.scaleAspectFill
+				imageOfCell.layer.masksToBounds = false
+				imageOfCell.layer.borderWidth = 1.0
+				imageOfCell.layer.cornerRadius = imageOfCell.frame.size.height/2
+				imageOfCell.clipsToBounds = true
+					
+//				}
+				
+//				if let url = breed?.url {
+//					if let imageOfCell = cell.imageView {
+//						imageOfCell.af_setImage(withURL: breed?.url)
+//
+//						let itemSize:CGSize = CGSize(width: 100, height: 100)
+//						UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
+//						imageOfCell.image?.draw(in: CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height))
+//						cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
+//						UIGraphicsEndImageContext()
+//
+//						imageOfCell.contentMode = UIView.ContentMode.scaleAspectFit
+//						imageOfCell.layer.masksToBounds = false
+//						imageOfCell.layer.borderWidth = 1.0
+//						imageOfCell.layer.cornerRadius = imageOfCell.frame.size.height/2
+//						imageOfCell.clipsToBounds = true
+//					}
+//				}
 			}
 		}
 		
