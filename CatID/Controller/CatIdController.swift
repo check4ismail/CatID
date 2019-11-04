@@ -8,6 +8,9 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
+import AlamofireImage
+import Kingfisher
 
 class CatIdController: UIViewController {
 
@@ -15,7 +18,7 @@ class CatIdController: UIViewController {
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 	// Members
-	private let catBreeds: [String] = CatBreeds().getBreeds()
+	private let catBreeds: [String] = CatBreeds.breeds
 	private var realmBreedData = [String: [Breed]]()
 	private var catSectionTitles = [String]()
 	private var catBreedDictionary = [String: [String]]()
@@ -33,7 +36,7 @@ class CatIdController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
-		
+		loadImagesInBackground()
 		navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "58cced")
 		
 		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
@@ -44,12 +47,13 @@ class CatIdController: UIViewController {
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		
 		setCatDictionary()
-		setRealmBreedData()
+//		setRealmBreedData()
 		
 		searchBar.delegate = self
 		searchBar.showsCancelButton = true
 		view.addSubview(searchBar)
 		
+		tableView.prefetchDataSource = self
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.reloadData()
@@ -59,6 +63,31 @@ class CatIdController: UIViewController {
 		view.addGestureRecognizer(tap)
 	}
 	
+	private func loadImagesInBackground() {
+//		DispatchQueue.global(qos: .background).async { [weak self] in
+//			print("Starting background task to fetch image urls")
+//			guard let self = self else {
+//				return
+//			}
+//			var imageUrls: [URL] = []
+//			for breed in self.catBreeds {
+//				if let breedId = CatBreeds.breedIds[breed] {
+//					CatApi.getCatPhoto(breedId)
+//					.done{ url in
+//						guard let url = URL(string: url) else { return }
+//						CatBreeds.imageUrls[breed] = url
+//						imageUrls.append(url)
+//						if imageUrls.count == self.catBreeds.count {
+//							print("All images cached in background")
+//							ImagePrefetcher(urls: imageUrls).start()
+//						}
+//					  }.catch { error in
+//							print("Error: \(error)")
+//					  }
+//				}
+//			}
+//		}
+	}
 	private func setCatDictionary() {
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
@@ -77,23 +106,24 @@ class CatIdController: UIViewController {
 		catSectionTitles = catSectionTitles.sorted(by: { $0 < $1 })
 	}
 	
-	private func setRealmBreedData() {
-		let realm = try! Realm()
-		let breeds = realm.objects(Breed.self)
-		
-		for breed in breeds {
-			let breedName = breed.breedName
-			let breedKey = String(breedName.prefix(1)) // First letter of string
-			
-			if var breedValues = realmBreedData[breedKey] {
-				breedValues.append(breed)
-				realmBreedData[breedKey] = breedValues
-			} else {
-				realmBreedData[breedKey] = [breed]
-			}
-		}
-		dump(realmBreedData)
-	}
+//	private func setRealmBreedData() {
+//		let realm = try! Realm()
+//		let breeds = realm.objects(Breed.self)
+//
+//		for breed in breeds {
+//			let breedName = breed.breedName
+//			let breedKey = String(breedName.prefix(1)) // First letter of string
+//
+//			if var breedValues = realmBreedData[breedKey] {
+//				breedValues.append(breed)
+//				realmBreedData[breedKey] = breedValues
+//			} else {
+//				realmBreedData[breedKey] = [breed]
+//			}
+//		}
+//
+//		dump(realmBreedData)
+//	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		if let index = self.tableView.indexPathForSelectedRow {
@@ -121,8 +151,28 @@ class CatIdController: UIViewController {
 	}
 }
 
-extension CatIdController: UITableViewDelegate, UITableViewDataSource {
+extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+	
 	//MARK: TableView methods
+	
+	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+		 
+//		let urls = indexPaths.compactMap {
+//			let catKey = catSectionTitles[$0.section]
+//			if let catValues = catBreedDictionary[catKey] {
+//				let breed = catValues[$0.row]
+//				guard let breedId = CatBreeds.breedIds[breed] else { return }
+//				CatApi.getCatPhoto(breedId)
+//				.done{ url in
+//					guard let url = URL(string: url) else { return }
+//					CatBreeds.imageUrls[breed] = url
+//				}.catch { error in
+//					print("Error: \(error)")
+//				}
+//			}
+//		}
+//        ImagePrefetcher(urls: urls).start()
+	}
 	
 	// Segue based on row selected
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -155,61 +205,44 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		tableView.rowHeight = 70
-		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
+		tableView.rowHeight = 85
+		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
+		
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive {
 			cell.textLabel?.text = filtered[indexPath.row]
 		} else {
 			let catKey = catSectionTitles[indexPath.section]
-			if let catValues = catBreedDictionary[catKey], let breedUrls = realmBreedData[catKey] {
-				cell.textLabel?.text = catValues[indexPath.row]
-				cell.textLabel?.textColor = UIColor.black
-				
-				// Image in cell
-				print("Breed from Realm: \(breedUrls[indexPath.row].breedName)")
-				print("URL from Realm: \(breedUrls[indexPath.row].url)")
-				guard let url = URL(string: breedUrls[indexPath.row].url) else { return cell }
-				guard let imageOfCell = cell.imageView else { return cell }
-				
-				
-				imageOfCell.af_setImage(withURL: url)
-
-				let itemSize:CGSize = CGSize(width: 75, height: 75)
-				UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
-				imageOfCell.image?.draw(in: CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height))
-				imageOfCell.image = UIGraphicsGetImageFromCurrentImageContext()
-				UIGraphicsEndImageContext()
-
-				imageOfCell.contentMode = UIView.ContentMode.scaleAspectFill
-				imageOfCell.layer.masksToBounds = false
-				imageOfCell.layer.borderWidth = 1.0
-				imageOfCell.layer.cornerRadius = imageOfCell.frame.size.height/2
-				imageOfCell.clipsToBounds = true
-					
-//				}
-				
-//				if let url = breed?.url {
-//					if let imageOfCell = cell.imageView {
-//						imageOfCell.af_setImage(withURL: breed?.url)
-//
-//						let itemSize:CGSize = CGSize(width: 100, height: 100)
-//						UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
-//						imageOfCell.image?.draw(in: CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height))
-//						cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
-//						UIGraphicsEndImageContext()
-//
-//						imageOfCell.contentMode = UIView.ContentMode.scaleAspectFit
-//						imageOfCell.layer.masksToBounds = false
-//						imageOfCell.layer.borderWidth = 1.0
-//						imageOfCell.layer.cornerRadius = imageOfCell.frame.size.height/2
-//						imageOfCell.clipsToBounds = true
-//					}
-//				}
+			if let catValues = catBreedDictionary[catKey] {
+//			if let catValues = catBreedDictionary[catKey], let breedUrls = realmBreedData[catKey] {
+				cell.catBreed?.text = catValues[indexPath.row]
+				cell.catBreed?.textColor = UIColor.black
+				let breed = catValues[indexPath.row]
+				guard let breedId = CatBreeds.breedIds[breed] else { return cell }
+				print("Current imageUrl: \(CatBreeds.imageUrls[breed])")
+				if let imageUrl = CatBreeds.imageUrls[breed] {
+					print("Display cat image \(breed) from memory")
+					cell.setCustomImage(url: imageUrl, width: 75, height: 75)
+				} else {
+					print("Cat API - fetching image url for \(breed)")
+					CatApi.getCatPhoto(breedId)
+						.done{ url in
+							guard let url = URL(string: url) else { return }
+							CatBreeds.imageUrls[breed] = url
+							print("Setting image for \(breed)")
+							cell.setCustomImage(url: url, width: 75, height: 75)
+						}.catch { error in
+							print("Error: \(error)")
+						}
+				}
 			}
 		}
 		
 		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cell.imageView?.kf.cancelDownloadTask()
 	}
 	
 	// Display header title

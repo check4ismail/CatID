@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import AlamofireImage
+import PromiseKit
 
 class CatBreedController: UIViewController {
 	
@@ -39,8 +40,7 @@ class CatBreedController: UIViewController {
 	var selectedBreed: String?
 	let bulletPoint: String = "🔵 "
 	
-	private let catApi = CatApi()
-	private var breedUrl = "https://api.thecatapi.com/v1/breeds/search?q="
+	private var breed = ""
 	private var imageUrl = "https://api.thecatapi.com/v1/images/search?breed_id="
 	
 	private let headers: HTTPHeaders = [
@@ -58,11 +58,10 @@ class CatBreedController: UIViewController {
 		setAllViewsInvisible()
 		if Connectivity.isConnectedToInternet {
 			// If connected to internet, display as expected
-			if var breed = selectedBreed {
+			if let breed = selectedBreed {
 				scrollView.isHidden = false
 				contentView.isHidden = false
-				breed = breed.replacingOccurrences(of: " ", with: "_")
-				breedUrl = breedUrl + breed
+				self.breed = breed
 				getCatInfo()
 			}
 		} else {	// No internet view displayed
@@ -77,35 +76,65 @@ class CatBreedController: UIViewController {
 	}
 	
 	func getCatInfo() {
-		Alamofire.request(breedUrl, method: .get, headers: self.headers).validate().responseJSON { response in
+		print("breed: \(breed)")
+		CatApi.getCatBreedInfo(breed: breed)
+			.done { json in
+				print(json["id"] as! String)
+				DispatchQueue.main.async(execute: {
+//					if let breedId = json[0].id {
+//						self.getCatPhoto()
+//						print("Getting that breedid")
+//					}
+//					print("Before filling temperament")
+//					print("Here's the JSON: \(self.breed)")
+//					if let temperament = json[0,"temperament"].string,
+//						let childFriendly = json[0,"child_friendly"].int,
+//						let grooming = json[0,"grooming"].int,
+//						let intelligence = json[0,"intelligence"].int,
+//						let sheddingLevel = json[0,"shedding_level"].int,
+//						let socialNeeds = json[0,"social_needs"].int,
+//						let description = json[0,"description"].string,
+//						let wikiLink = json[0,"wikipedia_url"].string
+//					{
+//						self.temperament.text = temperament
+//						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
+//						self.setWikiLink(wikiLink)
+//						self.summaryTextView.text = description
+//						self.summaryTextView.isHidden = false
+//					}
+				})
+			}.catch { error in
+				print("Error: \(error)")
+			}
+		Alamofire.request(Router.readCatInfo(breed: breed)).validate().responseJSON { response in
 			switch response.result {
 			
 			case .success(let value):
 				let json = JSON(value)
-				
-				DispatchQueue.main.async(execute: {
-					if let breedId = json[0,"id"].string {
-						self.imageUrl = self.imageUrl + breedId
-						self.getCatPhoto()
-						print("Getting that breedid")
-					}
-					print("Before filling temperament")
-					if let temperament = json[0,"temperament"].string,
-						let childFriendly = json[0,"child_friendly"].int,
-						let grooming = json[0,"grooming"].int,
-						let intelligence = json[0,"intelligence"].int,
-						let sheddingLevel = json[0,"shedding_level"].int,
-						let socialNeeds = json[0,"social_needs"].int,
-						let description = json[0,"description"].string,
-						let wikiLink = json[0,"wikipedia_url"].string
-					{
-						self.temperament.text = temperament
-						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
-						self.setWikiLink(wikiLink)
-						self.summaryTextView.text = description
-						self.summaryTextView.isHidden = false
-					}
-				})
+//				DispatchQueue.main.async(execute: {
+//					if let breedId = json[0,"id"].string {
+//						self.imageUrl = self.imageUrl + breedId
+//						self.getCatPhoto()
+//						print("Getting that breedid")
+//					}
+//					print("Before filling temperament")
+//					print("Here's the JSON: \(self.breed)")
+//					if let temperament = json[0,"temperament"].string,
+//						let childFriendly = json[0,"child_friendly"].int,
+//						let grooming = json[0,"grooming"].int,
+//						let intelligence = json[0,"intelligence"].int,
+//						let sheddingLevel = json[0,"shedding_level"].int,
+//						let socialNeeds = json[0,"social_needs"].int,
+//						let description = json[0,"description"].string,
+//						let wikiLink = json[0,"wikipedia_url"].string
+//					{
+//						self.temperament.text = temperament
+//						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
+//						self.setWikiLink(wikiLink)
+//						self.summaryTextView.text = description
+//						self.summaryTextView.isHidden = false
+//					}
+//				})
 			
 			case .failure(let error):
 				print(error)

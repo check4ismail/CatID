@@ -11,5 +11,6 @@ pod 'Alamofire'
 pod 'AlamofireImage'
 pod 'RealmSwift'
 pod 'PromiseKit/Alamofire', '~> 6.0'
+pod 'Kingfisher', '~> 5.0'
 
 end

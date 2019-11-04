@@ -11,68 +11,79 @@ import RealmSwift
 import Alamofire
 import PromiseKit
 import SwiftyJSON
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	private let catApi = CatApi()
-	private var realm: Realm? = nil
 	
-	private func writeToRealm(_ breeds: [Breed]) {
-		print("Writing to realm database....")
-		realm?.beginWrite()
-		for breed in breeds {
-			realm?.add(breed)
+//	private var realm: Realm? = nil
+//
+//	private func writeToRealm(_ breeds: [Breed]) {
+//		print("Writing to realm database....")
+//		realm?.beginWrite()
+//		for breed in breeds {
+//			realm?.add(breed)
+//		}
+//
+//		try! realm?.commitWrite()
+//		print("Realm committed writing")
+//	}
+	
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		print("Starting background task to fetch image urls")
+		var imageUrls: [URL] = []
+		let catBreeds = CatBreeds.breeds
+		for breed in catBreeds {
+			if let breedId = CatBreeds.breedIds[breed] {
+				
+				CatApi.getCatPhoto(breedId)
+				.done { url in
+					guard let url = URL(string: url) else { return }
+					CatBreeds.imageUrls[breed] = url
+					imageUrls.append(url)
+					if imageUrls.count == catBreeds.count {
+						ImagePrefetcher(urls: imageUrls).start()
+						print("All images cached in background")
+						print(imageUrls)
+					}
+				  }.catch { error in
+						print("Error: \(error)")
+				  }
+			}
 		}
 		
-		try! realm?.commitWrite()
-		print("Realm committed writing")
+		return true
 	}
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		do {
-			realm = try Realm()
-			guard realm!.isEmpty else {
-				print("Realm is not empty")
-				return true
-			}
-			
-			let catBreeds: [String] = CatBreeds().getBreeds()
-			var arrayOfBreeds: [Breed] = []
-			
-			for catBreed in catBreeds {
-				let breed: Breed = Breed()
-				breed.breedName = catBreed
-				arrayOfBreeds.append(breed)
-			}
+//		do {
+//			realm = try Realm()
+//			guard realm!.isEmpty else {
+//				print("Realm is not empty")
+//				return true
+//			}
+//
+//			let catBreeds: [String] = CatBreeds().getBreeds()
+//			var arrayOfBreeds: [Breed] = []
+//
+//			for catBreed in catBreeds {
+//				let breed: Breed = Breed()
+//				breed.breedName = catBreed
+//				arrayOfBreeds.append(breed)
+//			}
 				
-			
-			catApi.getAllCatIds()
-				.done { breedIds in
-					var counter = 0
-					for i in 0..<breedIds.count {
-						
-						self.catApi.getCatPhoto(breedIds[i])
-							.done { url in
-								counter += 1
-								arrayOfBreeds[i].url = url
-								print(arrayOfBreeds[i])
-								if counter == breedIds.count {
-									self.writeToRealm(arrayOfBreeds)
-								}
-							}.catch { error in
-								print("Error: \(error)")
-							}
-					}
-				}.catch { error in
-						print("Error: \(error)")
-				}
-
-		} catch {
-			print(error.localizedDescription)
-		}
-		print("App function ends")
+//		print("Getting all image urls for each cat breed")
+//		for breed in CatBreeds.breeds {
+//			CatApi.getCatPhoto(CatBreeds.breedIds[breed]!)
+//			.done{ url in
+//				if let url = URL(string: url) {
+//					CatBreeds.imageUrls[breed] = url
+//				}
+//			}.catch { error in
+//				print("Error: \(error)")
+//			}
+//		}
 		return true
 	}
 
