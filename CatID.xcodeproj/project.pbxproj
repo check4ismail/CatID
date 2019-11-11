@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		21115237235BA19C0047EE9E /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115236235BA19C0047EE9E /* Breed.swift */; };
 		21115239235BA4AC0047EE9E /* CatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115238235BA4AC0047EE9E /* CatApi.swift */; };
-		215954E92370668300A38B82 /* CatId.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 215954E72370668300A38B82 /* CatId.xcdatamodeld */; };
 		218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656D233D650400ACDD34 /* AppDelegate.swift */; };
 		218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656F233D650400ACDD34 /* SceneDelegate.swift */; };
 		218D6572233D650400ACDD34 /* CatIdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D6571233D650400ACDD34 /* CatIdController.swift */; };
@@ -18,6 +17,8 @@
 		218D657A233D650500ACDD34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218D6578233D650500ACDD34 /* LaunchScreen.storyboard */; };
 		21A52126236B0EC9007FB5E8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52125236B0EC9007FB5E8 /* Router.swift */; };
 		21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52127236B1D03007FB5E8 /* APIManager.swift */; };
+		21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */; };
+		21E7A983237727EB00F05406 /* OfflineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E7A982237727EB00F05406 /* OfflineController.swift */; };
 		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
@@ -28,7 +29,6 @@
 /* Begin PBXFileReference section */
 		21115236235BA19C0047EE9E /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		21115238235BA4AC0047EE9E /* CatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApi.swift; sourceTree = "<group>"; };
-		215954E82370668300A38B82 /* CatId.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatId.xcdatamodel; sourceTree = "<group>"; };
 		218D656A233D650400ACDD34 /* CatID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218D656D233D650400ACDD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		218D656F233D650400ACDD34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +39,8 @@
 		218D657B233D650500ACDD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21A52125236B0EC9007FB5E8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		21A52127236B1D03007FB5E8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatId.xcdatamodel; sourceTree = "<group>"; };
+		21E7A982237727EB00F05406 /* OfflineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineController.swift; sourceTree = "<group>"; };
 		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
+				21E7A982237727EB00F05406 /* OfflineController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,15 +102,15 @@
 		218D656C233D650400ACDD34 /* CatID */ = {
 			isa = PBXGroup;
 			children = (
+				218D656D233D650400ACDD34 /* AppDelegate.swift */,
+				218D656F233D650400ACDD34 /* SceneDelegate.swift */,
 				21A52124236B0EA0007FB5E8 /* Networking */,
 				21FC2CC6233F9F9600E69124 /* Model */,
 				215FEE832346024200917288 /* View */,
 				215FEE822346022C00917288 /* Controller */,
 				21FC2CC7233F9FAE00E69124 /* Supporting Files */,
-				218D656D233D650400ACDD34 /* AppDelegate.swift */,
-				218D656F233D650400ACDD34 /* SceneDelegate.swift */,
 				218D657B233D650500ACDD34 /* Info.plist */,
-				215954E72370668300A38B82 /* CatId.xcdatamodeld */,
+				21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */,
 			);
 			path = CatID;
 			sourceTree = "<group>";
@@ -115,6 +118,7 @@
 		21A52124236B0EA0007FB5E8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				21E887B8235520560068060F /* Connectivity.swift */,
 				21A52125236B0EC9007FB5E8 /* Router.swift */,
 				21A52127236B1D03007FB5E8 /* APIManager.swift */,
 				21115238235BA4AC0047EE9E /* CatApi.swift */,
@@ -126,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				21FC2CC4233F9C2400E69124 /* CatBreeds.swift */,
-				21E887B8235520560068060F /* Connectivity.swift */,
 				21115236235BA19C0047EE9E /* Breed.swift */,
 			);
 			path = Model;
@@ -274,13 +277,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */,
+				21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */,
+				21E7A983237727EB00F05406 /* OfflineController.swift in Sources */,
 				21115239235BA4AC0047EE9E /* CatApi.swift in Sources */,
 				21A52126236B0EC9007FB5E8 /* Router.swift in Sources */,
 				21115237235BA19C0047EE9E /* Breed.swift in Sources */,
 				21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */,
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
 				21E887B9235520560068060F /* Connectivity.swift in Sources */,
-				215954E92370668300A38B82 /* CatId.xcdatamodeld in Sources */,
 				218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */,
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
 				21FCDB8F23684B13001FFB53 /* CatTableViewCell.swift in Sources */,
@@ -438,6 +442,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.IsmailElmaliki.CatID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -486,12 +491,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		215954E72370668300A38B82 /* CatId.xcdatamodeld */ = {
+		21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				215954E82370668300A38B82 /* CatId.xcdatamodel */,
+				21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */,
 			);
-			currentVersion = 215954E82370668300A38B82 /* CatId.xcdatamodel */;
+			currentVersion = 21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */;
 			path = CatId.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

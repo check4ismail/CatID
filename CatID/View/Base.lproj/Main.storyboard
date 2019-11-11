@@ -31,7 +31,7 @@
                                                     <rect key="frame" x="15" y="4" width="75" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Cat Breed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="01B-1Q-6bW">
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="01B-1Q-6bW">
                                                     <rect key="frame" x="106" y="24" width="211" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -61,11 +61,58 @@
                         <outlet property="searchBar" destination="g7N-eC-5J7" id="q4K-pA-NMF"/>
                         <outlet property="tableView" destination="sZa-j1-I4K" id="7nK-2Q-vXW"/>
                         <segue destination="aVd-Ko-yx3" kind="show" identifier="goToCatBreed" id="gEx-Fm-Az8"/>
+                        <segue destination="hcX-mX-S9N" kind="presentation" identifier="offline" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="0k9-DY-fm3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGA-zw-Ezp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930.39999999999998" y="126.38680659670166"/>
+            <point key="canvasLocation" x="892" y="126.38680659670166"/>
+        </scene>
+        <!--Offline-->
+        <scene sceneID="bVo-eK-P3d">
+            <objects>
+                <viewController storyboardIdentifier="Offline" title="Offline" modalPresentationStyle="fullScreen" id="hcX-mX-S9N" customClass="OfflineController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ma9-VI-eES">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2c-8k-Mkn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-O6-Hid">
+                                        <rect key="frame" x="39" y="206" width="296" height="255"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">No internet connection
+😿</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="41"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="leading" secondItem="z2c-8k-Mkn" secondAttribute="leading" constant="39" id="HDe-wd-HeK"/>
+                                    <constraint firstAttribute="bottom" secondItem="V3R-O6-Hid" secondAttribute="bottom" constant="206" id="Kor-aA-lC1"/>
+                                    <constraint firstAttribute="trailing" secondItem="V3R-O6-Hid" secondAttribute="trailing" constant="40" id="hDX-Wa-a6M"/>
+                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="top" secondItem="z2c-8k-Mkn" secondAttribute="top" constant="206" id="wg8-gR-lfz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="uqC-Hg-9da" secondAttribute="top" id="0ET-Le-Rav"/>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="leading" secondItem="uqC-Hg-9da" secondAttribute="leading" id="sFa-Lh-BhC"/>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="trailing" secondItem="uqC-Hg-9da" secondAttribute="trailing" id="w7I-Go-5tq"/>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="bottom" secondItem="uqC-Hg-9da" secondAttribute="bottom" id="xfA-ud-3yN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uqC-Hg-9da"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="JZD-hl-6Gr"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQC-WQ-0Q9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045.5999999999999" y="-332.38380809595208"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ru-Zi-zTl">
@@ -94,30 +141,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1156"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTt-Re-jFd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1156"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eoh-cJ-BQn">
-                                        <rect key="frame" x="36" y="200" width="303" height="165"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">No internet connection
-😿</string>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="41"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Eoh-cJ-BQn" firstAttribute="leading" secondItem="gTt-Re-jFd" secondAttribute="leading" constant="36" id="1dF-Wn-5uN"/>
-                                    <constraint firstItem="Eoh-cJ-BQn" firstAttribute="top" secondItem="gTt-Re-jFd" secondAttribute="top" constant="200" id="AK4-QB-jtj"/>
-                                    <constraint firstAttribute="trailing" secondItem="Eoh-cJ-BQn" secondAttribute="trailing" constant="36" id="GpL-c8-uDP"/>
-                                </constraints>
-                            </view>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylf-ie-5GW">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylf-ie-5GW">
                                 <rect key="frame" x="0.0" y="1" width="375" height="1155"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-Az-vXJ" userLabel="Content View">
+                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-Az-vXJ" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1274.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="it8-yV-Nln" userLabel="Cat Image View">
@@ -294,11 +321,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="gTt-Re-jFd" firstAttribute="bottom" secondItem="Ylf-ie-5GW" secondAttribute="bottom" id="196-AP-7Jg"/>
                             <constraint firstItem="Ylf-ie-5GW" firstAttribute="leading" secondItem="FxI-65-aUU" secondAttribute="leading" id="Rst-mm-Dt7"/>
-                            <constraint firstItem="gTt-Re-jFd" firstAttribute="top" secondItem="FxI-65-aUU" secondAttribute="top" id="T4c-td-WvJ"/>
-                            <constraint firstItem="gTt-Re-jFd" firstAttribute="trailing" secondItem="Ylf-ie-5GW" secondAttribute="trailing" id="i2z-Jl-n5l"/>
-                            <constraint firstItem="gTt-Re-jFd" firstAttribute="leading" secondItem="Ylf-ie-5GW" secondAttribute="leading" id="iB7-Z9-yAn"/>
                             <constraint firstItem="Ylf-ie-5GW" firstAttribute="top" secondItem="FxI-65-aUU" secondAttribute="top" constant="1" id="jHS-XD-dCN"/>
                             <constraint firstItem="FxI-65-aUU" firstAttribute="bottom" secondItem="Ylf-ie-5GW" secondAttribute="bottom" id="lGS-vW-8aa"/>
                             <constraint firstItem="FxI-65-aUU" firstAttribute="trailing" secondItem="Ylf-ie-5GW" secondAttribute="trailing" id="qtZ-Ln-DVN"/>
@@ -312,13 +335,10 @@
                         <outlet property="catImage" destination="35g-sS-Uvo" id="RRM-jt-7QQ"/>
                         <outlet property="childFriendlyTextField" destination="mjh-XW-raH" id="Vfn-fR-lbC"/>
                         <outlet property="childRatingTextField" destination="w6K-X5-re6" id="JpY-E2-4yC"/>
-                        <outlet property="contentView" destination="m6c-Az-vXJ" id="eVb-JE-5QG"/>
                         <outlet property="groomingRatingTextField" destination="aAf-Xo-Ypp" id="uNo-cj-xBZ"/>
                         <outlet property="groomingTextField" destination="6Gw-8z-hIH" id="oR3-3O-QKj"/>
                         <outlet property="intelligenceRatingTextField" destination="9pR-j4-jb5" id="zcq-4T-Mvl"/>
                         <outlet property="intelligenceTextField" destination="n2V-UH-4Mt" id="k31-ph-jea"/>
-                        <outlet property="noInternetView" destination="gTt-Re-jFd" id="zsS-vG-xUY"/>
-                        <outlet property="scrollView" destination="Ylf-ie-5GW" id="G1b-On-GM1"/>
                         <outlet property="sheddingRatingTextField" destination="xJI-xp-cxK" id="n3h-zf-yE5"/>
                         <outlet property="sheddingTextField" destination="cml-MQ-jyq" id="f3g-a4-Zif"/>
                         <outlet property="socialNeedsRatingTextField" destination="ltg-zY-Twc" id="JEr-Hv-MDW"/>
@@ -330,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHy-1Q-02c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1781.5999999999999" y="126.83658170914543"/>
+            <point key="canvasLocation" x="2047" y="674"/>
         </scene>
     </scenes>
 </document>

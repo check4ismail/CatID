@@ -12,7 +12,7 @@ import Alamofire
 struct APIManager {
 	
 	struct APIKey {
-		static var header = "x-api-key"
-		static var value = "d88df8ce-6c21-4cb1-9253-bb6035eec8b8"
+		static let header = "x-api-key"
+		static var value: String = ProcessInfo.processInfo.environment["CAT_API_KEY"]!
 	}
 }

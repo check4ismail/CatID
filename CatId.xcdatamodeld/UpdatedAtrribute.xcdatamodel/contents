@@ -2,12 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cat" representedClassName="Cat" syncable="YES" codeGenerationType="class">
         <attribute name="breed" optional="YES" attributeType="String"/>
-        <attribute name="childFriendlyRating" optional="YES" attributeType="String"/>
-        <attribute name="groomingRating" optional="YES" attributeType="String"/>
+        <attribute name="childFriendlyRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="groomingRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String"/>
-        <attribute name="intelligenceRating" optional="YES" attributeType="String"/>
-        <attribute name="sheddingRating" optional="YES" attributeType="String"/>
-        <attribute name="socialNeedsRating" optional="YES" attributeType="String"/>
+        <attribute name="intelligenceRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sheddingRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="socialNeedsRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="summaryText" optional="YES" attributeType="String"/>
         <attribute name="temperament" optional="YES" attributeType="String"/>
         <attribute name="wikiLink" optional="YES" attributeType="String"/>

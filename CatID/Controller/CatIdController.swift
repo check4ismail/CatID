@@ -17,6 +17,7 @@ class CatIdController: UIViewController {
 	// Outlets
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
+	
 	// Members
 	private let catBreeds: [String] = CatBreeds.breeds
 	private var realmBreedData = [String: [Breed]]()
@@ -24,7 +25,9 @@ class CatIdController: UIViewController {
 	private var catBreedDictionary = [String: [String]]()
 	private var searchActive: Bool = false
 	private var filtered:[String] = []
-
+	var timer: Timer?
+	var timeCounter: Int = 1
+	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .darkContent
 	}
@@ -35,8 +38,8 @@ class CatIdController: UIViewController {
 //
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		// Do any additional setup after loading the view.
-		loadImagesInBackground()
 		navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "58cced")
 		
 		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
@@ -47,13 +50,11 @@ class CatIdController: UIViewController {
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
 		
 		setCatDictionary()
-//		setRealmBreedData()
 		
 		searchBar.delegate = self
 		searchBar.showsCancelButton = true
 		view.addSubview(searchBar)
 		
-		tableView.prefetchDataSource = self
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.reloadData()
@@ -63,9 +64,25 @@ class CatIdController: UIViewController {
 		view.addGestureRecognizer(tap)
 	}
 	
-	private func loadImagesInBackground() {
+	override func viewDidAppear(_ animated: Bool) {
+		timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+	}
+	
+	@objc
+	func runTimedCode() {
+		print("Running timed code, iteration \(timeCounter) - CatIdController")
+		timeCounter += 1
+		if !Connectivity.isConnectedToInternet {
+			performSegue(withIdentifier: "offline", sender: self)
+			timer?.invalidate()
+		}
+	}
+	
+//	private func loadImagesInBackground() {
 //		DispatchQueue.global(qos: .background).async { [weak self] in
-//			print("Starting background task to fetch image urls")
+//			print("Starting background task to check internet connection")
+//
+//			performSegue(withIdentifier: "offline", sender: self)
 //			guard let self = self else {
 //				return
 //			}
@@ -87,7 +104,7 @@ class CatIdController: UIViewController {
 //				}
 //			}
 //		}
-	}
+//	}
 	private func setCatDictionary() {
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
@@ -129,16 +146,24 @@ class CatIdController: UIViewController {
 		if let index = self.tableView.indexPathForSelectedRow {
 			self.tableView.deselectRow(at: index, animated: true)
 		}
+		tableView.reloadData()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		timer?.invalidate()
 	}
 	
 	//MARK: Prepare segue
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		guard Connectivity.isConnectedToInternet else { return }
 		let destinationVC = segue.destination as! CatBreedController
 		
 		if let indexPath = self.tableView.indexPathForSelectedRow {
 			if searchActive {
 				// Pass cell that was selected from search
 				let currentCell = tableView.cellForRow(at: indexPath)
+				let text = String((currentCell?.textLabel!.text)!)
+				print("current cell from search: \(text)")
 				destinationVC.selectedBreed = currentCell?.textLabel?.text
 			} else {
 				// Pass cell from ordered dictionary
@@ -151,32 +176,17 @@ class CatIdController: UIViewController {
 	}
 }
 
-extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	
 	//MARK: TableView methods
 	
-	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-		 
-//		let urls = indexPaths.compactMap {
-//			let catKey = catSectionTitles[$0.section]
-//			if let catValues = catBreedDictionary[catKey] {
-//				let breed = catValues[$0.row]
-//				guard let breedId = CatBreeds.breedIds[breed] else { return }
-//				CatApi.getCatPhoto(breedId)
-//				.done{ url in
-//					guard let url = URL(string: url) else { return }
-//					CatBreeds.imageUrls[breed] = url
-//				}.catch { error in
-//					print("Error: \(error)")
-//				}
-//			}
-//		}
-//        ImagePrefetcher(urls: urls).start()
-	}
-	
 	// Segue based on row selected
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		performSegue(withIdentifier: "goToCatBreed", sender: self)
+		if !Connectivity.isConnectedToInternet {
+			performSegue(withIdentifier: "offline", sender: self)
+		} else {
+			performSegue(withIdentifier: "goToCatBreed", sender: self)
+		}
 	}
 	
 	// Number of sections
@@ -205,31 +215,35 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 	
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		tableView.rowHeight = 85
 		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
 		
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive {
+			cell.catBreed?.text?.removeAll()
+			print("Current row: \(indexPath.row)")
 			cell.textLabel?.text = filtered[indexPath.row]
 		} else {
 			let catKey = catSectionTitles[indexPath.section]
 			if let catValues = catBreedDictionary[catKey] {
-//			if let catValues = catBreedDictionary[catKey], let breedUrls = realmBreedData[catKey] {
+				let breed = catValues[indexPath.row]
+				cell.textLabel?.text?.removeAll()
+				guard Connectivity.isConnectedToInternet else {
+					cell.textLabel?.text = breed
+					return cell
+				}
+				guard let breedId = CatBreeds.breedIds[breed] else { return cell }
 				cell.catBreed?.text = catValues[indexPath.row]
 				cell.catBreed?.textColor = UIColor.black
-				let breed = catValues[indexPath.row]
-				guard let breedId = CatBreeds.breedIds[breed] else { return cell }
-				print("Current imageUrl: \(CatBreeds.imageUrls[breed])")
+				tableView.rowHeight = 85
 				if let imageUrl = CatBreeds.imageUrls[breed] {
-					print("Display cat image \(breed) from memory")
+//					print("Display cat image \(breed) from memory")
 					cell.setCustomImage(url: imageUrl, width: 75, height: 75)
-				} else {
-					print("Cat API - fetching image url for \(breed)")
+				} else { // If photo isn't cached in memory
 					CatApi.getCatPhoto(breedId)
 						.done{ url in
 							guard let url = URL(string: url) else { return }
 							CatBreeds.imageUrls[breed] = url
-							print("Setting image for \(breed)")
+//							print("Setting image for \(breed)")
 							cell.setCustomImage(url: url, width: 75, height: 75)
 						}.catch { error in
 							print("Error: \(error)")
@@ -318,9 +332,9 @@ extension CatIdController: UISearchBarDelegate {
 extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int = UInt32()
-		Scanner(string: hex).scanHexInt32(&int)
-        let a, r, g, b: UInt32
+        var int = UInt64()
+		Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
         switch hex.count {
         case 3: // RGB (12-bit)
             (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)

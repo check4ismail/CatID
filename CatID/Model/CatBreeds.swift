@@ -151,9 +151,4 @@ struct CatBreeds {
 	]
 	
 	static var imageUrls: [String : URL] = [:]
-	static var test = "TESTING"
-	
-//	mutating func setImageUrls(_ catBreed: String, _ imageUrl: String) {
-//		imageUrls[catBreed] = imageUrl
-//	}
 }

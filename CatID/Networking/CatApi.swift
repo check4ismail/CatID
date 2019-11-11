@@ -13,18 +13,15 @@ import PromiseKit
 
 public struct CatApi {
 
-	static func getCatBreedInfo(breed catBreed: String) -> Promise<[String: Any]> {
+	static func getCatBreedInfo(breed catBreed: String) -> Promise<JSON> {
 		let breed = catBreed.replacingOccurrences(of: " ", with: "_")
 		return Promise { seal in
 			Alamofire.request(Router.readCatInfo(breed: breed)).validate().responseJSON { response in
 				switch response.result {
 				
 				case .success(let json):
-//					print()
-					guard let json = json  as? [String: Any] else {
-					   return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
-					}
-				   seal.fulfill(json)
+					let json = JSON(json)
+					seal.fulfill(json)
 				
 				case .failure(let error):
 					seal.reject(error)

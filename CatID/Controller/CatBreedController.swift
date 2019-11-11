@@ -11,6 +11,8 @@ import SwiftyJSON
 import Alamofire
 import AlamofireImage
 import PromiseKit
+import Kingfisher
+import CoreData
 
 class CatBreedController: UIViewController {
 	
@@ -32,20 +34,12 @@ class CatBreedController: UIViewController {
 	
 	@IBOutlet weak var wikiTextView: UITextView!
 	
-	@IBOutlet weak var noInternetView: UIView!
-	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var contentView: UIView!
-	
-	
 	var selectedBreed: String?
-	let bulletPoint: String = "🔵 "
 	
+	private var cats: [NSManagedObject] = []
+	private var catMetaData: NSManagedObject?
+	private let bulletPoint: String = "🔵 "
 	private var breed = ""
-	private var imageUrl = "https://api.thecatapi.com/v1/images/search?breed_id="
-	
-	private let headers: HTTPHeaders = [
-		"x-api-key": "d88df8ce-6c21-4cb1-9253-bb6035eec8b8"
-	]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,123 +47,114 @@ class CatBreedController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		self.title = selectedBreed
-		
+		load()
 		// By default, views are hidden
-		setAllViewsInvisible()
-		if Connectivity.isConnectedToInternet {
-			// If connected to internet, display as expected
-			if let breed = selectedBreed {
-				scrollView.isHidden = false
-				contentView.isHidden = false
-				self.breed = breed
+		let isBreedSaved: Bool = containsBreed()
+		if let breed = selectedBreed {
+			self.breed = breed
+			if isBreedSaved {
+				getCatPhoto()
+				getCatInfoFromDisk()
+			} else {
+				// If connected to internet, display as expected
+				getCatPhoto()
 				getCatInfo()
 			}
-		} else {	// No internet view displayed
-			noInternetView.isHidden = false
 		}
 	}
 	
-	func setAllViewsInvisible() {
-		noInternetView.isHidden = true
-		scrollView.isHidden = true
-		contentView.isHidden = true
+	func containsBreed() -> Bool {
+		for cat in cats {
+			let breedValue = cat.value(forKey: "breed") as! String
+			if breedValue == title {
+				catMetaData = cat
+				return true
+			}
+		}
+		
+		return false
+	}
+	
+	func load() {
+		//1
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		
+		let managedContext = appDelegate.persistentContainer.viewContext
+		
+		//2
+		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Cat")
+		
+		//3
+		do {
+			cats = try managedContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
 	}
 	
 	func getCatInfo() {
 		print("breed: \(breed)")
 		CatApi.getCatBreedInfo(breed: breed)
 			.done { json in
-				print(json["id"] as! String)
 				DispatchQueue.main.async(execute: {
-//					if let breedId = json[0].id {
-//						self.getCatPhoto()
-//						print("Getting that breedid")
-//					}
-//					print("Before filling temperament")
-//					print("Here's the JSON: \(self.breed)")
-//					if let temperament = json[0,"temperament"].string,
-//						let childFriendly = json[0,"child_friendly"].int,
-//						let grooming = json[0,"grooming"].int,
-//						let intelligence = json[0,"intelligence"].int,
-//						let sheddingLevel = json[0,"shedding_level"].int,
-//						let socialNeeds = json[0,"social_needs"].int,
-//						let description = json[0,"description"].string,
-//						let wikiLink = json[0,"wikipedia_url"].string
-//					{
-//						self.temperament.text = temperament
-//						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
-//						self.setWikiLink(wikiLink)
-//						self.summaryTextView.text = description
-//						self.summaryTextView.isHidden = false
-//					}
+					print("Filling cat info - API")
+					if let temperament = json[0,"temperament"].string,
+						let childFriendly = json[0,"child_friendly"].int,
+						let grooming = json[0,"grooming"].int,
+						let intelligence = json[0,"intelligence"].int,
+						let sheddingLevel = json[0,"shedding_level"].int,
+						let socialNeeds = json[0,"social_needs"].int,
+						let description = json[0,"description"].string,
+						let wikiLink = json[0,"wikipedia_url"].string
+					{
+						self.temperament.text = temperament
+						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
+						self.setWikiLink(wikiLink)
+						self.summaryTextView.text = description
+						
+						self.showAllViews()
+						self.save(wikiLink)
+					}
 				})
 			}.catch { error in
 				print("Error: \(error)")
 			}
-		Alamofire.request(Router.readCatInfo(breed: breed)).validate().responseJSON { response in
-			switch response.result {
-			
-			case .success(let value):
-				let json = JSON(value)
-//				DispatchQueue.main.async(execute: {
-//					if let breedId = json[0,"id"].string {
-//						self.imageUrl = self.imageUrl + breedId
-//						self.getCatPhoto()
-//						print("Getting that breedid")
-//					}
-//					print("Before filling temperament")
-//					print("Here's the JSON: \(self.breed)")
-//					if let temperament = json[0,"temperament"].string,
-//						let childFriendly = json[0,"child_friendly"].int,
-//						let grooming = json[0,"grooming"].int,
-//						let intelligence = json[0,"intelligence"].int,
-//						let sheddingLevel = json[0,"shedding_level"].int,
-//						let socialNeeds = json[0,"social_needs"].int,
-//						let description = json[0,"description"].string,
-//						let wikiLink = json[0,"wikipedia_url"].string
-//					{
-//						self.temperament.text = temperament
-//						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
-//						self.setWikiLink(wikiLink)
-//						self.summaryTextView.text = description
-//						self.summaryTextView.isHidden = false
-//					}
-//				})
-			
-			case .failure(let error):
-				print(error)
-			}
-		}
+	}
+	
+	func getCatInfoFromDisk() {
+		print("Filling cat info - Disk")
+		childRatingTextField.text = catMetaData?.value(forKeyPath: "childFriendlyRating") as? String
+		groomingRatingTextField.text = catMetaData?.value(forKeyPath: "groomingRating") as? String
+		intelligenceRatingTextField.text = catMetaData?.value(forKeyPath: "intelligenceRating") as? String
+		sheddingRatingTextField.text = catMetaData?.value(forKeyPath: "sheddingRating") as? String
+		socialNeedsRatingTextField.text = catMetaData?.value(forKeyPath: "socialNeedsRating") as? String
+		summaryTextView.text = catMetaData?.value(forKeyPath: "summaryText") as? String
+		temperament.text = catMetaData?.value(forKeyPath: "temperament") as? String
+		
+		showAllViews()
+		let wikiLink = catMetaData?.value(forKeyPath: "wikiLink") as! String
+		setWikiLink(wikiLink)
+	}
+	
+	func showAllViews() {
+		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, intelligenceTextField, sheddingTextField, socialNeedsTextField]
+		arrayEnableTextFields.forEach { $0.isHidden = false }
+		temperament.isHidden = false
+		summaryTextView.isHidden = false
 	}
 	
 	func getCatPhoto() {
-		Alamofire.request(imageUrl, method: .get, headers: self.headers).validate().responseJSON { response in
-			switch response.result {
-			
-			case .success(let value):
-				let json = JSON(value)
-			
-				DispatchQueue.main.async {
-					if let imageUrl = json[0,"url"].string {
-						let downloadURL = NSURL(string: imageUrl)!
-						self.catImage.af_setImage(withURL: downloadURL as URL)
-						print("Filling cat photo")
-					}
-				}
-			
-			case .failure(let error):
-				print(error)
-			}
-		}
+		let url = CatBreeds.imageUrls[breed]
+		print("Filling cat photo")
+		catImage.kf.setImage(with: url, options: [.transition(.fade(0.3))])
 	}
 	
 	func fillRatings(_ ratingArray: [Int]) {
-		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, intelligenceTextField, sheddingTextField, socialNeedsTextField]
 		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, intelligenceRatingTextField, sheddingRatingTextField, socialNeedsRatingTextField]
 		
 		for i in 0..<ratingArray.count {
-			arrayEnableTextFields[i].isHidden = false
-			
 			for _ in 0..<ratingArray[i] {
 				if let ratingText = ratingTextFields[i].text {
 					ratingTextFields[i].text = ratingText + bulletPoint
@@ -191,5 +176,39 @@ class CatBreedController: UIViewController {
 		wikiTextView.linkTextAttributes = [
 			.foregroundColor: UIColor.black,
 		]
+	}
+	
+	func save(_ wikiLink: String) {
+	  
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+	  
+		// 1
+		let managedContext = appDelegate.persistentContainer.viewContext
+	  
+		// 2
+		let entity = NSEntityDescription.entity(forEntityName: "Cat", in: managedContext)!
+	  
+		let cat = NSManagedObject(entity: entity, insertInto: managedContext)
+	  
+		let imageUrl = CatBreeds.imageUrls[breed]?.absoluteString
+		// 3
+		cat.setValue(breed, forKeyPath: "breed")
+		cat.setValue(imageUrl, forKeyPath: "imageUrl")
+		cat.setValue(childRatingTextField.text, forKeyPath: "childFriendlyRating")
+		cat.setValue(groomingRatingTextField.text, forKeyPath: "groomingRating")
+		cat.setValue(intelligenceRatingTextField.text, forKeyPath: "intelligenceRating")
+		cat.setValue(sheddingRatingTextField.text, forKeyPath: "sheddingRating")
+		cat.setValue(socialNeedsRatingTextField.text, forKeyPath: "socialNeedsRating")
+		cat.setValue(summaryTextView.text, forKeyPath: "summaryText")
+		cat.setValue(temperament.text, forKeyPath: "temperament")
+		cat.setValue(wikiLink, forKeyPath: "wikiLink")
+	  
+		// 4
+		do {
+			try managedContext.save()
+			cats.append(cat)
+		} catch let error as NSError {
+			print("Could not save. \(error), \(error.userInfo)")
+		}
 	}
 }

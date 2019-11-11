@@ -12,24 +12,16 @@ import Alamofire
 import PromiseKit
 import SwiftyJSON
 import Kingfisher
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
-//	private var realm: Realm? = nil
-//
-//	private func writeToRealm(_ breeds: [Breed]) {
-//		print("Writing to realm database....")
-//		realm?.beginWrite()
-//		for breed in breeds {
-//			realm?.add(breed)
-//		}
-//
-//		try! realm?.commitWrite()
-//		print("Realm committed writing")
-//	}
-	
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		guard Connectivity.isConnectedToInternet else {
+			print("No internet connection")
+			return true
+		}
 		print("Starting background task to fetch image urls")
 		var imageUrls: [URL] = []
 		let catBreeds = CatBreeds.breeds
@@ -44,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 					if imageUrls.count == catBreeds.count {
 						ImagePrefetcher(urls: imageUrls).start()
 						print("All images cached in background")
-						print(imageUrls)
 					}
 				  }.catch { error in
 						print("Error: \(error)")
@@ -57,34 +48,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-//		do {
-//			realm = try Realm()
-//			guard realm!.isEmpty else {
-//				print("Realm is not empty")
-//				return true
-//			}
-//
-//			let catBreeds: [String] = CatBreeds().getBreeds()
-//			var arrayOfBreeds: [Breed] = []
-//
-//			for catBreed in catBreeds {
-//				let breed: Breed = Breed()
-//				breed.breedName = catBreed
-//				arrayOfBreeds.append(breed)
-//			}
-				
-//		print("Getting all image urls for each cat breed")
-//		for breed in CatBreeds.breeds {
-//			CatApi.getCatPhoto(CatBreeds.breedIds[breed]!)
-//			.done{ url in
-//				if let url = URL(string: url) {
-//					CatBreeds.imageUrls[breed] = url
-//				}
-//			}.catch { error in
-//				print("Error: \(error)")
-//			}
-//		}
 		return true
+	}
+	
+	func applicationWillTerminate(_ application: UIApplication) {
+		self.saveContext()
+	}
+
+	// MARK: - Core Data stack
+	lazy var persistentContainer: NSPersistentContainer = {
+	  // The persistent container for the application. This implementation
+	  // creates and returns a container, having loaded the store for the
+	  // application to it. This property is optional since there are legitimate
+	  // error conditions that could cause the creation of the store to fail.
+	  let container = NSPersistentContainer(name: "CatId")
+	  container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+		if let error = error as NSError? {
+		  // Replace this implementation with code to handle the error appropriately.
+		  // fatalError() causes the application to generate a crash log and terminate.
+		  // You should not use this function in a shipping application, although it may be useful during development.
+
+		  /*
+		   Typical reasons for an error here include:
+		   * The parent directory does not exist, cannot be created, or disallows writing.
+		   * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+		   * The device is out of space.
+		   * The store could not be migrated to the current model version.
+		   Check the error message to determine what the actual problem was.
+		   */
+		  fatalError("Unresolved error \(error), \(error.userInfo)")
+		}
+	  })
+	  return container
+	}()
+
+	// MARK: - Core Data Saving support
+
+	func saveContext () {
+	  let context = persistentContainer.viewContext
+	  if context.hasChanges {
+		do {
+		  try context.save()
+		} catch {
+		  // Replace this implementation with code to handle the error appropriately.
+		  // fatalError() causes the application to generate a crash log and terminate.
+		  /// You should not use this function in a shipping application, although it may be useful during development.
+		  let nserror = error as NSError
+		  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+		}
+	  }
 	}
 
 	// MARK: UISceneSession Lifecycle
