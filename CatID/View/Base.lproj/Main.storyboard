@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-O6-Hid">
-                                        <rect key="frame" x="39" y="206" width="296" height="255"/>
+                                        <rect key="frame" x="39" y="249" width="296" height="169"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">No internet connection
 😿</string>
@@ -92,9 +92,9 @@
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="V3R-O6-Hid" firstAttribute="leading" secondItem="z2c-8k-Mkn" secondAttribute="leading" constant="39" id="HDe-wd-HeK"/>
-                                    <constraint firstAttribute="bottom" secondItem="V3R-O6-Hid" secondAttribute="bottom" constant="206" id="Kor-aA-lC1"/>
+                                    <constraint firstAttribute="bottom" secondItem="V3R-O6-Hid" secondAttribute="bottom" constant="249" id="Kor-aA-lC1"/>
                                     <constraint firstAttribute="trailing" secondItem="V3R-O6-Hid" secondAttribute="trailing" constant="40" id="hDX-Wa-a6M"/>
-                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="top" secondItem="z2c-8k-Mkn" secondAttribute="top" constant="206" id="wg8-gR-lfz"/>
+                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="top" secondItem="z2c-8k-Mkn" secondAttribute="top" constant="249" id="wg8-gR-lfz"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -236,8 +236,8 @@
                                                         </attributedString>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="WIKIPEDIA" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CRt-MA-Ove">
-                                                        <rect key="frame" x="140" y="863.5" width="95" height="37"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="WIKIPEDIA" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="CRt-MA-Ove">
+                                                        <rect key="frame" x="146" y="861" width="95" height="37"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
@@ -246,7 +246,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="CRt-MA-Ove" secondAttribute="bottom" constant="17" id="0cH-9U-I3a"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CRt-MA-Ove" secondAttribute="bottom" constant="19.5" id="0cH-9U-I3a"/>
                                                     <constraint firstItem="2DY-pE-58g" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="1la-dE-IGD"/>
                                                     <constraint firstItem="mjh-XW-raH" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="15" id="2dI-GO-9vO"/>
                                                     <constraint firstItem="w6K-X5-re6" firstAttribute="top" secondItem="JKN-vB-f0H" secondAttribute="bottom" constant="52" id="3hx-FL-Kkk"/>
@@ -261,25 +261,24 @@
                                                     <constraint firstItem="cml-MQ-jyq" firstAttribute="top" secondItem="n2V-UH-4Mt" secondAttribute="bottom" constant="21" id="Dab-Sq-aIt"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="top" secondItem="9pR-j4-jb5" secondAttribute="bottom" constant="23" id="EIF-jL-0ID"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="EXw-ij-k1C"/>
-                                                    <constraint firstAttribute="trailing" secondItem="CRt-MA-Ove" secondAttribute="trailing" constant="140" id="HDW-AL-l3g"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CRt-MA-Ove" secondAttribute="trailing" constant="134" id="HDW-AL-l3g"/>
                                                     <constraint firstItem="aAf-Xo-Ypp" firstAttribute="leading" secondItem="6Gw-8z-hIH" secondAttribute="trailing" constant="128" id="HG9-kv-MEn"/>
                                                     <constraint firstAttribute="trailing" secondItem="aAf-Xo-Ypp" secondAttribute="trailing" constant="16" id="Hux-M2-GgM"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="top" secondItem="9pR-j4-jb5" secondAttribute="bottom" constant="23" id="IcT-iU-jHs"/>
                                                     <constraint firstAttribute="trailing" secondItem="vYC-S6-Y5o" secondAttribute="trailing" constant="16" id="Mxh-Xb-7kL"/>
                                                     <constraint firstItem="n2V-UH-4Mt" firstAttribute="top" secondItem="6Gw-8z-hIH" secondAttribute="bottom" constant="20" id="Ptq-EB-0ul"/>
-                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="top" secondItem="vYC-S6-Y5o" secondAttribute="bottom" constant="16" id="QHC-ZB-2Wd"/>
                                                     <constraint firstItem="vYC-S6-Y5o" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="WHV-fx-Kw9"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="15" id="Zdx-oE-Ydk"/>
                                                     <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="bottom" constant="42" id="cC5-U8-VGX"/>
                                                     <constraint firstItem="n2V-UH-4Mt" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="fZG-cD-gPj"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="leading" secondItem="cml-MQ-jyq" secondAttribute="trailing" constant="93" id="fxf-Si-1BV"/>
-                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="top" secondItem="vYC-S6-Y5o" secondAttribute="bottom" constant="16" id="gYp-ga-aZq"/>
+                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="top" secondItem="vYC-S6-Y5o" secondAttribute="bottom" constant="13.5" id="gYp-ga-aZq"/>
                                                     <constraint firstItem="ltg-zY-Twc" firstAttribute="top" secondItem="xJI-xp-cxK" secondAttribute="bottom" constant="21" id="haq-AP-kjk"/>
                                                     <constraint firstItem="mjh-XW-raH" firstAttribute="top" secondItem="JKN-vB-f0H" secondAttribute="bottom" constant="52" id="iI9-wP-KZf"/>
                                                     <constraint firstAttribute="trailing" secondItem="9pR-j4-jb5" secondAttribute="trailing" constant="16" id="iZB-TO-f3P"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="ite-Gx-gXL"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="top" secondItem="aAf-Xo-Ypp" secondAttribute="bottom" constant="20" id="jHU-gE-NhP"/>
-                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="140" id="jWw-iA-ho4"/>
+                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="146" id="jWw-iA-ho4"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="top" secondItem="aAf-Xo-Ypp" secondAttribute="bottom" constant="20" id="l0w-SD-sEp"/>
                                                     <constraint firstItem="ltg-zY-Twc" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="top" id="lgC-Uu-ue7"/>
                                                     <constraint firstAttribute="trailing" secondItem="JKN-vB-f0H" secondAttribute="trailing" constant="16" id="mVZ-qn-1AN"/>

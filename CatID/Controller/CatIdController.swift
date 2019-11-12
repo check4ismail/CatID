@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import Alamofire
 import AlamofireImage
 import Kingfisher
@@ -20,7 +19,6 @@ class CatIdController: UIViewController {
 	
 	// Members
 	private let catBreeds: [String] = CatBreeds.breeds
-	private var realmBreedData = [String: [Breed]]()
 	private var catSectionTitles = [String]()
 	private var catBreedDictionary = [String: [String]]()
 	private var searchActive: Bool = false
@@ -32,10 +30,6 @@ class CatIdController: UIViewController {
 		return .darkContent
 	}
 	
-//	override func viewDidAppear(_ animated: Bool) {
-//		navigationController?.navigationBar.barStyle = .white
-//	}
-//
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -69,7 +63,7 @@ class CatIdController: UIViewController {
 	}
 	
 	@objc
-	func runTimedCode() {
+	func runTimedCode() {	// Runs every 10 seconds to see if app goes offline
 		print("Running timed code, iteration \(timeCounter) - CatIdController")
 		timeCounter += 1
 		if !Connectivity.isConnectedToInternet {
@@ -78,34 +72,7 @@ class CatIdController: UIViewController {
 		}
 	}
 	
-//	private func loadImagesInBackground() {
-//		DispatchQueue.global(qos: .background).async { [weak self] in
-//			print("Starting background task to check internet connection")
-//
-//			performSegue(withIdentifier: "offline", sender: self)
-//			guard let self = self else {
-//				return
-//			}
-//			var imageUrls: [URL] = []
-//			for breed in self.catBreeds {
-//				if let breedId = CatBreeds.breedIds[breed] {
-//					CatApi.getCatPhoto(breedId)
-//					.done{ url in
-//						guard let url = URL(string: url) else { return }
-//						CatBreeds.imageUrls[breed] = url
-//						imageUrls.append(url)
-//						if imageUrls.count == self.catBreeds.count {
-//							print("All images cached in background")
-//							ImagePrefetcher(urls: imageUrls).start()
-//						}
-//					  }.catch { error in
-//							print("Error: \(error)")
-//					  }
-//				}
-//			}
-//		}
-//	}
-	private func setCatDictionary() {
+	private func setCatDictionary() {	// Create dictionary of cat breeds organized alphabetically
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
 			
@@ -123,25 +90,6 @@ class CatIdController: UIViewController {
 		catSectionTitles = catSectionTitles.sorted(by: { $0 < $1 })
 	}
 	
-//	private func setRealmBreedData() {
-//		let realm = try! Realm()
-//		let breeds = realm.objects(Breed.self)
-//
-//		for breed in breeds {
-//			let breedName = breed.breedName
-//			let breedKey = String(breedName.prefix(1)) // First letter of string
-//
-//			if var breedValues = realmBreedData[breedKey] {
-//				breedValues.append(breed)
-//				realmBreedData[breedKey] = breedValues
-//			} else {
-//				realmBreedData[breedKey] = [breed]
-//			}
-//		}
-//
-//		dump(realmBreedData)
-//	}
-	
 	override func viewWillAppear(_ animated: Bool) {
 		if let index = self.tableView.indexPathForSelectedRow {
 			self.tableView.deselectRow(at: index, animated: true)
@@ -150,7 +98,7 @@ class CatIdController: UIViewController {
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		timer?.invalidate()
+		timer?.invalidate()	// stops timer
 	}
 	
 	//MARK: Prepare segue
@@ -162,8 +110,6 @@ class CatIdController: UIViewController {
 			if searchActive {
 				// Pass cell that was selected from search
 				let currentCell = tableView.cellForRow(at: indexPath)
-				let text = String((currentCell?.textLabel!.text)!)
-				print("current cell from search: \(text)")
 				destinationVC.selectedBreed = currentCell?.textLabel?.text
 			} else {
 				// Pass cell from ordered dictionary
@@ -218,32 +164,35 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
 		
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
-		if searchActive {
+		if searchActive { // Displays search using default textLabel from cell
 			cell.catBreed?.text?.removeAll()
-			print("Current row: \(indexPath.row)")
 			cell.textLabel?.text = filtered[indexPath.row]
 		} else {
 			let catKey = catSectionTitles[indexPath.section]
 			if let catValues = catBreedDictionary[catKey] {
 				let breed = catValues[indexPath.row]
-				cell.textLabel?.text?.removeAll()
+				
+				// Without internet connection, use default textLabel
 				guard Connectivity.isConnectedToInternet else {
 					cell.textLabel?.text = breed
 					return cell
 				}
+				
+				// Filling custom cell textLabel and UIImage
+				cell.textLabel?.text?.removeAll()
 				guard let breedId = CatBreeds.breedIds[breed] else { return cell }
 				cell.catBreed?.text = catValues[indexPath.row]
 				cell.catBreed?.textColor = UIColor.black
 				tableView.rowHeight = 85
+				
 				if let imageUrl = CatBreeds.imageUrls[breed] {
-//					print("Display cat image \(breed) from memory")
+					// Loading imageUrl from memory
 					cell.setCustomImage(url: imageUrl, width: 75, height: 75)
-				} else { // If photo isn't cached in memory
+				} else { // API request to get image url for cat breed
 					CatApi.getCatPhoto(breedId)
 						.done{ url in
 							guard let url = URL(string: url) else { return }
 							CatBreeds.imageUrls[breed] = url
-//							print("Setting image for \(breed)")
 							cell.setCustomImage(url: url, width: 75, height: 75)
 						}.catch { error in
 							print("Error: \(error)")

@@ -11,6 +11,7 @@ import Alamofire
 
 class Connectivity {
 	
+	// Determines if device is online or offline
 	class var isConnectedToInternet: Bool {
 		return NetworkReachabilityManager()!.isReachable
 	}

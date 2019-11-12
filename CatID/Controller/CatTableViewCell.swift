@@ -34,13 +34,6 @@ class CatTableViewCell: UITableViewCell {
     
     // set image, called in cellForRow
     func setCustomImage(url: URL, width: CGFloat, height: CGFloat) {
-//		let cache = ImageCache.default
-//		let cached = cache.isCached(forKey: url.absoluteString)
-//
-//		// To know where the cached image is:
-//		let cacheType = cache.imageCachedType(forKey: url.absoluteString)
-//		// `.memory`, `.disk` or `.none`.
-//		print("Cache status for \(url.absoluteString): \(cacheType)")
 		
         let aspect = width / height
         
@@ -56,8 +49,10 @@ class CatTableViewCell: UITableViewCell {
         
         constraint.priority = UILayoutPriority(999)
         aspectConstraint = constraint
+		
+		// Downsampling image
 		let processor = DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))
-        // kf
+        // kf to set UIImage for cell
         OperationQueue.main.addOperation {
             self.catBreedPhoto.kf.setImage(
                 with: url,

@@ -24,6 +24,7 @@ enum Router: URLRequestConvertible {
 		}
 	}
 	
+	// Different paths for API call
 	var path: String {
 		switch self {
 		case .readCatInfo(let breed):
@@ -33,6 +34,8 @@ enum Router: URLRequestConvertible {
 		}
 	}
 	
+	// Returns complete URL request, including http method and
+	// required headers
 	func asURLRequest() throws -> URLRequest {
 		let url = try Router.baseURLString.asURL()
 		var urlRequest: URLRequest?

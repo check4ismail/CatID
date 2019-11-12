@@ -13,6 +13,7 @@ struct APIManager {
 	
 	struct APIKey {
 		static let header = "x-api-key"
+		// Utilizing env variable for key value
 		static var value: String = ProcessInfo.processInfo.environment["CAT_API_KEY"]!
 	}
 }

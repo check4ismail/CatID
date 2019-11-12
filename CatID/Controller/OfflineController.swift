@@ -13,13 +13,10 @@ class OfflineController: UIViewController {
 	var timer: Timer?
 	var timeCounter: Int = 1
 	
-	override func viewWillAppear(_ animated: Bool) {
-//		super.viewWillAppear(animated)
-	}
-	
-	
 	override func viewDidAppear(_ animated: Bool) {
 		print("Offline has been displayed")
+		
+		// Runs function runTimedCode every 10 seconds
 		timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
 	}
 	
@@ -32,6 +29,8 @@ class OfflineController: UIViewController {
 	func runTimedCode() {
 		print("Running timed code, iteration \(timeCounter) - OfflineController")
 		timeCounter += 1
+		
+		// Goes back to CatIdController if online
 		if Connectivity.isConnectedToInternet {
 			self.dismiss(animated: true)
 		}

@@ -34,10 +34,12 @@ class CatBreedController: UIViewController {
 	
 	@IBOutlet weak var wikiTextView: UITextView!
 	
+	// Stores breed selected from CatIdController
 	var selectedBreed: String?
 	
 	private var cats: [NSManagedObject] = []
 	private var catMetaData: NSManagedObject?
+	
 	private let bulletPoint: String = "🔵 "
 	private var breed = ""
 	
@@ -48,21 +50,23 @@ class CatBreedController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		self.title = selectedBreed
 		load()
-		// By default, views are hidden
 		let isBreedSaved: Bool = containsBreed()
+		
 		if let breed = selectedBreed {
 			self.breed = breed
-			if isBreedSaved {
-				getCatPhoto()
+			
+			if isBreedSaved { // Load meta data from core data
 				getCatInfoFromDisk()
-			} else {
-				// If connected to internet, display as expected
-				getCatPhoto()
+			} else {	// Load data from API request
 				getCatInfo()
 			}
+			
+			getCatPhoto()
 		}
 	}
 	
+	// Returns true if breed is stored in Core Data
+	// otherwise returns false
 	func containsBreed() -> Bool {
 		for cat in cats {
 			let breedValue = cat.value(forKey: "breed") as! String
@@ -75,6 +79,7 @@ class CatBreedController: UIViewController {
 		return false
 	}
 	
+	// Loads core data objects
 	func load() {
 		//1
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -94,6 +99,8 @@ class CatBreedController: UIViewController {
 		}
 	}
 	
+	// Fetches temperament, ratings, description and wiki link of breed from API
+	// then updates corresponding UI textfields and textviews in main thread
 	func getCatInfo() {
 		print("breed: \(breed)")
 		CatApi.getCatBreedInfo(breed: breed)
@@ -115,7 +122,7 @@ class CatBreedController: UIViewController {
 						self.summaryTextView.text = description
 						
 						self.showAllViews()
-						self.save(wikiLink)
+						self.save(wikiLink) // Save cat meta data to core data
 					}
 				})
 			}.catch { error in
@@ -123,6 +130,8 @@ class CatBreedController: UIViewController {
 			}
 	}
 	
+	// Cat meta data fetched from NSManagedObject
+	// with correponding UI fields being updated
 	func getCatInfoFromDisk() {
 		print("Filling cat info - Disk")
 		childRatingTextField.text = catMetaData?.value(forKeyPath: "childFriendlyRating") as? String
@@ -154,6 +163,7 @@ class CatBreedController: UIViewController {
 	func fillRatings(_ ratingArray: [Int]) {
 		let ratingTextFields: [UITextField] = [childRatingTextField, groomingRatingTextField, intelligenceRatingTextField, sheddingRatingTextField, socialNeedsRatingTextField]
 		
+		// Fill bullet point rating for each textfield
 		for i in 0..<ratingArray.count {
 			for _ in 0..<ratingArray[i] {
 				if let ratingText = ratingTextFields[i].text {
@@ -178,6 +188,7 @@ class CatBreedController: UIViewController {
 		]
 	}
 	
+	// Saving cat meta data from API request to Core Data
 	func save(_ wikiLink: String) {
 	  
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

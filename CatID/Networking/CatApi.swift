@@ -13,6 +13,7 @@ import PromiseKit
 
 public struct CatApi {
 
+	// API request for cat meta data, returns JSON
 	static func getCatBreedInfo(breed catBreed: String) -> Promise<JSON> {
 		let breed = catBreed.replacingOccurrences(of: " ", with: "_")
 		return Promise { seal in
@@ -30,6 +31,7 @@ public struct CatApi {
 		}
 	}
 	
+	// API request for cat image url, returns url in String format
 	static func getCatPhoto(_ catId: String) -> Promise<String> {
 		return Promise { seal in
 			Alamofire.request(Router.readCatPhoto(breedId: catId)).validate().responseJSON { response in

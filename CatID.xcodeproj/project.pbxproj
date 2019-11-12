@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21115237235BA19C0047EE9E /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115236235BA19C0047EE9E /* Breed.swift */; };
 		21115239235BA4AC0047EE9E /* CatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115238235BA4AC0047EE9E /* CatApi.swift */; };
 		218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656D233D650400ACDD34 /* AppDelegate.swift */; };
 		218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656F233D650400ACDD34 /* SceneDelegate.swift */; };
@@ -27,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		21115236235BA19C0047EE9E /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		21115238235BA4AC0047EE9E /* CatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApi.swift; sourceTree = "<group>"; };
 		218D656A233D650400ACDD34 /* CatID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218D656D233D650400ACDD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				21FC2CC4233F9C2400E69124 /* CatBreeds.swift */,
-				21115236235BA19C0047EE9E /* Breed.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 				21E7A983237727EB00F05406 /* OfflineController.swift in Sources */,
 				21115239235BA4AC0047EE9E /* CatApi.swift in Sources */,
 				21A52126236B0EC9007FB5E8 /* Router.swift in Sources */,
-				21115237235BA19C0047EE9E /* Breed.swift in Sources */,
 				21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */,
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
 				21E887B9235520560068060F /* Connectivity.swift in Sources */,
