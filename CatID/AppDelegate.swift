@@ -49,7 +49,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		if CommandLine.arguments.contains("--uitesting") {
+			clearCoreData()
+		}
 		return true
+	}
+	
+	func clearCoreData() {
+		let context = persistentContainer.viewContext
+		let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Cat")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do {
+            try context.execute(deleteRequest)
+        } catch {
+            print ("There was an error clearing core data")
+        }
 	}
 	
 	func applicationWillTerminate(_ application: UIApplication) {

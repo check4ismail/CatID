@@ -1,15 +1,23 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '13.0'
+use_frameworks!
+
+def all_pods
+	pod 'SwiftyJSON'
+	pod 'Alamofire'
+	pod 'AlamofireImage'
+	pod 'PromiseKit/Alamofire', '~> 6.0'
+	pod 'Kingfisher', '~> 5.0'
+end
 
 target 'CatID' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+	all_pods
+end
 
-  # Pods for CatID
-pod 'SwiftyJSON'
-pod 'Alamofire'
-pod 'AlamofireImage'
-pod 'PromiseKit/Alamofire', '~> 6.0'
-pod 'Kingfisher', '~> 5.0'
+target 'CatIDTests' do
+	all_pods
+end
 
+target 'CatIDUITests' do
+	all_pods
 end
