@@ -107,14 +107,19 @@ class CatBreedController: UIViewController {
 			.done { json in
 				DispatchQueue.main.async(execute: {
 					print("Filling cat info - API")
-
-					if let temperament = json[0,"temperament"].string,
-						let childFriendly = json[0,"child_friendly"].int,
-						let grooming = json[0,"grooming"].int,
-						let intelligence = json[0,"intelligence"].int,
-						let sheddingLevel = json[0,"shedding_level"].int,
-						let socialNeeds = json[0,"social_needs"].int,
-						let description = json[0,"description"].string
+					
+					var jsonIndex: Int = 0
+					if self.breed == "Malayan" {
+						jsonIndex = 1
+					}
+					
+					if let temperament = json[jsonIndex,"temperament"].string,
+						let childFriendly = json[jsonIndex,"child_friendly"].int,
+						let grooming = json[jsonIndex,"grooming"].int,
+						let intelligence = json[jsonIndex,"intelligence"].int,
+						let sheddingLevel = json[jsonIndex,"shedding_level"].int,
+						let socialNeeds = json[jsonIndex,"social_needs"].int,
+						let description = json[jsonIndex,"description"].string
 					{
 						self.temperament.text = temperament
 						self.fillRatings([Int](arrayLiteral: childFriendly, grooming, intelligence, sheddingLevel, socialNeeds))
@@ -124,10 +129,10 @@ class CatBreedController: UIViewController {
 					}
 					
 					// Some cat breeds only have their cfa_url available
-					if let wikiLink = json[0,"wikipedia_url"].string {
+					if let wikiLink = json[jsonIndex,"wikipedia_url"].string {
 						self.setWikiLink(wikiLink)
 						self.save(wikiLink) // Save cat meta data to core data
-					} else if let wikiLink = json[0,"cfa_url"].string {
+					} else if let wikiLink = json[jsonIndex,"cfa_url"].string {
 						self.setWikiLink(wikiLink)
 						self.save(wikiLink) // Save cat meta data to core data
 					}
