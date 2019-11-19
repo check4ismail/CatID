@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gGu-vL-LDE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gGu-vL-LDE">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-O6-Hid">
-                                        <rect key="frame" x="39" y="249" width="296" height="169"/>
+                                        <rect key="frame" x="39" y="231" width="296" height="204"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">No internet connection
 😿</string>
@@ -92,9 +92,9 @@
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="V3R-O6-Hid" firstAttribute="leading" secondItem="z2c-8k-Mkn" secondAttribute="leading" constant="39" id="HDe-wd-HeK"/>
-                                    <constraint firstAttribute="bottom" secondItem="V3R-O6-Hid" secondAttribute="bottom" constant="249" id="Kor-aA-lC1"/>
+                                    <constraint firstAttribute="bottom" secondItem="V3R-O6-Hid" secondAttribute="bottom" constant="232" id="Kor-aA-lC1"/>
                                     <constraint firstAttribute="trailing" secondItem="V3R-O6-Hid" secondAttribute="trailing" constant="40" id="hDX-Wa-a6M"/>
-                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="top" secondItem="z2c-8k-Mkn" secondAttribute="top" constant="249" id="wg8-gR-lfz"/>
+                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="top" secondItem="z2c-8k-Mkn" secondAttribute="top" constant="231" id="wg8-gR-lfz"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -52,6 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if CommandLine.arguments.contains("--uitesting") {
 			clearCoreData()
 		}
+		
+		// Status bar appears after splash screen
+		UIApplication.shared.isStatusBarHidden = false
+		
 		return true
 	}
 	

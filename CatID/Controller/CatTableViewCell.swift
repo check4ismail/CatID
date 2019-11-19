@@ -61,11 +61,11 @@ class CatTableViewCell: UITableViewCell {
                 progressBlock: nil,
                 completionHandler: { _ in
 					self.setNeedsLayout()
-
 					self.catBreedPhoto.layer.masksToBounds = false
 					self.catBreedPhoto.layer.cornerRadius = self.catBreedPhoto.frame.size.width / 2
 					self.catBreedPhoto.clipsToBounds = true
 					self.catBreedPhoto.contentMode = UIView.ContentMode.scaleAspectFill
+					
 			})
 		}
     }
