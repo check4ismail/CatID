@@ -17,6 +17,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		
 		guard Connectivity.isConnectedToInternet else {
 			print("No internet connection")
 			return true
@@ -59,6 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	
+	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+		return false
+	}
+	
 	func clearCoreData() {
 		let context = persistentContainer.viewContext
 		let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Cat")
@@ -71,7 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	
 	func applicationWillTerminate(_ application: UIApplication) {
+		let cache = ImageCache.default
+		cache.clearDiskCache { print("Cleared photos is disk cache") }
+		cache.clearMemoryCache()
 		self.saveContext()
+		print("DYING")
 	}
 
 	// MARK: - Core Data stack

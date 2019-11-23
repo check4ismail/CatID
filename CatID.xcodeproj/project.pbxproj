@@ -19,7 +19,6 @@
 		21A52126236B0EC9007FB5E8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52125236B0EC9007FB5E8 /* Router.swift */; };
 		21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52127236B1D03007FB5E8 /* APIManager.swift */; };
 		21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */; };
-		21E7A983237727EB00F05406 /* OfflineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E7A982237727EB00F05406 /* OfflineController.swift */; };
 		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
@@ -73,7 +72,6 @@
 		21A52125236B0EC9007FB5E8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		21A52127236B1D03007FB5E8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatId.xcdatamodel; sourceTree = "<group>"; };
-		21E7A982237727EB00F05406 /* OfflineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineController.swift; sourceTree = "<group>"; };
 		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
 				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
-				21E7A982237727EB00F05406 /* OfflineController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -563,7 +560,6 @@
 			files = (
 				21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */,
 				21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */,
-				21E7A983237727EB00F05406 /* OfflineController.swift in Sources */,
 				21115239235BA4AC0047EE9E /* CatApi.swift in Sources */,
 				21A52126236B0EC9007FB5E8 /* Router.swift in Sources */,
 				21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */,
@@ -905,7 +901,7 @@
 				210CE2262380816400C80AA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		211051C0237D6C1800BE68D8 /* Build configuration list for PBXNativeTarget "CatIDTests" */ = {
 			isa = XCConfigurationList;
@@ -914,7 +910,7 @@
 				211051C2237D6C1800BE68D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		211051CE237D6C3200BE68D8 /* Build configuration list for PBXNativeTarget "CatIDUITests" */ = {
 			isa = XCConfigurationList;
@@ -923,7 +919,7 @@
 				211051D0237D6C3200BE68D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		218D6565233D650400ACDD34 /* Build configuration list for PBXProject "CatID" */ = {
 			isa = XCConfigurationList;
@@ -932,7 +928,7 @@
 				218D657D233D650500ACDD34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		218D657E233D650500ACDD34 /* Build configuration list for PBXNativeTarget "CatID" */ = {
 			isa = XCConfigurationList;
@@ -941,7 +937,7 @@
 				218D6580233D650500ACDD34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

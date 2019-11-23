@@ -23,8 +23,6 @@ class CatIdController: UIViewController {
 	private var catBreedDictionary = [String: [String]]()
 	private var searchActive: Bool = false
 	private var filtered:[String] = []
-	var timer: Timer?
-	var timeCounter: Int = 1
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .darkContent
@@ -58,20 +56,6 @@ class CatIdController: UIViewController {
 		view.addGestureRecognizer(tap)
 	}
 	
-	override func viewDidAppear(_ animated: Bool) {
-		timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-	}
-	
-	@objc
-	func runTimedCode() {	// Runs every 10 seconds to see if app goes offline
-		print("Running timed code, iteration \(timeCounter) - CatIdController")
-		timeCounter += 1
-		if !Connectivity.isConnectedToInternet {
-			performSegue(withIdentifier: "offline", sender: self)
-			timer?.invalidate()
-		}
-	}
-	
 	private func setCatDictionary() {	// Create dictionary of cat breeds organized alphabetically
 		for cat in catBreeds {
 			let catKey = String(cat.prefix(1)) // First letter of string
@@ -95,10 +79,6 @@ class CatIdController: UIViewController {
 			self.tableView.deselectRow(at: index, animated: true)
 		}
 		tableView.reloadData()
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		timer?.invalidate()	// stops timer
 	}
 	
 	//MARK: Prepare segue
@@ -161,6 +141,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		tableView.rowHeight = 85
 		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
 		
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
@@ -174,6 +155,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 				
 				// Without internet connection, use default textLabel
 				guard Connectivity.isConnectedToInternet else {
+					cell.catBreed.text?.removeAll()
 					cell.textLabel?.text = breed
 					return cell
 				}
@@ -183,7 +165,6 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 				guard let breedId = CatBreeds.breedIds[breed] else { return cell }
 				cell.catBreed?.text = catValues[indexPath.row]
 				cell.catBreed?.textColor = UIColor.black
-				tableView.rowHeight = 85
 				
 				if let imageUrl = CatBreeds.imageUrls[breed] {
 					// Loading imageUrl from memory
