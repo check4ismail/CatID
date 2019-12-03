@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gGu-vL-LDE">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,19 +12,19 @@
             <objects>
                 <viewController id="LsH-lj-DcM" customClass="CatIdController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lgm-3y-2oX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sZa-j1-I4K">
-                                <rect key="frame" x="0.0" y="53" width="375" height="671"/>
+                                <rect key="frame" x="0.0" y="53" width="414" height="755"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" rowHeight="83" id="DeX-8T-hSh" customClass="CatTableViewCell" customModule="CatID" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="83"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DeX-8T-hSh" id="48l-9f-Wbf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-tt-unR">
@@ -47,7 +47,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search" id="g7N-eC-5J7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -73,15 +73,20 @@
             <objects>
                 <viewController storyboardIdentifier="Offline" title="Offline" modalPresentationStyle="fullScreen" id="hcX-mX-S9N" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ma9-VI-eES">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2c-8k-Mkn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-O6-Hid">
-                                        <rect key="frame" x="39" y="280" width="296" height="165"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-O6-Hid">
+                                        <rect key="frame" x="55" y="320" width="304" height="168"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" priority="750" constant="304" id="DfT-TF-Efg"/>
+                                            <constraint firstAttribute="height" constant="168" id="MNb-62-Mq5"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="safeArea" id="8F6-Q6-16G"/>
                                         <string key="text">No internet connection
 😿</string>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,17 +96,19 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="leading" secondItem="z2c-8k-Mkn" secondAttribute="leading" constant="39" id="HDe-wd-HeK"/>
-                                    <constraint firstAttribute="bottom" secondItem="V3R-O6-Hid" secondAttribute="bottom" constant="279" id="Kor-aA-lC1"/>
-                                    <constraint firstAttribute="trailing" secondItem="V3R-O6-Hid" secondAttribute="trailing" constant="40" id="hDX-Wa-a6M"/>
-                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="top" secondItem="z2c-8k-Mkn" secondAttribute="top" constant="280" id="wg8-gR-lfz"/>
+                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="centerY" secondItem="z2c-8k-Mkn" secondAttribute="centerY" id="mrv-SC-x0b"/>
+                                    <constraint firstItem="V3R-O6-Hid" firstAttribute="centerX" secondItem="z2c-8k-Mkn" secondAttribute="centerX" id="xW4-KW-I3z"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="uqC-Hg-9da" secondAttribute="top" id="0ET-Le-Rav"/>
+                            <constraint firstAttribute="bottom" secondItem="z2c-8k-Mkn" secondAttribute="bottom" id="EEh-nk-bA3"/>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="uqC-Hg-9da" secondAttribute="top" id="Pc5-5w-be3"/>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="leading" secondItem="uqC-Hg-9da" secondAttribute="leading" id="gum-AS-vWe"/>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="Ma9-VI-eES" secondAttribute="top" id="kv5-8C-mtB"/>
+                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="trailing" secondItem="uqC-Hg-9da" secondAttribute="trailing" id="mFL-cU-MRk"/>
                             <constraint firstAttribute="bottom" secondItem="z2c-8k-Mkn" secondAttribute="bottom" id="rMQ-v9-l4Z"/>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="leading" secondItem="uqC-Hg-9da" secondAttribute="leading" id="sFa-Lh-BhC"/>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="trailing" secondItem="uqC-Hg-9da" secondAttribute="trailing" id="w7I-Go-5tq"/>
@@ -112,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQC-WQ-0Q9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2044" y="-333.25123152709364"/>
+            <point key="canvasLocation" x="2043.4782608695655" y="-333.48214285714283"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ru-Zi-zTl">
@@ -121,7 +128,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="xwG-o8-Qh9">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -138,20 +145,20 @@
             <objects>
                 <viewController id="aVd-Ko-yx3" customClass="CatBreedController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gb3-da-end">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylf-ie-5GW">
-                                <rect key="frame" x="0.0" y="1" width="375" height="689.00000000000011"/>
+                                <rect key="frame" x="0.0" y="1" width="414" height="773"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-Az-vXJ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1274.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1213"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="it8-yV-Nln" userLabel="Cat Image View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="349"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="35g-sS-Uvo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="349"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -164,10 +171,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKv-hi-tsf" userLabel="Breed Info View">
-                                                <rect key="frame" x="0.0" y="357.00000000000006" width="375" height="917.33333333333348"/>
+                                                <rect key="frame" x="0.0" y="357" width="414" height="856"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKN-vB-f0H">
-                                                        <rect key="frame" x="15" y="17" width="344" height="37"/>
+                                                        <rect key="frame" x="15" y="17" width="383" height="37"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
@@ -197,32 +204,32 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="253" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6K-X5-re6">
-                                                        <rect key="frame" x="221" y="106" width="138" height="21"/>
+                                                        <rect key="frame" x="221" y="106" width="177" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAf-Xo-Ypp">
-                                                        <rect key="frame" x="216" y="147" width="143" height="21"/>
+                                                        <rect key="frame" x="216" y="147" width="182" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9pR-j4-jb5" userLabel="Intelligence Rating Text Field">
-                                                        <rect key="frame" x="216" y="188" width="143" height="21"/>
+                                                        <rect key="frame" x="216" y="188" width="182" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJI-xp-cxK">
-                                                        <rect key="frame" x="216" y="232" width="143" height="21"/>
+                                                        <rect key="frame" x="216" y="232" width="182" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-zY-Twc" userLabel="Social Needs Rating TextField">
-                                                        <rect key="frame" x="216" y="274" width="143" height="21"/>
+                                                        <rect key="frame" x="216" y="274" width="182" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYC-S6-Y5o">
-                                                        <rect key="frame" x="16" y="338" width="343" height="509.33333333333326"/>
+                                                        <rect key="frame" x="16" y="338" width="382" height="448"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f the end</string>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -230,7 +237,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="WIKIPEDIA" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRt-MA-Ove">
-                                                        <rect key="frame" x="154" y="872" width="95" height="37"/>
+                                                        <rect key="frame" x="154" y="810.5" width="134" height="37"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
