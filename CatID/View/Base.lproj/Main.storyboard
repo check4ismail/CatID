@@ -237,8 +237,12 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="WIKIPEDIA" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRt-MA-Ove">
-                                                        <rect key="frame" x="154" y="810.5" width="134" height="37"/>
+                                                        <rect key="frame" x="161.5" y="810.5" width="91" height="37"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="37" id="7UC-eb-xpv"/>
+                                                            <constraint firstAttribute="width" constant="91" id="fdK-zu-rWS"/>
+                                                        </constraints>
                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -261,7 +265,6 @@
                                                     <constraint firstItem="cml-MQ-jyq" firstAttribute="top" secondItem="n2V-UH-4Mt" secondAttribute="bottom" constant="21" id="Dab-Sq-aIt"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="top" secondItem="9pR-j4-jb5" secondAttribute="bottom" constant="23" id="EIF-jL-0ID"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="EXw-ij-k1C"/>
-                                                    <constraint firstAttribute="trailing" secondItem="CRt-MA-Ove" secondAttribute="trailing" constant="126" id="HDW-AL-l3g"/>
                                                     <constraint firstItem="aAf-Xo-Ypp" firstAttribute="leading" secondItem="6Gw-8z-hIH" secondAttribute="trailing" constant="128" id="HG9-kv-MEn"/>
                                                     <constraint firstAttribute="trailing" secondItem="aAf-Xo-Ypp" secondAttribute="trailing" constant="16" id="Hux-M2-GgM"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="top" secondItem="9pR-j4-jb5" secondAttribute="bottom" constant="23" id="IcT-iU-jHs"/>
@@ -270,6 +273,7 @@
                                                     <constraint firstItem="vYC-S6-Y5o" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="WHV-fx-Kw9"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="15" id="Zdx-oE-Ydk"/>
                                                     <constraint firstItem="vYC-S6-Y5o" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="bottom" constant="42" id="cC5-U8-VGX"/>
+                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="centerX" secondItem="tKv-hi-tsf" secondAttribute="centerX" id="dNa-XQ-ocZ"/>
                                                     <constraint firstItem="n2V-UH-4Mt" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="16" id="fZG-cD-gPj"/>
                                                     <constraint firstItem="xJI-xp-cxK" firstAttribute="leading" secondItem="cml-MQ-jyq" secondAttribute="trailing" constant="93" id="fxf-Si-1BV"/>
                                                     <constraint firstItem="CRt-MA-Ove" firstAttribute="top" secondItem="vYC-S6-Y5o" secondAttribute="bottom" constant="24.5" id="gYp-ga-aZq"/>
@@ -278,7 +282,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="9pR-j4-jb5" secondAttribute="trailing" constant="16" id="iZB-TO-f3P"/>
                                                     <constraint firstItem="6Gw-8z-hIH" firstAttribute="top" secondItem="mjh-XW-raH" secondAttribute="bottom" constant="20" id="ite-Gx-gXL"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="top" secondItem="aAf-Xo-Ypp" secondAttribute="bottom" constant="20" id="jHU-gE-NhP"/>
-                                                    <constraint firstItem="CRt-MA-Ove" firstAttribute="leading" secondItem="tKv-hi-tsf" secondAttribute="leading" constant="154" id="jWw-iA-ho4"/>
                                                     <constraint firstItem="9pR-j4-jb5" firstAttribute="top" secondItem="aAf-Xo-Ypp" secondAttribute="bottom" constant="20" id="l0w-SD-sEp"/>
                                                     <constraint firstItem="ltg-zY-Twc" firstAttribute="top" secondItem="2DY-pE-58g" secondAttribute="top" id="lgC-Uu-ue7"/>
                                                     <constraint firstAttribute="trailing" secondItem="JKN-vB-f0H" secondAttribute="trailing" constant="16" id="mVZ-qn-1AN"/>
