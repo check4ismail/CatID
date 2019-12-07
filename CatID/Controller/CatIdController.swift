@@ -47,6 +47,7 @@ class CatIdController: UIViewController {
 		searchBar.showsCancelButton = true
 		view.addSubview(searchBar)
 		
+		tableView.prefetchDataSource = self
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.reloadData()
@@ -102,7 +103,40 @@ class CatIdController: UIViewController {
 	}
 }
 
-extension CatIdController: UITableViewDelegate, UITableViewDataSource {
+//extension CatIdController: UITableViewDelegate, UITableViewDataSource {
+extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+	
+	// MARK: Prefetching table cells
+	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+		if !searchActive {
+			indexPaths.forEach { index in
+				var cell = customCell(at: index)
+				let catKey = catSectionTitles[index.section]
+				if let catValues = catBreedDictionary[catKey] {
+					let breed = catValues[index.row]
+					
+					// Without internet connection, use default textLabel
+					guard Connectivity.isConnectedToInternet else {
+						cell = displayOfflineCatCell(cell, index, breed)
+						return
+					}
+					
+					// Get full cat cell
+					cell = displayOnlineCatCell(cell, index, breed)
+				}
+			}
+		}
+	}
+
+	func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+		if !searchActive {
+			indexPaths.forEach { index in
+				let cell = customCell(at: index)
+				cell.catBreedPhoto.kf.cancelDownloadTask()
+			}
+		}
+	}
+	
 	
 	//MARK: TableView methods
 	
@@ -142,7 +176,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 	// Populating each row in each section
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		tableView.rowHeight = 85
-		let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
+		let cell = customCell(at: indexPath)
 		
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive { // Displays search using default textLabel from cell
@@ -155,38 +189,54 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource {
 				
 				// Without internet connection, use default textLabel
 				guard Connectivity.isConnectedToInternet else {
-					cell.catBreed.text?.removeAll()
-					cell.textLabel?.text = breed
-					return cell
+					return displayOfflineCatCell(cell, indexPath, breed)
 				}
 				
-				// Filling custom cell textLabel and UIImage
-				cell.textLabel?.text?.removeAll()
-				guard let breedId = CatBreeds.breedIds[breed] else { return cell }
-				cell.catBreed?.text = catValues[indexPath.row]
-				cell.catBreed?.textColor = UIColor.black
-				
-				if let imageUrl = CatBreeds.imageUrls[breed] {
-					// Loading imageUrl from memory
-					cell.setCustomImage(url: imageUrl, width: 75, height: 75)
-				} else { // API request to get image url for cat breed
-					CatApi.getCatPhoto(breedId)
-						.done{ url in
-							guard let url = URL(string: url) else { return }
-							CatBreeds.imageUrls[breed] = url
-							cell.setCustomImage(url: url, width: 75, height: 75)
-						}.catch { error in
-							print("Error: \(error)")
-						}
-				}
+				// Get full cat cell
+				return displayOnlineCatCell(cell, indexPath, breed)
 			}
 		}
 		
 		return cell
 	}
 	
+	private func displayOnlineCatCell(_ cell: CatTableViewCell, _ indexPath: IndexPath, _ breed: String) -> CatTableViewCell {
+		// Filling custom cell textLabel and UIImage
+		cell.textLabel?.text?.removeAll()
+		guard let breedId = CatBreeds.breedIds[breed] else { return cell }
+		cell.catBreed?.text = breed
+		cell.catBreed?.textColor = UIColor.black
+		
+		if let imageUrl = CatBreeds.imageUrls[breed] {
+			// Loading imageUrl from memory
+			cell.setCustomImage(url: imageUrl, width: 75, height: 75)
+		} else { // API request to get image url for cat breed
+			CatApi.getCatPhoto(breedId)
+				.done{ url in
+					guard let url = URL(string: url) else { return }
+					CatBreeds.imageUrls[breed] = url
+					cell.setCustomImage(url: url, width: 75, height: 75)
+				}.catch { error in
+					print("Error: \(error)")
+				}
+		}
+		
+		return cell
+	}
+	
+	private func displayOfflineCatCell(_ cell: CatTableViewCell, _ indexPath: IndexPath, _ breed: String) -> CatTableViewCell {
+		cell.catBreed.text?.removeAll()
+		cell.textLabel?.text = breed
+		return cell
+	}
+	
+	private func customCell(at indexPath: IndexPath) -> CatTableViewCell {
+		return tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
+	}
+	
 	func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		cell.imageView?.kf.cancelDownloadTask()
+		let cell = customCell(at: indexPath)
+		cell.catBreedPhoto.kf.cancelDownloadTask()
 	}
 	
 	// Display header title
