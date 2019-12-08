@@ -30,7 +30,7 @@ enum Router: URLRequestConvertible {
 		case .readCatInfo(let breed):
 			return "/breeds/search?q=\(breed)"
 		case .readCatPhoto(let breedId):
-			return "/images/search?breed_id=\(breedId)"
+			return "/images/search?breed_id=\(breedId)&limit=5"
 		}
 	}
 	

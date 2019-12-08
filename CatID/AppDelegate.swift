@@ -25,19 +25,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Fetches all image urls ahead of time
 		print("Starting background task to fetch image urls")
-		var imageUrls: [URL] = []
 		let catBreeds = CatBreeds.breeds
+		var counter = 0
 		for breed in catBreeds {
 			if let breedId = CatBreeds.breedIds[breed] {
-				
 				CatApi.getCatPhoto(breedId)
-				.done { url in
-					guard let url = URL(string: url) else { return }
-					CatBreeds.imageUrls[breed] = url
-					imageUrls.append(url)
-					if imageUrls.count == catBreeds.count {
-						ImagePrefetcher(urls: imageUrls).start()
-						print("All images cached in background")
+				.done { urls in
+					
+					// Store first url as default cat photo for each breed
+					if let firstUrl = URL(string: urls[0]) {
+						CatBreeds.defaultCatPhoto[breed] = firstUrl
+						
+						// Begin prefetch of photo
+						ImagePrefetcher(urls: [firstUrl]).start()
+					}
+					
+					print("\(breed) has \(urls.count)")
+					// Store all urls into CatBreed dictionary
+					var storeUrls: [URL] = []
+					for urlLink in urls {
+						guard let url = URL(string: urlLink) else { return }
+//						if !(CatBreeds.imageUrls[breed]?.contains(url) ?? false) {
+//
+//							CatBreeds.imageUrls[breed]?.append(url)
+//
+//							print("\(breed): \(url)")
+//						}
+						
+						storeUrls.append(url)
+//						CatBreeds.imageUrls[breed]?.append(url)
+						print("\(breed): \(url)")
+						
+					}
+					CatBreeds.imageUrls[breed] = storeUrls
+//					print("Dictionary value: \(CatBreeds.imageUrls[breed])")
+					counter += 1
+					if counter == catBreeds.count {
+						print("All links retrieved.")
 					}
 				  }.catch { error in
 						print("Error: \(error)")

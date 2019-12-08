@@ -166,8 +166,16 @@ class CatBreedController: UIViewController {
 		summaryTextView.isHidden = false
 	}
 	
+	// MARK: Refresh button - iterates to next URL for cat breed
+	@IBAction func generateNewCatPhoto(_ sender: UIBarButtonItem) {
+		if let newCatPhoto = CatBreeds.nextImageUrl(breed) {
+			print("Filling NEW photo")
+			catImage.kf.setImage(with: newCatPhoto, options: [.transition(.fade(0.3))])
+		}
+	}
+	
 	func getCatPhoto() {
-		let url = CatBreeds.imageUrls[breed]
+		let url = CatBreeds.defaultCatPhoto[breed]
 		print("Filling cat photo")
 		catImage.kf.setImage(with: url, options: [.transition(.fade(0.3))])
 	}
@@ -213,7 +221,7 @@ class CatBreedController: UIViewController {
 	  
 		let cat = NSManagedObject(entity: entity, insertInto: managedContext)
 	  
-		let imageUrl = CatBreeds.imageUrls[breed]?.absoluteString
+		let imageUrl = CatBreeds.defaultCatPhoto[breed]?.absoluteString
 		// 3
 		cat.setValue(breed, forKeyPath: "breed")
 		cat.setValue(imageUrl, forKeyPath: "imageUrl")

@@ -32,17 +32,22 @@ public struct CatApi {
 	}
 	
 	// API request for cat image url, returns url in String format
-	static func getCatPhoto(_ catId: String) -> Promise<String> {
+//	static func getCatPhoto(_ catId: String) -> Promise<String> {
+	static func getCatPhoto(_ catId: String) -> Promise<[String]> {
 		return Promise { seal in
 			Alamofire.request(Router.readCatPhoto(breedId: catId)).validate().responseJSON { response in
 					switch response.result {
 					
 					case .success(let value):
 						let json = JSON(value)
-						guard let imageUrl = json[0,"url"].string else {
-							return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
-						 }
-						seal.fulfill(imageUrl)
+						var imageUrls: [String] = []
+						for i in 0..<json.count {
+							guard let imageUrl = json[i,"url"].string else {
+							   return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+							}
+							imageUrls.append(imageUrl)
+						}
+						seal.fulfill(imageUrls)
 					case .failure(let error):
 						seal.reject(error)
 					}

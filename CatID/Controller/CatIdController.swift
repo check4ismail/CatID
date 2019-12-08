@@ -207,14 +207,16 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 		cell.catBreed?.text = breed
 		cell.catBreed?.textColor = UIColor.black
 		
-		if let imageUrl = CatBreeds.imageUrls[breed] {
+		if let imageUrl: URL = CatBreeds.defaultCatPhoto[breed] {
 			// Loading imageUrl from memory
 			cell.setCustomImage(url: imageUrl, width: 75, height: 75)
 		} else { // API request to get image url for cat breed
 			CatApi.getCatPhoto(breedId)
-				.done{ url in
-					guard let url = URL(string: url) else { return }
-					CatBreeds.imageUrls[breed] = url
+				.done{ urls in
+					guard let url = URL(string: urls[0]) else { return }
+					if !(CatBreeds.imageUrls[breed]?.contains(url) ?? false) {
+						CatBreeds.imageUrls[breed]?.append(url)
+					}
 					cell.setCustomImage(url: url, width: 75, height: 75)
 				}.catch { error in
 					print("Error: \(error)")

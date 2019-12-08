@@ -9,7 +9,7 @@
 import Foundation
 
 struct CatBreeds {
-	
+
 	static let breeds = [
 		"Abyssinian",
 		"Aegean",
@@ -150,5 +150,39 @@ struct CatBreeds {
 		"York Chocolate":	"ycho"
 	]
 	
-	static var imageUrls: [String : URL] = [:]
+	static private var counter: [Int] = counterGeneratePhotos()
+	static var imageUrls: [String : [URL]] = [:]
+	
+	static var defaultCatPhoto: [String : URL] = [:]
+	
+	static func nextImageUrl(_ breed: String) -> URL? {
+		// Current breed's counter
+		let index = breeds.firstIndex(of: breed)
+		
+		// Attempt to iterate to next URL for specific cat breed
+		let newCounter = counter[index!] + 1
+		if newCounter < imageUrls[breed]!.count {
+			if let newDefaultPhoto = imageUrls[breed]?[newCounter] {
+				counter[index!] += 1
+				
+				defaultCatPhoto[breed] = newDefaultPhoto
+				return newDefaultPhoto
+			}
+		}
+		
+		// Default back to first URL for specific cat breed
+		counter[index!] = 0
+		defaultCatPhoto[breed] = imageUrls[breed]?[0]
+		return imageUrls[breed]?[0]
+	}
+	
+	static private func counterGeneratePhotos() -> [Int] {
+		
+		var count: [Int] = []
+		for i in 0..<breeds.count {
+			count.append(i)
+		}
+		
+		return count
+	}
 }
