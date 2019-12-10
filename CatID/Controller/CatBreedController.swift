@@ -168,10 +168,20 @@ class CatBreedController: UIViewController {
 	
 	// MARK: Refresh button - iterates to next URL for cat breed
 	@IBAction func generateNewCatPhoto(_ sender: UIBarButtonItem) {
-		if let newCatPhoto = CatBreeds.nextImageUrl(breed) {
+		let catPhotos = CatBreeds.nextImageUrl(breed)
+		if let newPhoto = catPhotos.1 {
 			print("Filling NEW photo")
-			catImage.kf.setImage(with: newCatPhoto, options: [.transition(.fade(0.3))])
+			catImage.kf.setImage(with: newPhoto, options: [.transition(.fade(0.3))])
 		}
+		if let oldPhoto = catPhotos.0 {
+			print("Removing OLD photo from cache")
+			let cache = ImageCache.default
+			cache.removeImage(forKey: oldPhoto.absoluteString)
+		}
+//		{
+//			print("Filling NEW photo")
+//			catImage.kf.setImage(with: newCatPhoto, options: [.transition(.fade(0.3))])
+//		}
 	}
 	
 	func getCatPhoto() {

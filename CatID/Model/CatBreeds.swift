@@ -155,19 +155,20 @@ struct CatBreeds {
 	
 	static var defaultCatPhoto: [String : URL] = [:]
 	
-	static func nextImageUrl(_ breed: String) -> URL? {
+	static func nextImageUrl(_ breed: String) -> (URL?, URL?) {
 		// Getting breed's index counter
 		let index = breeds.firstIndex(of: breed)
 	
 		// Attempt to iterate to next URL for specific cat breed
 		let newCounter = counter[index!] + 1
 		if newCounter < imageUrls[breed]!.count {
-			if let newDefaultPhoto = imageUrls[breed]?[newCounter] {
+			if let newDefaultPhoto = imageUrls[breed]?[newCounter],
+				let previousPhoto = imageUrls[breed]?[newCounter - 1] {
 				counter[index!] += 1
 				
 				defaultCatPhoto[breed] = newDefaultPhoto
 				print("Newly generated link: \(newDefaultPhoto)")
-				return newDefaultPhoto
+				return (previousPhoto, newDefaultPhoto)
 			}
 		}
 		
@@ -175,7 +176,8 @@ struct CatBreeds {
 		counter[index!] = 0
 		defaultCatPhoto[breed] = imageUrls[breed]?[0]
 		print("Returning to original link: \(imageUrls[breed]?[0])")
-		return imageUrls[breed]?[0]
+		let lastIndex = imageUrls[breed]!.count - 1
+		return (imageUrls[breed]?[lastIndex], imageUrls[breed]?[0])
 	}
 	
 	static private func counterGeneratePhotos() -> [Int] {

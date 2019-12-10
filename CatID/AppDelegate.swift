@@ -36,26 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 					if let firstUrl = URL(string: urls[0]) {
 						CatBreeds.defaultCatPhoto[breed] = firstUrl
 						
-						// Begin prefetch of photo
+						// Begin prefetch of first photo
 						ImagePrefetcher(urls: [firstUrl]).start()
 					}
 					
-					print("\(breed) has \(urls.count)")
+//					print("\(breed) has \(urls.count)")
 					// Store all urls into CatBreed dictionary
 					var storeUrls: [URL] = []
 					for urlLink in urls {
 						guard let url = URL(string: urlLink) else { return }
-//						if !(CatBreeds.imageUrls[breed]?.contains(url) ?? false) {
-//
-//							CatBreeds.imageUrls[breed]?.append(url)
-//
-//							print("\(breed): \(url)")
-//						}
-						
 						storeUrls.append(url)
-//						CatBreeds.imageUrls[breed]?.append(url)
-						print("\(breed): \(url)")
-						
+//						print("\(breed): \(url)")
 					}
 					CatBreeds.imageUrls[breed] = storeUrls
 //					print("Dictionary value: \(CatBreeds.imageUrls[breed])")
