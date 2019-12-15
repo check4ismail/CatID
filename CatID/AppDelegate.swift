@@ -16,6 +16,8 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
+	var window: UIWindow?
+	
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
 		guard Connectivity.isConnectedToInternet else {
@@ -25,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Fetches all image urls ahead of time
 		print("Starting background task to fetch image urls")
+		
+		// Kingfisher should cache on disk, not memory
+		ImageCache.default.memoryStorage.config.totalCostLimit = 1
+		
 		let catBreeds = CatBreeds.breeds
 		var counter = 0
 		for breed in catBreeds {
@@ -68,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if CommandLine.arguments.contains("--uitesting") {
 			clearCoreData()
 		}
-		
 		// Status bar appears after splash screen
 		UIApplication.shared.isStatusBarHidden = false
 		

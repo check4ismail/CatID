@@ -50,15 +50,20 @@ class CatTableViewCell: UITableViewCell {
         constraint.priority = UILayoutPriority(999)
         aspectConstraint = constraint
 		
-		// Downsampling image
-		let processor = DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))
         // kf to set UIImage for cell
         OperationQueue.main.addOperation {
-            self.catBreedPhoto.kf.setImage(
+			// Downsampling image
+//			let processor = DownsamplingImageProcessor(size: CGSize(width: width, height: height))
+			self.catBreedPhoto.kf.setImage(
                 with: url,
-                placeholder: nil,
-                options: [.processor(processor), .transition(.fade(0.3))],
-                progressBlock: nil,
+				placeholder: nil,
+				options: [
+					.processor(DownsamplingImageProcessor(size: CGSize(width: width, height: height))),
+					.scaleFactor(UIScreen.main.scale),
+					.cacheOriginalImage,
+					.transition(.fade(0.3))
+				],
+				progressBlock: nil,
                 completionHandler: { _ in
 					self.setNeedsLayout()
 					self.catBreedPhoto.layer.masksToBounds = false

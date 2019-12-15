@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2103F49323A5A37A003B5F6D /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2103F49223A5A37A003B5F6D /* SplashController.swift */; };
 		211051BC237D6C1800BE68D8 /* CatIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211051BB237D6C1800BE68D8 /* CatIDTests.swift */; };
 		211051CA237D6C3200BE68D8 /* CatIDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211051C9237D6C3200BE68D8 /* CatIDUITests.swift */; };
 		21115239235BA4AC0047EE9E /* CatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115238235BA4AC0047EE9E /* CatApi.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2103F49223A5A37A003B5F6D /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		210CE21E2380816400C80AA0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		211051B9237D6C1800BE68D8 /* CatIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		211051BB237D6C1800BE68D8 /* CatIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatIDTests.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		215FEE822346022C00917288 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2103F49223A5A37A003B5F6D /* SplashController.swift */,
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
 				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
@@ -566,6 +569,7 @@
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
 				21E887B9235520560068060F /* Connectivity.swift in Sources */,
 				218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */,
+				2103F49323A5A37A003B5F6D /* SplashController.swift in Sources */,
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
 				21FCDB8F23684B13001FFB53 /* CatTableViewCell.swift in Sources */,
 				21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */,

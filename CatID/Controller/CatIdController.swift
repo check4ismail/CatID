@@ -23,6 +23,10 @@ class CatIdController: UIViewController {
 	private var catBreedDictionary = [String: [String]]()
 	private var searchActive: Bool = false
 	private var filtered:[String] = []
+	private let customCell = "customCell"
+	private let segueOffline = "offline"
+	private let segueCatBreed = "goToCatBreed"
+	private let colorHex = "7bd7f1"
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .darkContent
@@ -143,9 +147,9 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 	// Segue based on row selected
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if !Connectivity.isConnectedToInternet {
-			performSegue(withIdentifier: "offline", sender: self)
+			performSegue(withIdentifier: segueOffline, sender: self)
 		} else {
-			performSegue(withIdentifier: "goToCatBreed", sender: self)
+			performSegue(withIdentifier: segueCatBreed, sender: self)
 		}
 	}
 	
@@ -209,7 +213,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 		
 		if let imageUrl: URL = CatBreeds.defaultCatPhoto[breed] {
 			// Loading imageUrl from memory
-			cell.setCustomImage(url: imageUrl, width: 75, height: 75)
+			cell.setCustomImage(url: imageUrl, width: 100, height: 100)
 		} else { // API request to get image url for cat breed
 			CatApi.getCatPhoto(breedId)
 				.done{ urls in
@@ -217,7 +221,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 					if !(CatBreeds.imageUrls[breed]?.contains(url) ?? false) {
 						CatBreeds.imageUrls[breed]?.append(url)
 					}
-					cell.setCustomImage(url: url, width: 75, height: 75)
+					cell.setCustomImage(url: url, width: 100, height: 100)
 				}.catch { error in
 					print("Error: \(error)")
 				}
@@ -233,7 +237,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 	}
 	
 	private func customCell(at indexPath: IndexPath) -> CatTableViewCell {
-		return tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CatTableViewCell
+		return tableView.dequeueReusableCell(withIdentifier: customCell, for: indexPath) as! CatTableViewCell
 	}
 	
 	func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -258,7 +262,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-		view.tintColor = UIColor(hexString: "7bd7f1")
+		view.tintColor = UIColor(hexString: colorHex)
 		let header = view as! UITableViewHeaderFooterView
 		header.textLabel?.textColor = UIColor.black
 	}
