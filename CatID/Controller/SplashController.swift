@@ -13,6 +13,7 @@ class SplashController: UIViewController {
 	private let segueCatId = "showCatId"
 	override func viewDidLoad() {
 		Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+			print("Splash screen timer invalidated")
 			timer.invalidate()
 			self.performSegue(withIdentifier: self.segueCatId, sender: self)
 		}

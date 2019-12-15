@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gGu-vL-LDE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8IY-Dl-OjO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,11 +121,41 @@
             </objects>
             <point key="canvasLocation" x="2043.4782608695655" y="-333.48214285714283"/>
         </scene>
+        <!--Splash Controller-->
+        <scene sceneID="BQt-a0-9gx">
+            <objects>
+                <viewController id="8IY-Dl-OjO" customClass="SplashController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EEb-0d-Esr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="F8H-hC-hhE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="F8H-hC-hhE" secondAttribute="trailing" id="eXV-2H-srq"/>
+                            <constraint firstItem="F8H-hC-hhE" firstAttribute="leading" secondItem="EEb-0d-Esr" secondAttribute="leading" id="f8i-n0-3By"/>
+                            <constraint firstAttribute="bottom" secondItem="F8H-hC-hhE" secondAttribute="bottom" id="fAo-Gj-XgN"/>
+                            <constraint firstItem="F8H-hC-hhE" firstAttribute="top" secondItem="EEb-0d-Esr" secondAttribute="top" id="frS-GL-5Gy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dTC-l3-B6l"/>
+                    </view>
+                    <connections>
+                        <segue destination="gGu-vL-LDE" kind="presentation" identifier="showCatId" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="b1t-9r-29b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X6d-cQ-Umx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1294" y="128"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ru-Zi-zTl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gGu-vL-LDE" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="wNN-6d-9cK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="xwG-o8-Qh9">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -364,4 +394,7 @@
             <point key="canvasLocation" x="2045" y="354"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Launch" width="640" height="638"/>
+    </resources>
 </document>

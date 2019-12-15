@@ -52,8 +52,7 @@ class CatTableViewCell: UITableViewCell {
 		
         // kf to set UIImage for cell
         OperationQueue.main.addOperation {
-			// Downsampling image
-//			let processor = DownsamplingImageProcessor(size: CGSize(width: width, height: height))
+			self.catBreedPhoto.kf.indicatorType = .activity
 			self.catBreedPhoto.kf.setImage(
                 with: url,
 				placeholder: nil,
