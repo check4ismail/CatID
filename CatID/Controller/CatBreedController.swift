@@ -41,6 +41,7 @@ class CatBreedController: UIViewController {
 	private var catMetaData: NSManagedObject?
 	
 	private let bulletPoint: String = "🔵 "
+	private let bulletPointEmpty = "⚪️ "
 	private var breed = ""
 	
 	override func viewDidLoad() {
@@ -146,6 +147,7 @@ class CatBreedController: UIViewController {
 	// with correponding UI fields being updated
 	func getCatInfoFromDisk() {
 		print("Filling cat info - Disk")
+		
 		childRatingTextField.text = catMetaData?.value(forKeyPath: "childFriendlyRating") as? String
 		groomingRatingTextField.text = catMetaData?.value(forKeyPath: "groomingRating") as? String
 		intelligenceRatingTextField.text = catMetaData?.value(forKeyPath: "intelligenceRating") as? String
@@ -161,7 +163,9 @@ class CatBreedController: UIViewController {
 	
 	func showAllViews() {
 		let arrayEnableTextFields: [UITextField] = [childFriendlyTextField, groomingTextField, intelligenceTextField, sheddingTextField, socialNeedsTextField]
-		arrayEnableTextFields.forEach { $0.isHidden = false }
+		arrayEnableTextFields.forEach {
+			$0.isHidden = false
+		}
 		temperament.isHidden = false
 		summaryTextView.isHidden = false
 	}
@@ -178,10 +182,6 @@ class CatBreedController: UIViewController {
 			let cache = ImageCache.default
 			cache.removeImage(forKey: oldPhoto.absoluteString)
 		}
-//		{
-//			print("Filling NEW photo")
-//			catImage.kf.setImage(with: newCatPhoto, options: [.transition(.fade(0.3))])
-//		}
 	}
 	
 	func getCatPhoto() {
@@ -200,6 +200,12 @@ class CatBreedController: UIViewController {
 					ratingTextFields[i].text = ratingText + bulletPoint
 				}
 			}
+			let emptyBulletPointCount = 5 - ratingArray[i]
+			for _ in 0..<emptyBulletPointCount {
+				if let ratingText = ratingTextFields[i].text {
+					ratingTextFields[i].text = ratingText + bulletPointEmpty
+				}
+			}
 		}
 	}
 	
@@ -213,9 +219,6 @@ class CatBreedController: UIViewController {
 		// Setting attributedText hyperlink
 		wikiTextView.attributedText = stringWithAttribute
 		wikiTextView.isUserInteractionEnabled = true
-		wikiTextView.linkTextAttributes = [
-			.foregroundColor: UIColor.black,
-		]
 	}
 	
 	// Saving cat meta data from API request to Core Data
