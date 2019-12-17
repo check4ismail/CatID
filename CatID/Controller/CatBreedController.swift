@@ -213,7 +213,18 @@ class CatBreedController: UIViewController {
 		let url = URL(string: wikiLink)!
 		
 		// Setting up hyperlink, with specific font size
-		let stringWithAttribute = NSMutableAttributedString(string: "WIKIPEDIA", attributes: [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0, weight: UIFont.Weight.light) ] )
+		
+		// Printing out all available custom fonts
+//		for family: String in UIFont.familyNames
+//        {
+//            print(family)
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
+		let stringWithAttribute = NSMutableAttributedString(string: "WIKIPEDIA", attributes: [
+			NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular" , size: 18.0)! ])
 		stringWithAttribute.addAttributes([.link: url], range: NSMakeRange(0, stringWithAttribute.string.count))
 		
 		// Setting attributedText hyperlink
