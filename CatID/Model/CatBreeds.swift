@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 struct CatBreeds {
 
@@ -150,6 +151,53 @@ struct CatBreeds {
 		"York Chocolate":	"ycho"
 	]
 	
+	static var photosRetrieved = false
+	
+	static func retrieveCatPhotos() {
+		// Fetches all image urls ahead of time
+		print("Starting background task to fetch image urls")
+		
+		// Kingfisher should cache on disk, not memory
+		ImageCache.default.memoryStorage.config.totalCostLimit = 1
+		
+		let catBreeds = breeds
+		var counter = 0
+		for breed in catBreeds {
+			if let breedId = breedIds[breed] {
+				CatApi.getCatPhoto(breedId)
+				.done { urls in
+					
+					// Store first url as default cat photo for each breed
+					if let firstUrl = URL(string: urls[0]) {
+						defaultCatPhoto[breed] = firstUrl
+						
+						// Begin prefetch of first photo
+						ImagePrefetcher(urls: [firstUrl]).start()
+					}
+					
+//					print("\(breed) has \(urls.count)")
+					// Store all urls into CatBreed dictionary
+					var storeUrls: [URL] = []
+					for urlLink in urls {
+						guard let url = URL(string: urlLink) else { return }
+						storeUrls.append(url)
+//						print("\(breed): \(url)")
+					}
+					imageUrls[breed] = storeUrls
+//					print("Dictionary value: \(CatBreeds.imageUrls[breed])")
+					counter += 1
+					if counter == catBreeds.count {
+						print("All links retrieved.")
+					}
+				  }.catch { error in
+						print("Error: \(error)")
+				  }
+			}
+		}
+		// All cat photos have been retrieved
+		photosRetrieved = true
+	}
+	
 	static private var counter: [Int] = counterGeneratePhotos()
 	static var imageUrls: [String : [URL]] = [:]
 	
@@ -161,14 +209,17 @@ struct CatBreeds {
 	
 		// Attempt to iterate to next URL for specific cat breed
 		let newCounter = counter[index!] + 1
-		if newCounter < imageUrls[breed]!.count {
-			if let newDefaultPhoto = imageUrls[breed]?[newCounter],
-				let previousPhoto = imageUrls[breed]?[newCounter - 1] {
-				counter[index!] += 1
-				
-				defaultCatPhoto[breed] = newDefaultPhoto
-				print("Newly generated link: \(newDefaultPhoto)")
-				return (previousPhoto, newDefaultPhoto)
+		
+		if let imageUrlCounter = imageUrls[breed]?.count {
+			if newCounter < imageUrlCounter {
+				if let newDefaultPhoto = imageUrls[breed]?[newCounter],
+					let previousPhoto = imageUrls[breed]?[newCounter - 1] {
+					counter[index!] += 1
+					
+					defaultCatPhoto[breed] = newDefaultPhoto
+					print("Newly generated link: \(newDefaultPhoto)")
+					return (previousPhoto, newDefaultPhoto)
+				}
 			}
 		}
 		
@@ -179,6 +230,8 @@ struct CatBreeds {
 		let lastIndex = imageUrls[breed]!.count - 1
 		return (imageUrls[breed]?[lastIndex], imageUrls[breed]?[0])
 	}
+	
+//	static private func newPhotoGenerated()
 	
 	static private func counterGeneratePhotos() -> [Int] {
 		var count: [Int] = []

@@ -94,8 +94,8 @@ class CatIdController: UIViewController {
 		if let indexPath = self.tableView.indexPathForSelectedRow {
 			if searchActive {
 				// Pass cell that was selected from search
-				let currentCell = tableView.cellForRow(at: indexPath)
-				destinationVC.selectedBreed = currentCell?.textLabel?.text
+//				let currentCell = tableView.cellForRow(at: indexPath) as! CatTableViewCell
+				destinationVC.selectedBreed = passingCellForSegue(indexPath)
 			} else {
 				// Pass cell from ordered dictionary
 				let catKey = catSectionTitles[indexPath.section]
@@ -104,6 +104,16 @@ class CatIdController: UIViewController {
 				}
 			}
 		}
+	}
+	
+	private func passingCellForSegue(_ indexPath: IndexPath) -> String {
+		if !Connectivity.isConnectedToInternet {
+			let currentCell = tableView.cellForRow(at: indexPath)
+			return (currentCell?.textLabel!.text)!
+		}
+		
+		let currentCell = tableView.cellForRow(at: indexPath) as! CatTableViewCell
+		return currentCell.catBreed.text!
 	}
 }
 
@@ -181,11 +191,19 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		tableView.rowHeight = 85
 		let cell = customCell(at: indexPath)
+		if !CatBreeds.photosRetrieved && Connectivity.isConnectedToInternet {
+			CatBreeds.retrieveCatPhotos()
+			print("Current value: \(CatBreeds.photosRetrieved)")
+		}
 		
 		searchActive = isSearchBarEmpty() // Safeguard for empty search when search is cleared
 		if searchActive { // Displays search using default textLabel from cell
 			cell.catBreed?.text?.removeAll()
-			cell.textLabel?.text = filtered[indexPath.row]
+			if !Connectivity.isConnectedToInternet {
+				return displayOfflineCatCell(cell, indexPath, filtered[indexPath.row])
+			}
+//			cell.textLabel?.text = filtered[indexPath.row]
+			return displayOnlineCatCell(cell, indexPath, filtered[indexPath.row])
 		} else {
 			let catKey = catSectionTitles[indexPath.section]
 			if let catValues = catBreedDictionary[catKey] {
@@ -287,7 +305,7 @@ extension CatIdController: UISearchBarDelegate {
 	}
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-		searchActive = false
+		searchActive = isSearchBarEmpty()
 		searchBar.endEditing(true)
 	}
 	
