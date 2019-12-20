@@ -12,9 +12,7 @@ Whatever your case, Cat ID is here to help.
 ## Additional Info
 Compatible with any iPhone running iOS 13 or higher
 
-![Available on the App Store](DownloadAppStore.eps)
+Available on the App Store 
 
 ## Screenshots
-![CatID Launch Screen](Cat ID Launch - iPhone 8 Plus.png)
-![CatID Breed List](Cat ID Breed List - iPhone 8 Plus.png)
-![CatID Breed Detailed View](Cat ID Breed Detailed Info - iPhone 8 Plus.png)
+Take a look at the **Screenshots** directory
