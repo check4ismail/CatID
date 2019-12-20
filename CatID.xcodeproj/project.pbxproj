@@ -53,6 +53,7 @@
 		2103F50C23A8E935003B5F6D /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2103F4DF23A8E935003B5F6D /* SF-Pro-Rounded-Heavy.otf */; };
 		2103F50D23A8E935003B5F6D /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2103F4E023A8E935003B5F6D /* SF-Pro-Text-Heavy.otf */; };
 		2103F50E23A8E935003B5F6D /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2103F4E123A8E935003B5F6D /* SF-Pro-Text-HeavyItalic.otf */; };
+		2103F51023AD0D12003B5F6D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2103F50F23AD0D12003B5F6D /* README.md */; };
 		211051BC237D6C1800BE68D8 /* CatIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211051BB237D6C1800BE68D8 /* CatIDTests.swift */; };
 		211051CA237D6C3200BE68D8 /* CatIDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211051C9237D6C3200BE68D8 /* CatIDUITests.swift */; };
 		21115239235BA4AC0047EE9E /* CatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115238235BA4AC0047EE9E /* CatApi.swift */; };
@@ -145,6 +146,7 @@
 		2103F4DF23A8E935003B5F6D /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
 		2103F4E023A8E935003B5F6D /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
 		2103F4E123A8E935003B5F6D /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
+		2103F50F23AD0D12003B5F6D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		210CE21E2380816400C80AA0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		211051B9237D6C1800BE68D8 /* CatIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		211051BB237D6C1800BE68D8 /* CatIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatIDTests.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		90A3073742271CD556537580 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2103F50F23AD0D12003B5F6D /* README.md */,
 				BB512DF05F15A4988E2052C4 /* Pods_CatID.framework */,
 				47B22656E6743A7D9824BDC0 /* Pods_CatIDTests.framework */,
 				AEE64A250CFDD90DD5D89116 /* Pods_CatIDUITests.framework */,
@@ -565,6 +568,7 @@
 				2103F4E623A8E935003B5F6D /* SF-Pro-Text-Light.otf in Resources */,
 				2103F50A23A8E935003B5F6D /* SF-Pro-Rounded-Ultralight.otf in Resources */,
 				2103F4E523A8E935003B5F6D /* SF-Pro-Display-Ultralight.otf in Resources */,
+				2103F51023AD0D12003B5F6D /* README.md in Resources */,
 				2103F50523A8E935003B5F6D /* SF-Pro-Rounded-Light.otf in Resources */,
 				2103F50B23A8E935003B5F6D /* SF-Pro-Rounded-Black.otf in Resources */,
 				218D6577233D650500ACDD34 /* Assets.xcassets in Resources */,
