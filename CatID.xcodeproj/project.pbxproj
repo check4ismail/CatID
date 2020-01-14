@@ -67,6 +67,7 @@
 		21A52126236B0EC9007FB5E8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52125236B0EC9007FB5E8 /* Router.swift */; };
 		21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52127236B1D03007FB5E8 /* APIManager.swift */; };
 		21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */; };
+		21C371A823BE1BBD008D3D5F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C371A723BE1BBD008D3D5F /* SignUpController.swift */; };
 		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
@@ -168,6 +169,7 @@
 		21A52125236B0EC9007FB5E8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		21A52127236B1D03007FB5E8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatId.xcdatamodel; sourceTree = "<group>"; };
+		21C371A723BE1BBD008D3D5F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				214A192623BD26490048C4A8 /* LoginController.swift */,
+				21C371A723BE1BBD008D3D5F /* SignUpController.swift */,
 				2103F49223A5A37A003B5F6D /* SplashController.swift */,
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
@@ -765,6 +768,7 @@
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
 				21E887B9235520560068060F /* Connectivity.swift in Sources */,
 				218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */,
+				21C371A823BE1BBD008D3D5F /* SignUpController.swift in Sources */,
 				2103F49323A5A37A003B5F6D /* SplashController.swift in Sources */,
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
 				21FCDB8F23684B13001FFB53 /* CatTableViewCell.swift in Sources */,
