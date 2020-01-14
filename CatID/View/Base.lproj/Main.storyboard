@@ -386,6 +386,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="attemptLogin:" destination="dzf-nu-fL1" eventType="touchUpInside" id="1gh-im-UIg"/>
+                                            <action selector="attemptSignUp:" destination="gbj-eE-PvS" eventType="touchUpInside" id="EDI-67-unS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fj3-Dq-mLG" userLabel="signUpButton">
@@ -403,6 +404,10 @@
                         <viewLayoutGuide key="safeArea" id="W1g-Jy-eoY"/>
                     </view>
                     <navigationItem key="navigationItem" id="UcQ-Zu-UNn"/>
+                    <connections>
+                        <outlet property="emailTextInput" destination="Dgu-kf-Qv8" id="7XW-F8-gbd"/>
+                        <outlet property="passwordTextInput" destination="tf4-ec-KuW" id="XTQ-co-aNX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAn-6F-0mC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

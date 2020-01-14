@@ -68,6 +68,7 @@
 		21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A52127236B1D03007FB5E8 /* APIManager.swift */; };
 		21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */; };
 		21C371A823BE1BBD008D3D5F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C371A723BE1BBD008D3D5F /* SignUpController.swift */; };
+		21C371AC23CDF093008D3D5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21C371AB23CDF093008D3D5F /* GoogleService-Info.plist */; };
 		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
@@ -170,6 +171,7 @@
 		21A52127236B1D03007FB5E8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatId.xcdatamodel; sourceTree = "<group>"; };
 		21C371A723BE1BBD008D3D5F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		21C371AB23CDF093008D3D5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				215FEE822346022C00917288 /* Controller */,
 				21FC2CC7233F9FAE00E69124 /* Supporting Files */,
 				218D657B233D650500ACDD34 /* Info.plist */,
+				21C371AB23CDF093008D3D5F /* GoogleService-Info.plist */,
 				21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */,
 			);
 			path = CatID;
@@ -584,6 +587,7 @@
 				2103F4F123A8E935003B5F6D /* SF-Pro-Display-Medium.otf in Resources */,
 				2103F50623A8E935003B5F6D /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2103F4E723A8E935003B5F6D /* SF-Pro-Display-SemiboldItalic.otf in Resources */,
+				21C371AC23CDF093008D3D5F /* GoogleService-Info.plist in Resources */,
 				2103F4FD23A8E935003B5F6D /* SF-Pro-Rounded-Bold.otf in Resources */,
 				2103F50823A8E935003B5F6D /* SF-Pro-Display-Heavy.otf in Resources */,
 				2103F4FA23A8E935003B5F6D /* SF-Pro-Rounded-Medium.otf in Resources */,

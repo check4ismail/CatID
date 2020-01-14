@@ -7,19 +7,4 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:README.md">
-   </FileRef>
-   <FileRef
-      location = "group:Cat ID Launch - iPhone 8 Plus.png">
-   </FileRef>
-   <FileRef
-      location = "group:Cat ID Breed List - iPhone 8 Plus.png">
-   </FileRef>
-   <FileRef
-      location = "group:Cat ID Breed Detailed Info - iPhone 8 Plus.png">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/IsmailElmaliki/repos/CatID/DownloadAppStore.eps">
-   </FileRef>
 </Workspace>

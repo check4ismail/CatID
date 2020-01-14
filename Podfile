@@ -8,6 +8,8 @@ def all_pods
 	pod 'AlamofireImage'
 	pod 'PromiseKit/Alamofire', '~> 6.0'
 	pod 'Kingfisher', '~> 5.0'
+	pod 'Firebase/Auth'
+	pod 'Firebase/Analytics'
 end
 
 target 'CatID' do
