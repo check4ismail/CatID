@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import SVProgressHUD
 
 class LoginController: UIViewController {
 	
 	@IBOutlet weak var signUpButton: UIButton!
+	@IBOutlet weak var paswordTextInput: UITextField!
+	@IBOutlet weak var emailTextInput: UITextField!
 	
 	let segue = "signUpSegue"
+	let resetPasswordSegue = "resetPassword"
+	let catIdSegue = "showCatId"
 	
 	override func viewDidLoad() {
 		loadSignUp()
@@ -34,12 +40,46 @@ class LoginController: UIViewController {
 	}
 	
 	@IBAction func attemptLogin(_ sender: UIButton) {
-		print("Touched button")
+		guard SignInRules.emailRules(email: emailTextInput.text!) else {
+			invalidEmail()
+			return
+		}
+		
+		guard paswordTextInput.text!.count > 0 else {
+			blankPassword()
+			return
+		}
+		
+		Auth.auth().signIn(withEmail: emailTextInput.text!, password: paswordTextInput.text!) { [weak self] authResult, error in
+			if let errorMessage = error, !errorMessage.localizedDescription.isEmpty {
+				self!.errorCodeAlert("\(errorMessage)")
+				return
+			}
+			// If no errors, user can sign into CatID
+			self?.performSegue(withIdentifier: "catIdApp", sender: self)
+		}
 	}
 	
 	@IBAction func signUpFlow(_ sender: UIButton) {
 		performSegue(withIdentifier: segue, sender: self)
 	}
 	
+	@IBAction func resetPassword(_ sender: UIButton) {
+		performSegue(withIdentifier: resetPasswordSegue, sender: self)
+	}
 	
+}
+
+extension UIViewController {
+	func showIndicator() {
+		DispatchQueue.main.async {
+			SVProgressHUD.show()
+		}
+	}
+	
+	func hideIndicator() {
+		DispatchQueue.main.async {
+			SVProgressHUD.dismiss()
+		}
+	}
 }

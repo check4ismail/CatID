@@ -85,6 +85,7 @@ PODS:
     - Alamofire (~> 4.0)
     - PromiseKit/CorePromise
   - PromiseKit/CorePromise (6.11.0)
+  - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -94,6 +95,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Kingfisher (~> 5.0)
   - PromiseKit/Alamofire (~> 6.0)
+  - SVProgressHUD
   - SwiftyJSON
 
 SPEC REPOS:
@@ -118,6 +120,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
@@ -138,8 +141,9 @@ SPEC CHECKSUMS:
   Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 2add8d30b20feeb94b0f7a4e9297b3a76e61d295
+PODFILE CHECKSUM: 69076a1d1310e0c2f49d38daafcb559d29f52f10
 
 COCOAPODS: 1.8.4

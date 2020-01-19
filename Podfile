@@ -10,6 +10,7 @@ def all_pods
 	pod 'Kingfisher', '~> 5.0'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Analytics'
+	pod 'SVProgressHUD'
 end
 
 target 'CatID' do

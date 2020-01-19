@@ -58,6 +58,9 @@
 		211051CA237D6C3200BE68D8 /* CatIDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211051C9237D6C3200BE68D8 /* CatIDUITests.swift */; };
 		21115239235BA4AC0047EE9E /* CatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115238235BA4AC0047EE9E /* CatApi.swift */; };
 		214A192723BD26490048C4A8 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A192623BD26490048C4A8 /* LoginController.swift */; };
+		217CF4F623D3A74500998714 /* SignInRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4F523D3A74500998714 /* SignInRules.swift */; };
+		217CF4F823D3A8A900998714 /* FirebaseAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4F723D3A8A900998714 /* FirebaseAlerts.swift */; };
+		217CF4FA23D3CA7F00998714 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4F923D3CA7F00998714 /* SpinnerViewController.swift */; };
 		218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656D233D650400ACDD34 /* AppDelegate.swift */; };
 		218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656F233D650400ACDD34 /* SceneDelegate.swift */; };
 		218D6572233D650400ACDD34 /* CatIdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D6571233D650400ACDD34 /* CatIdController.swift */; };
@@ -69,6 +72,7 @@
 		21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21BED3AA23797DAE006AD02A /* CatId.xcdatamodeld */; };
 		21C371A823BE1BBD008D3D5F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C371A723BE1BBD008D3D5F /* SignUpController.swift */; };
 		21C371AC23CDF093008D3D5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21C371AB23CDF093008D3D5F /* GoogleService-Info.plist */; };
+		21C371AE23D1E3A2008D3D5F /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C371AD23D1E3A2008D3D5F /* ResetPasswordController.swift */; };
 		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
@@ -159,6 +163,9 @@
 		211051CB237D6C3200BE68D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21115238235BA4AC0047EE9E /* CatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApi.swift; sourceTree = "<group>"; };
 		214A192623BD26490048C4A8 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		217CF4F523D3A74500998714 /* SignInRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRules.swift; sourceTree = "<group>"; };
+		217CF4F723D3A8A900998714 /* FirebaseAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAlerts.swift; sourceTree = "<group>"; };
+		217CF4F923D3CA7F00998714 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		218D656A233D650400ACDD34 /* CatID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218D656D233D650400ACDD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		218D656F233D650400ACDD34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +179,7 @@
 		21BED3AB23797DAE006AD02A /* CatId.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CatId.xcdatamodel; sourceTree = "<group>"; };
 		21C371A723BE1BBD008D3D5F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		21C371AB23CDF093008D3D5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		21C371AD23D1E3A2008D3D5F /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
@@ -295,8 +303,10 @@
 		215FEE822346022C00917288 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				217CF4F923D3CA7F00998714 /* SpinnerViewController.swift */,
 				214A192623BD26490048C4A8 /* LoginController.swift */,
 				21C371A723BE1BBD008D3D5F /* SignUpController.swift */,
+				21C371AD23D1E3A2008D3D5F /* ResetPasswordController.swift */,
 				2103F49223A5A37A003B5F6D /* SplashController.swift */,
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
@@ -368,6 +378,8 @@
 			isa = PBXGroup;
 			children = (
 				21FC2CC4233F9C2400E69124 /* CatBreeds.swift */,
+				217CF4F523D3A74500998714 /* SignInRules.swift */,
+				217CF4F723D3A8A900998714 /* FirebaseAlerts.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -771,12 +783,16 @@
 				21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */,
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
 				21E887B9235520560068060F /* Connectivity.swift in Sources */,
+				21C371AE23D1E3A2008D3D5F /* ResetPasswordController.swift in Sources */,
 				218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */,
+				217CF4F823D3A8A900998714 /* FirebaseAlerts.swift in Sources */,
 				21C371A823BE1BBD008D3D5F /* SignUpController.swift in Sources */,
 				2103F49323A5A37A003B5F6D /* SplashController.swift in Sources */,
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
 				21FCDB8F23684B13001FFB53 /* CatTableViewCell.swift in Sources */,
 				21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */,
+				217CF4FA23D3CA7F00998714 /* SpinnerViewController.swift in Sources */,
+				217CF4F623D3A74500998714 /* SignInRules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dzf-nu-fL1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8IY-Dl-OjO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,6 +147,103 @@
             </objects>
             <point key="canvasLocation" x="2043.4782608695655" y="-333.48214285714283"/>
         </scene>
+        <!--Reset Password Controller-->
+        <scene sceneID="qPX-8F-M6K">
+            <objects>
+                <viewController id="iX3-fP-uCI" customClass="ResetPasswordController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Et9-Uo-14U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CatSignUpScreen" translatesAutoresizingMaskIntoConstraints="NO" id="CTc-c0-oKc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4r-fG-xri">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" ✉️" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dV5-26-ba5" userLabel="emailInput">
+                                        <rect key="frame" x="26" y="307" width="362" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="password"/>
+                                    </textField>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khR-zl-K1V" userLabel="emailText">
+                                        <rect key="frame" x="26" y="265" width="71" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFK-PV-bmU" userLabel="emailUnderline">
+                                        <rect key="frame" x="26" y="357" width="362" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvE-sh-IpJ" userLabel="dismissButton">
+                                        <rect key="frame" x="0.0" y="20" width="53" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="32"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backToLogin:" destination="iX3-fP-uCI" eventType="touchUpInside" id="k94-Oq-R9W"/>
+                                            <action selector="backToLogin:" destination="gbj-eE-PvS" eventType="touchUpInside" id="ywa-6d-U0M"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJy-SC-aAq" userLabel="resetPasswordButton">
+                                        <rect key="frame" x="26" y="367" width="362" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.34509803919999998" green="0.80000000000000004" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="25"/>
+                                        <state key="normal" title="Reset Password">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="0.0" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="attemptLogin:" destination="dzf-nu-fL1" eventType="touchUpInside" id="4XO-zl-y1h"/>
+                                            <action selector="resetPassword:" destination="iX3-fP-uCI" eventType="touchUpInside" id="fr2-Vq-Cer"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="C4r-fG-xri" secondAttribute="bottom" id="H1r-T0-tko"/>
+                            <constraint firstItem="CTc-c0-oKc" firstAttribute="top" secondItem="Et9-Uo-14U" secondAttribute="top" id="L3e-U6-c60"/>
+                            <constraint firstAttribute="bottom" secondItem="CTc-c0-oKc" secondAttribute="bottom" id="hgG-ti-SO3"/>
+                            <constraint firstAttribute="trailing" secondItem="CTc-c0-oKc" secondAttribute="trailing" id="jis-oo-YCZ"/>
+                            <constraint firstItem="CTc-c0-oKc" firstAttribute="leading" secondItem="Et9-Uo-14U" secondAttribute="leading" id="tBv-U3-baw"/>
+                            <constraint firstItem="C4r-fG-xri" firstAttribute="top" secondItem="Et9-Uo-14U" secondAttribute="top" id="tU4-bi-pOj"/>
+                            <constraint firstAttribute="trailing" secondItem="C4r-fG-xri" secondAttribute="trailing" id="tmQ-ue-od3"/>
+                            <constraint firstItem="C4r-fG-xri" firstAttribute="leading" secondItem="Et9-Uo-14U" secondAttribute="leading" id="xSk-45-gz5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GiZ-j1-ElN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="B4j-rX-n2S"/>
+                    <connections>
+                        <outlet property="emailTextInput" destination="dV5-26-ba5" id="yv8-6x-sys"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRE-4W-Eth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="596" y="-705"/>
+        </scene>
         <!--Splash Controller-->
         <scene sceneID="BQt-a0-9gx">
             <objects>
@@ -169,12 +266,12 @@
                         <viewLayoutGuide key="safeArea" id="dTC-l3-B6l"/>
                     </view>
                     <connections>
-                        <segue destination="gGu-vL-LDE" kind="presentation" identifier="showCatId" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="b1t-9r-29b"/>
+                        <segue destination="dzf-nu-fL1" kind="presentation" identifier="showCatId" modalPresentationStyle="fullScreen" id="RhY-53-hO8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6d-cQ-Umx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1294" y="128"/>
+            <point key="canvasLocation" x="-2275" y="128"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="eN3-0V-Id9">
@@ -266,6 +363,17 @@
                                             <action selector="signUpFlow:" destination="dzf-nu-fL1" eventType="touchUpInside" id="cWM-tf-faS"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-eI-ZJX">
+                                        <rect key="frame" x="86" y="591" width="242" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                        <state key="normal" title="Forgot your password?">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetPassword:" destination="dzf-nu-fL1" eventType="touchUpInside" id="PL4-B3-nOl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
@@ -283,21 +391,26 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iBT-7Y-OLF"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rcJ-ya-pjx"/>
                     <connections>
+                        <outlet property="emailTextInput" destination="nB7-JL-LlK" id="d0z-OP-7bd"/>
+                        <outlet property="paswordTextInput" destination="h7k-tq-ew3" id="lES-3T-637"/>
                         <outlet property="signUpButton" destination="bPr-80-Tdr" id="nrL-OW-6st"/>
-                        <segue destination="gbj-eE-PvS" kind="presentation" identifier="signUpSegue" modalPresentationStyle="overFullScreen" id="5yT-1h-Ivt"/>
+                        <segue destination="gbj-eE-PvS" kind="presentation" identifier="signUpSegue" modalPresentationStyle="automatic" id="5yT-1h-Ivt"/>
+                        <segue destination="iX3-fP-uCI" kind="presentation" identifier="resetPassword" modalPresentationStyle="automatic" id="57l-pI-Ncr"/>
+                        <segue destination="gGu-vL-LDE" kind="presentation" identifier="catIdApp" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="QS9-w0-ouI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guI-h2-jea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-753.62318840579712" y="-377.67857142857139"/>
+            <point key="canvasLocation" x="-1299" y="128"/>
         </scene>
         <!--Sign Up Controller-->
         <scene sceneID="DYb-yp-Mqh">
             <objects>
                 <viewController id="gbj-eE-PvS" customClass="SignUpController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ubG-UZ-p6G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CatSignUpScreen" translatesAutoresizingMaskIntoConstraints="NO" id="pdg-IU-qZZ" userLabel="catSignUpScreen">
@@ -411,7 +524,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAn-6F-0mC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75.362318840579718" y="-411.16071428571428"/>
+            <point key="canvasLocation" x="-559" y="-705"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ru-Zi-zTl">
@@ -445,7 +558,7 @@
                                 <rect key="frame" x="0.0" y="1" width="414" height="773"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-Az-vXJ" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1296.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1254"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="it8-yV-Nln" userLabel="Cat Image View">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="349"/>
@@ -464,7 +577,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKv-hi-tsf" userLabel="Breed Info View">
-                                                <rect key="frame" x="0.0" y="357" width="414" height="939.5"/>
+                                                <rect key="frame" x="0.0" y="357" width="414" height="897"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKN-vB-f0H">
                                                         <rect key="frame" x="15" y="17" width="383" height="37"/>
@@ -472,57 +585,57 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Child Friendly" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mjh-XW-raH">
-                                                        <rect key="frame" x="15" y="106" width="111" height="22"/>
+                                                        <rect key="frame" x="15" y="106" width="115" height="22"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Grooming" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Gw-8z-hIH">
-                                                        <rect key="frame" x="15" y="148" width="80" height="22"/>
+                                                        <rect key="frame" x="15" y="148" width="83" height="22"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Intelligence" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n2V-UH-4Mt">
-                                                        <rect key="frame" x="16" y="190" width="92" height="22"/>
+                                                        <rect key="frame" x="16" y="190" width="97" height="22"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Shedding level" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cml-MQ-jyq">
-                                                        <rect key="frame" x="16" y="233" width="119" height="22"/>
+                                                        <rect key="frame" x="16" y="233" width="124" height="22"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Social Needs" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2DY-pE-58g">
-                                                        <rect key="frame" x="16" y="274" width="107" height="22"/>
+                                                        <rect key="frame" x="16" y="274" width="110" height="22"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="253" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6K-X5-re6">
-                                                        <rect key="frame" x="233" y="106" width="165" height="21"/>
+                                                        <rect key="frame" x="237" y="106" width="161" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAf-Xo-Ypp">
-                                                        <rect key="frame" x="228" y="147" width="170" height="21"/>
+                                                        <rect key="frame" x="231" y="147" width="167" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9pR-j4-jb5" userLabel="Intelligence Rating Text Field">
-                                                        <rect key="frame" x="231" y="188" width="167" height="21"/>
+                                                        <rect key="frame" x="236" y="188" width="162" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJI-xp-cxK">
-                                                        <rect key="frame" x="233" y="232" width="165" height="21"/>
+                                                        <rect key="frame" x="238" y="232" width="160" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-zY-Twc" userLabel="Social Needs Rating TextField">
-                                                        <rect key="frame" x="231" y="274" width="167" height="21"/>
+                                                        <rect key="frame" x="234" y="274" width="164" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYC-S6-Y5o">
-                                                        <rect key="frame" x="16" y="338" width="382" height="531.5"/>
+                                                        <rect key="frame" x="16" y="338" width="382" height="489"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf fdolore magna aliqua. Ut enim ad minim veniam, quis nostrud ilfjlsdjlf sjdfjsld jfdfsdf f the end</string>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -530,7 +643,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="WIKIPEDIA" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRt-MA-Ove">
-                                                        <rect key="frame" x="159" y="894" width="96" height="37"/>
+                                                        <rect key="frame" x="159" y="851.5" width="96" height="37"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="37" id="7UC-eb-xpv"/>
