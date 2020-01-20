@@ -188,14 +188,14 @@ struct CatBreeds {
 					counter += 1
 					if counter == catBreeds.count {
 						print("All links retrieved.")
+						// All cat photos have been retrieved
+						photosRetrieved = true
 					}
 				  }.catch { error in
 						print("Error: \(error)")
 				  }
 			}
 		}
-		// All cat photos have been retrieved
-		photosRetrieved = true
 	}
 	
 	static private var counter: [Int] = counterGeneratePhotos()

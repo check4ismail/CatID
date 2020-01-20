@@ -19,21 +19,34 @@ class SignUpController: UIViewController {
 	}
 	
 	@IBAction func attemptSignUp(_ sender: UIButton) {
+		
+		self.showIndicator()
+		
 		guard SignInRules.emailRules(email: emailTextInput.text!) else {
+			self.hideIndicator()
+			
 			invalidEmail()
 			return
 		}
 		
 		guard SignInRules.passwordRules(password: passwordTextInput.text!) else {
+			self.hideIndicator()
+			
 			invalidPassword()
 			return
 		}
 		
 		Auth.auth().createUser(withEmail: emailTextInput.text!, password: passwordTextInput.text!) { authResult, error in
 			if let errorMessage = error, !errorMessage.localizedDescription.isEmpty {
+				
+				self.hideIndicator()
+				
 				self.errorCodeAlert("\(errorMessage)")
 				return
 			}
+			
+			self.hideIndicator()
+			
 			// If no errors, sign up is a success!
 			self.successfulSignUp()
 		}

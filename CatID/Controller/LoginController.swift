@@ -51,12 +51,22 @@ class LoginController: UIViewController {
 		}
 		
 		Auth.auth().signIn(withEmail: emailTextInput.text!, password: paswordTextInput.text!) { [weak self] authResult, error in
+			self!.showIndicator()
 			if let errorMessage = error, !errorMessage.localizedDescription.isEmpty {
+				self!.hideIndicator()
 				self!.errorCodeAlert("\(errorMessage)")
 				return
 			}
-			// If no errors, user can sign into CatID
-			self?.performSegue(withIdentifier: "catIdApp", sender: self)
+			// Method to retrieve all cat photos
+			CatBreeds.retrieveCatPhotos()
+			Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
+				if CatBreeds.photosRetrieved {
+					print("Photos retrieved? \(CatBreeds.photosRetrieved)")
+					timer.invalidate()
+					self!.hideIndicator()
+					self?.performSegue(withIdentifier: "catIdApp", sender: self)
+				}
+			}
 		}
 	}
 	
@@ -74,12 +84,14 @@ extension UIViewController {
 	func showIndicator() {
 		DispatchQueue.main.async {
 			SVProgressHUD.show()
+//			Utility.showLoaderWithText(text: "Authenticating")
 		}
 	}
 	
 	func hideIndicator() {
 		DispatchQueue.main.async {
 			SVProgressHUD.dismiss()
+//			Utility.hideLoader()
 		}
 	}
 }

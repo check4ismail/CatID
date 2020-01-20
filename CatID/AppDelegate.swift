@@ -25,10 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			print("No internet connection")
 			return true
 		}
-		
-		// Method to retrieve all cat photos
-		CatBreeds.retrieveCatPhotos()
-		
+	
 		return true
 	}
 	
@@ -44,49 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UIApplication.shared.isStatusBarHidden = false
 		
 		return true
-	}
-	
-	static func retrieveCatPhotos() {
-		// Fetches all image urls ahead of time
-		print("Starting background task to fetch image urls")
-		
-		// Kingfisher should cache on disk, not memory
-		ImageCache.default.memoryStorage.config.totalCostLimit = 1
-		
-		let catBreeds = CatBreeds.breeds
-		var counter = 0
-		for breed in catBreeds {
-			if let breedId = CatBreeds.breedIds[breed] {
-				CatApi.getCatPhoto(breedId)
-				.done { urls in
-					
-					// Store first url as default cat photo for each breed
-					if let firstUrl = URL(string: urls[0]) {
-						CatBreeds.defaultCatPhoto[breed] = firstUrl
-						
-						// Begin prefetch of first photo
-						ImagePrefetcher(urls: [firstUrl]).start()
-					}
-					
-//					print("\(breed) has \(urls.count)")
-					// Store all urls into CatBreed dictionary
-					var storeUrls: [URL] = []
-					for urlLink in urls {
-						guard let url = URL(string: urlLink) else { return }
-						storeUrls.append(url)
-//						print("\(breed): \(url)")
-					}
-					CatBreeds.imageUrls[breed] = storeUrls
-//					print("Dictionary value: \(CatBreeds.imageUrls[breed])")
-					counter += 1
-					if counter == catBreeds.count {
-						print("All links retrieved.")
-					}
-				  }.catch { error in
-						print("Error: \(error)")
-				  }
-			}
-		}
 	}
 	
 	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {

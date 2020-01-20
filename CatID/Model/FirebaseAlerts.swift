@@ -27,11 +27,11 @@ extension UIViewController {
 	}
 	
 	func successfulSignUp() {
-		alert(title: "Success 😺", message: "Your sign up was a success! Go back to the sign in screen")
+		alertThenDismiss(title: "Success 😺", message: "Your sign up was a success!")
 	}
 	
 	func successfulPasswordReset() {
-		alert(title: "Success 😺", message: "Password reset email has been sent your way!")
+		alertThenDismiss(title: "Success 😺", message: "Password reset email has been sent your way!")
 	}
 	
 	func emailNeverRegistered() {
@@ -42,9 +42,17 @@ extension UIViewController {
 		alert(title: "Email Exists 😿", message: "Email entered is already registered with CatID.")
 	}
 	
+	func offline() {
+		alert(title: "Offline 😿", message: "No internet connection detected")
+	}
+	
 	func errorCodeAlert(_ error: String) {
 		// Displaying alerts based on error code from Firebase
 		print("Firebase error: \(error)")
+		guard Connectivity.isConnectedToInternet else {
+			offline()
+			return
+		}
 		if error.contains("17007") {
 			emailAlreadyRegistered()
 		} else if error.contains("17009") {
@@ -57,6 +65,14 @@ extension UIViewController {
 	private func alert(title: String, message: String) {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
 		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	private func alertThenDismiss(title: String, message: String) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (UIAlertAction) -> Void in
+			self.dismiss(animated: true, completion: nil)
+		}))
 		self.present(alert, animated: true, completion: nil)
 	}
 }

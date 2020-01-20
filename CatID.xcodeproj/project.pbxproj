@@ -60,7 +60,6 @@
 		214A192723BD26490048C4A8 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A192623BD26490048C4A8 /* LoginController.swift */; };
 		217CF4F623D3A74500998714 /* SignInRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4F523D3A74500998714 /* SignInRules.swift */; };
 		217CF4F823D3A8A900998714 /* FirebaseAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4F723D3A8A900998714 /* FirebaseAlerts.swift */; };
-		217CF4FA23D3CA7F00998714 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4F923D3CA7F00998714 /* SpinnerViewController.swift */; };
 		218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656D233D650400ACDD34 /* AppDelegate.swift */; };
 		218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656F233D650400ACDD34 /* SceneDelegate.swift */; };
 		218D6572233D650400ACDD34 /* CatIdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D6571233D650400ACDD34 /* CatIdController.swift */; };
@@ -165,7 +164,6 @@
 		214A192623BD26490048C4A8 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		217CF4F523D3A74500998714 /* SignInRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRules.swift; sourceTree = "<group>"; };
 		217CF4F723D3A8A900998714 /* FirebaseAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAlerts.swift; sourceTree = "<group>"; };
-		217CF4F923D3CA7F00998714 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		218D656A233D650400ACDD34 /* CatID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218D656D233D650400ACDD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		218D656F233D650400ACDD34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -303,11 +301,10 @@
 		215FEE822346022C00917288 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				217CF4F923D3CA7F00998714 /* SpinnerViewController.swift */,
+				2103F49223A5A37A003B5F6D /* SplashController.swift */,
 				214A192623BD26490048C4A8 /* LoginController.swift */,
 				21C371A723BE1BBD008D3D5F /* SignUpController.swift */,
 				21C371AD23D1E3A2008D3D5F /* ResetPasswordController.swift */,
-				2103F49223A5A37A003B5F6D /* SplashController.swift */,
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
 				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
@@ -791,7 +788,6 @@
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
 				21FCDB8F23684B13001FFB53 /* CatTableViewCell.swift in Sources */,
 				21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */,
-				217CF4FA23D3CA7F00998714 /* SpinnerViewController.swift in Sources */,
 				217CF4F623D3A74500998714 /* SignInRules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
