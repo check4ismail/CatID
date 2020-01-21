@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sZa-j1-I4K">
-                                <rect key="frame" x="0.0" y="53" width="414" height="755"/>
+                                <rect key="frame" x="0.0" y="53" width="414" height="672"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -77,8 +77,38 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="to6-tX-rHr">
+                                <rect key="frame" x="0.0" y="725" width="414" height="49"/>
+                                <items>
+                                    <tabBarItem title="My Cats" image="person.fill" catalog="system" selectedImage="person.fill" id="zoe-xQ-04T">
+                                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tabBarItem>
+                                    <tabBarItem title="Cat Breeds" image="list.dash" catalog="system" id="jiJ-S1-ZpJ">
+                                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tabBarItem>
+                                    <tabBarItem systemItem="favorites" id="QrS-Iw-Idt">
+                                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tabBarItem>
+                                </items>
+                                <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="to6-tX-rHr" secondAttribute="bottom" constant="34" id="CBb-DN-Y4Q"/>
+                            <constraint firstAttribute="trailing" secondItem="to6-tX-rHr" secondAttribute="trailing" symbolic="YES" id="kDu-9M-pGg"/>
+                            <constraint firstItem="to6-tX-rHr" firstAttribute="top" secondItem="sZa-j1-I4K" secondAttribute="bottom" symbolic="YES" id="rFf-ur-Gm1"/>
+                            <constraint firstItem="to6-tX-rHr" firstAttribute="leading" secondItem="lgm-3y-2oX" secondAttribute="leading" symbolic="YES" id="s0E-2e-R4s"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5dL-ja-hx3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cat ID" largeTitleDisplayMode="always" id="7Cv-tn-TFS"/>
@@ -92,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGA-zw-Ezp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="126.38680659670166"/>
+            <point key="canvasLocation" x="891.304347826087" y="125.89285714285714"/>
         </scene>
         <!--Offline-->
         <scene sceneID="bVo-eK-P3d">
@@ -774,5 +804,7 @@
         <image name="CatLoginScreen" width="866" height="1007"/>
         <image name="CatSignUpScreen" width="1333" height="2000"/>
         <image name="Launch" width="640" height="638"/>
+        <image name="list.dash" catalog="system" width="64" height="42"/>
+        <image name="person.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
