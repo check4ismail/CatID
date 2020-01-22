@@ -38,7 +38,7 @@ class CatIdController: UIViewController {
 		// Do any additional setup after loading the view.
 		navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "58cced")
 		
-		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font: UIFont(name: "SFProRounded-Semibold", size: 20)!]
 		navigationController?.navigationBar.titleTextAttributes = textAttributes
 		navigationController?.navigationBar.tintColor = .black
 		
@@ -59,12 +59,6 @@ class CatIdController: UIViewController {
 		// Does not override touch for ui elements in view
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
-		
-		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-		UITabBarItem.appearance().image?.withTintColor(UIColor.black)
-		UIBarButtonItem.appearance().image?.withTintColor(UIColor.black)
-		UITabBarAppearance().selectionIndicatorTintColor = UIColor.black
-		//		UITabBar.appearance().tintColor = UIColor.black
 	}
 	
 	private func setCatDictionary() {	// Create dictionary of cat breeds organized alphabetically
