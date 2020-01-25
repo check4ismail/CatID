@@ -11,11 +11,12 @@ import Alamofire
 import AlamofireImage
 import Kingfisher
 
-class CatIdController: UIViewController {
+class CatIdController: UIViewController, UITabBarDelegate {
 
 	// Outlets
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var tabBar: UITabBar!
 	
 	// Members
 	private let catBreeds: [String] = CatBreeds.breeds
@@ -27,20 +28,17 @@ class CatIdController: UIViewController {
 	private let segueOffline = "offline"
 	private let segueCatBreed = "goToCatBreed"
 	private let colorHex = "7bd7f1"
+	private let catBreedTag = 1
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .darkContent
 	}
 	
 	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		// Do any additional setup after loading the view.
-		navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "58cced")
-		
-		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font: UIFont(name: "SFProRounded-Semibold", size: 20)!]
-		navigationController?.navigationBar.titleTextAttributes = textAttributes
-		navigationController?.navigationBar.tintColor = .black
+		tabBar.delegate = self
+		highlightTagItem(catBreedTag, tabBar)
+
+		setupNavigationBar()
 		
 		//MARK: Tap outside of search bar to dismiss keyboard without overriding tableview touch
 		let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
@@ -59,6 +57,18 @@ class CatIdController: UIViewController {
 		// Does not override touch for ui elements in view
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
+	}
+	
+	func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+		let tabBarItemTag = item.tag
+		switch tabBarItemTag {
+		case 0:
+			self.dismiss(animated: false, completion: nil)
+		case 2:
+			print("Working on it")
+		default:
+			print("Nothing happens because it's the same tag")
+		}
 	}
 	
 	private func setCatDictionary() {	// Create dictionary of cat breeds organized alphabetically
