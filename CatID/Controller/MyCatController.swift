@@ -43,6 +43,9 @@ class MyCatController: UIViewController, UITabBarDelegate {
 		}
 	}
 	
+	@IBAction func addNewCat(_ sender: Any) {
+		performSegue(withIdentifier: "addCat", sender: self)
+	}
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		highlightTagItem(myCatTag, tabBar)
 	}

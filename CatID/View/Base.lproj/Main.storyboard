@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8IY-Dl-OjO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="26N-2Y-nrc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -139,6 +139,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6Uo-Ek-UfD">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addNewCat:" destination="d7c-pc-2hZ" id="dgb-wa-jC5"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -147,6 +150,7 @@
                         <outlet property="myCatTableView" destination="3y5-Hh-YMW" id="uAc-kx-jEY"/>
                         <outlet property="tabBar" destination="SPe-ad-QVw" id="DEP-gH-iE9"/>
                         <segue destination="K2R-qv-ajb" kind="presentation" identifier="catBreedSegue" animates="NO" modalPresentationStyle="fullScreen" id="EKi-tx-esi"/>
+                        <segue destination="83S-y9-SFp" kind="presentation" identifier="addCat" id="3ns-uV-1xt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iac-E7-UGf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -253,10 +257,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2c-8k-Mkn">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-O6-Hid">
-                                        <rect key="frame" x="55" y="320" width="304" height="168"/>
+                                        <rect key="frame" x="55" y="364" width="304" height="168"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="304" id="DfT-TF-Efg"/>
@@ -279,9 +283,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="uqC-Hg-9da" secondAttribute="top" id="0ET-Le-Rav"/>
                             <constraint firstAttribute="bottom" secondItem="z2c-8k-Mkn" secondAttribute="bottom" id="EEh-nk-bA3"/>
-                            <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="uqC-Hg-9da" secondAttribute="top" id="Pc5-5w-be3"/>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="leading" secondItem="uqC-Hg-9da" secondAttribute="leading" id="gum-AS-vWe"/>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="top" secondItem="Ma9-VI-eES" secondAttribute="top" id="kv5-8C-mtB"/>
                             <constraint firstItem="z2c-8k-Mkn" firstAttribute="trailing" secondItem="uqC-Hg-9da" secondAttribute="trailing" id="mFL-cU-MRk"/>
@@ -393,6 +395,123 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRE-4W-Eth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="596" y="-705"/>
+        </scene>
+        <!--Add Cat Controller-->
+        <scene sceneID="X0S-gc-Uz5">
+            <objects>
+                <viewController id="83S-y9-SFp" customClass="AddCatController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V6N-Dd-YBG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiE-FB-O4J">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="la6-LN-MK8">
+                                        <rect key="frame" x="20" y="71.5" width="122" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cat Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fF7-El-YsE">
+                                        <rect key="frame" x="150" y="80" width="248" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8Q-UY-2fG">
+                                        <rect key="frame" x="20" y="236" width="378" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Jr-sw-UTh">
+                                        <rect key="frame" x="20" y="194" width="227" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Breed type" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-ym-cGU">
+                                        <rect key="frame" x="150" y="137" width="248" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-d1-M8v">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="20"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="New Cat" id="oKK-UB-bR0">
+                                                <barButtonItem key="leftBarButtonItem" title="Cancel" id="OqO-HS-2ZA">
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="cancelButton:" destination="83S-y9-SFp" id="6Xe-vx-8I1"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="VGP-Tz-T2E">
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="doneButton:" destination="83S-y9-SFp" id="6Tj-WZ-FIe"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTc-Ez-HhA">
+                                        <rect key="frame" x="20" y="485" width="378" height="119"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Veterinarian Info" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2P-zN-lZB">
+                                        <rect key="frame" x="20" y="302" width="227" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tch-0C-Xby">
+                                        <rect key="frame" x="20" y="336" width="378" height="81"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textView>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Notes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qc3-ox-1OC">
+                                        <rect key="frame" x="20" y="443" width="71" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MiE-FB-O4J" firstAttribute="leading" secondItem="V6N-Dd-YBG" secondAttribute="leading" id="Drl-MB-Ie1"/>
+                            <constraint firstItem="MiE-FB-O4J" firstAttribute="top" secondItem="V6N-Dd-YBG" secondAttribute="top" id="Iih-aB-Nri"/>
+                            <constraint firstAttribute="trailing" secondItem="MiE-FB-O4J" secondAttribute="trailing" id="Ozg-lB-Oa7"/>
+                            <constraint firstAttribute="bottom" secondItem="MiE-FB-O4J" secondAttribute="bottom" id="hT2-xa-1eB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PVM-rK-wXS"/>
+                    </view>
+                    <connections>
+                        <outlet property="birthday" destination="A8Q-UY-2fG" id="8n8-0k-tuQ"/>
+                        <outlet property="breedType" destination="g1e-ym-cGU" id="Tg1-ES-NdH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xoZ-vf-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589.8550724637682" y="-465.40178571428567"/>
         </scene>
         <!--Splash Controller-->
         <scene sceneID="BQt-a0-9gx">
@@ -941,6 +1060,7 @@
         <image name="CatLoginScreen" width="866" height="1007"/>
         <image name="CatSignUpScreen" width="1333" height="2000"/>
         <image name="Launch" width="640" height="638"/>
+        <image name="camera.circle" catalog="system" width="64" height="60"/>
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
