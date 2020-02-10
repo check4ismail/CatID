@@ -7,12 +7,15 @@
 //
 
 import UIKit
-import Firebase
+import CoreData
 
 class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 	
+	@IBOutlet weak var catName: UITextField!
 	@IBOutlet weak var birthday: UITextField!
 	@IBOutlet weak var breedType: UITextField!
+	@IBOutlet weak var vetInfo: UITextView!
+	@IBOutlet weak var notes: UITextView!
 	
 	private let breedPicker = UIPickerView()
 	private let birthdayPicker = UIPickerView()
@@ -22,7 +25,8 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 	private var selectedDay: Int = 1
 	private var selectedYear: Int = Calendar.current.component(.year, from: Date())
 	
-	private var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	private var months = ["January", "February", "March", "April", "May", "June",
+						  "July", "August", "September", "October", "November", "December"]
 	private var days: [Int] = []
 	private var leapYearDays: Int = 29
 	private var years: [Int] = []
@@ -37,6 +41,30 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 		defaultPickers()
 	}
 	
+	private func save() {
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+		
+		let managedContext = appDelegate.persistentContainer.viewContext
+		
+		let entity = NSEntityDescription.entity(forEntityName: "MyCat", in: managedContext)!
+		
+		let myCat = NSManagedObject(entity: entity, insertInto: managedContext)
+		
+		myCat.setValue(catName.text!, forKey: "name")
+		myCat.setValue(selectedBreed, forKey: "breedType")
+		myCat.setValue(selectedMonth, forKey: "birthdayMonth")
+		myCat.setValue(selectedDay, forKey: "birthdayDay")
+		myCat.setValue(selectedYear, forKey: "birthdayYear")
+		myCat.setValue(notes.text!, forKey: "notes")
+		myCat.setValue(vetInfo.text, forKey: "vetInfo")
+		
+		do {
+			try managedContext.save()
+		} catch let error as NSError {
+			print("Could not save. \(error), \(error.userInfo)")
+		}
+	}
+	
 	// MARK: Cancel button action
 	@IBAction func cancelButton(_ sender: UIBarButtonItem) {
 		self.dismiss(animated: true, completion: nil)
@@ -44,6 +72,8 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 	
 	// MARK: Done button action
 	@IBAction func doneButton(_ sender: UIBarButtonItem) {
+		save()
+		self.dismiss(animated: true, completion: nil)
 	}
 	
 	
@@ -226,4 +256,3 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 		return 28
 	}
 }
-
