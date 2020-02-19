@@ -17,12 +17,13 @@
         <attribute name="birthdayMonth" optional="YES" attributeType="String"/>
         <attribute name="birthdayYear" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="breedType" optional="YES" attributeType="String"/>
+        <attribute name="catPhoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="vetInfo" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Cat" positionX="-54" positionY="-9" width="128" height="193"/>
-        <element name="MyCat" positionX="-54" positionY="63" width="128" height="148"/>
+        <element name="MyCat" positionX="-54" positionY="63" width="128" height="163"/>
     </elements>
 </model>

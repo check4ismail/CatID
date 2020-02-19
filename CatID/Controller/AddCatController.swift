@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddCatController: UIViewController, UIPickerViewDataSource {
 	
 	@IBOutlet weak var catName: UITextField!
 	@IBOutlet weak var birthday: UITextField!
 	@IBOutlet weak var breedType: UITextField!
 	@IBOutlet weak var vetInfo: UITextView!
 	@IBOutlet weak var notes: UITextView!
+	@IBOutlet weak var catPhotoButton: UIButton!
 	
 	private let breedPicker = UIPickerView()
 	private let birthdayPicker = UIPickerView()
@@ -31,6 +32,8 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 	private var leapYearDays: Int = 29
 	private var years: [Int] = []
 	
+	private var backgroundPhotoExists = false
+	
 	override func viewDidLoad() {
 		setupPicker()	// Setup picker for breed and birthday
 		createToolBars() 	// Add toolbar to dismiss picker
@@ -41,6 +44,36 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 		defaultPickers()
 	}
 	
+	@IBAction func uploadCatPhoto(_ sender: UIButton) {
+		showAlert()
+	}
+	
+	//Show alert
+	func showAlert() {
+
+		let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+		alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+			self.openCamera()
+		}))
+		alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+			self.openGallery()
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	// MARK: Cancel button action
+	@IBAction func cancelButton(_ sender: UIBarButtonItem) {
+		self.dismiss(animated: true, completion: nil)
+	}
+	
+	// MARK: Done button action
+	@IBAction func doneButton(_ sender: UIBarButtonItem) {
+		save()
+		self.dismiss(animated: true, completion: nil)
+	}
+	
+	// MARK: Saving to Core Data
 	private func save() {
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 		
@@ -57,6 +90,11 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 		myCat.setValue(selectedYear, forKey: "birthdayYear")
 		myCat.setValue(notes.text!, forKey: "notes")
 		myCat.setValue(vetInfo.text, forKey: "vetInfo")
+		if backgroundPhotoExists {
+			let image = catPhotoButton.currentBackgroundImage
+			let imageData = image?.pngData()
+			myCat.setValue(imageData, forKey: "catPhoto")
+		}
 		
 		do {
 			try managedContext.save()
@@ -64,18 +102,6 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 			print("Could not save. \(error), \(error.userInfo)")
 		}
 	}
-	
-	// MARK: Cancel button action
-	@IBAction func cancelButton(_ sender: UIBarButtonItem) {
-		self.dismiss(animated: true, completion: nil)
-	}
-	
-	// MARK: Done button action
-	@IBAction func doneButton(_ sender: UIBarButtonItem) {
-		save()
-		self.dismiss(animated: true, completion: nil)
-	}
-	
 	
 	// Years will include 1950 to current year
 	// Days will include 1 to 31
@@ -142,60 +168,60 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 		birthday.text = "\(selectedMonth) \(selectedDay), \(selectedYear)"
 	}
 	
-	// MARK: Pickerview methods
-	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		if pickerView.tag == 0 {
-			if component == 0 {
-				return months[row]
-			} else if component == 1 {
-				return "\(days[row])"
-			} else {
-				return "\(years[row])"
-			}
-		} else {
-			return CatBreeds.breeds[row]
-		}
-	}
-	
-	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		if pickerView.tag == 0 {
-			if component == 0 {
-				selectedMonth = months[row]
-				autoSelectMonth(pickerView, row)
-			} else if component == 1 {
-				selectedDay = days[row]
-				autoSelectMonth(pickerView, row)
-			} else {
-				selectedYear = years[row]
-				autoSelectMonth(pickerView, row)
-			}
-		} else {
-			selectedBreed = CatBreeds.breeds[row]
-			print("Selected breed: \(selectedBreed)")
-		}
-	}
-	
-	func numberOfComponents(in pickerView: UIPickerView) -> Int {
-		if pickerView.tag == 0 {
-			return 3
-		} else {
-			return 1
-		}
-	}
-	
-	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		if pickerView.tag == 0 {
-			if component == 0 {
-				return months.count
-			} else if component == 1 {
-				return days.count
-			} else {
-				return years.count
-			}
-		} else {
-			return CatBreeds.breeds.count
-		}
-	}
+//	// MARK: Pickerview methods
+//	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//		if pickerView.tag == 0 {
+//			if component == 0 {
+//				return months[row]
+//			} else if component == 1 {
+//				return "\(days[row])"
+//			} else {
+//				return "\(years[row])"
+//			}
+//		} else {
+//			return CatBreeds.breeds[row]
+//		}
+//	}
+//
+//	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//		if pickerView.tag == 0 {
+//			if component == 0 {
+//				selectedMonth = months[row]
+//				autoSelectMonth(pickerView, row)
+//			} else if component == 1 {
+//				selectedDay = days[row]
+//				autoSelectMonth(pickerView, row)
+//			} else {
+//				selectedYear = years[row]
+//				autoSelectMonth(pickerView, row)
+//			}
+//		} else {
+//			selectedBreed = CatBreeds.breeds[row]
+//			print("Selected breed: \(selectedBreed)")
+//		}
+//	}
+//
+//	func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//		if pickerView.tag == 0 {
+//			return 3
+//		} else {
+//			return 1
+//		}
+//	}
+//
+//	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//		if pickerView.tag == 0 {
+//			if component == 0 {
+//				return months.count
+//			} else if component == 1 {
+//				return days.count
+//			} else {
+//				return years.count
+//			}
+//		} else {
+//			return CatBreeds.breeds.count
+//		}
+//	}
 	
 	// MARK: Helper methods to calculate corresponding months, days, and years
 	private func autoSelectMonth(_ pickerView: UIPickerView, _ row: Int) {
@@ -254,5 +280,121 @@ class AddCatController: UIViewController, UIPickerViewDelegate, UIPickerViewData
 		}
 		
 		return 28
+	}
+}
+
+// MARK: Image picker methods
+extension AddCatController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	
+	// Photo selected from camera
+	func openCamera() {
+
+		//Check is source type available
+		if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+
+			let imagePicker = UIImagePickerController()
+			imagePicker.delegate = self
+			imagePicker.sourceType = UIImagePickerController.SourceType.camera
+			self.present(imagePicker, animated: true, completion: nil)
+		} else {
+			let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
+	// Photo selected from photo library
+	func openGallery() {
+		if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+			let imagePicker = UIImagePickerController()
+			imagePicker.delegate = self
+			imagePicker.allowsEditing = true
+			imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+			self.present(imagePicker, animated: true, completion: nil)
+			
+		} else {
+			let alert  = UIAlertController(title: "Warning", message: "You don't have permission to access gallery.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
+	// Setting the image once it has been selected by user
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		if var pickedImage = info[.originalImage] as? UIImage {
+			pickedImage = pickedImage.af_imageRoundedIntoCircle()
+			catPhotoButton.setBackgroundImage(pickedImage, for: .normal)
+			backgroundPhotoExists = true
+		}
+		picker.dismiss(animated: true, completion: nil)
+	}
+}
+
+// MARK: Pickerview methods
+extension AddCatController: UIPickerViewDelegate {
+	
+	// Values displayed in each row & column
+	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		if pickerView.tag == 0 {
+			if component == 0 {
+				return months[row]
+			} else if component == 1 {
+				return "\(days[row])"
+			} else {
+				return "\(years[row])"
+			}
+		} else {
+			return CatBreeds.breeds[row]
+		}
+	}
+	
+	// Action that occurs when a row is selected
+	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		if pickerView.tag == 0 {
+			/*
+				If a month, day, or year is selected, a check is done
+				to verify that a valid day corresponding to the month and year was selected.
+				Otherwise it selects a valid day for the user.
+				
+				Example - if user selects 31 as the day for April, it scrolls back to 30
+			*/
+			if component == 0 {
+				selectedMonth = months[row]
+				autoSelectMonth(pickerView, row)
+			} else if component == 1 {
+				selectedDay = days[row]
+				autoSelectMonth(pickerView, row)
+			} else {
+				selectedYear = years[row]
+				autoSelectMonth(pickerView, row)
+			}
+		} else {
+			selectedBreed = CatBreeds.breeds[row]
+			print("Selected breed: \(selectedBreed)")
+		}
+	}
+	
+	// Number of columns
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
+		if pickerView.tag == 0 {
+			return 3
+		} else {
+			return 1
+		}
+	}
+	
+	// Number of rows
+	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		if pickerView.tag == 0 {
+			if component == 0 {
+				return months.count
+			} else if component == 1 {
+				return days.count
+			} else {
+				return years.count
+			}
+		} else {
+			return CatBreeds.breeds.count
+		}
 	}
 }

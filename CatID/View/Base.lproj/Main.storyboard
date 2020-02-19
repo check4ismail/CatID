@@ -87,7 +87,7 @@
                                 <sections/>
                             </tableView>
                             <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="SPe-ad-QVw">
-                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <rect key="frame" x="0.0" y="847" width="414" height="49"/>
                                 <items>
                                     <tabBarItem title="My Cats" image="person.fill" catalog="system" selectedImage="person.fill" id="iXh-jg-zDB">
                                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -301,103 +301,187 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiE-FB-O4J">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yH-hw-SNJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="892"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="la6-LN-MK8">
-                                        <rect key="frame" x="20" y="71.5" width="122" height="112"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cat Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fF7-El-YsE">
-                                        <rect key="frame" x="150" y="80" width="248" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8Q-UY-2fG">
-                                        <rect key="frame" x="20" y="236" width="378" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Jr-sw-UTh">
-                                        <rect key="frame" x="20" y="194" width="227" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Breed type" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-ym-cGU">
-                                        <rect key="frame" x="150" y="137" width="248" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-d1-M8v">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="20"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="New Cat" id="oKK-UB-bR0">
-                                                <barButtonItem key="leftBarButtonItem" title="Cancel" id="OqO-HS-2ZA">
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <connections>
-                                                        <action selector="cancelButton:" destination="83S-y9-SFp" id="6Xe-vx-8I1"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="VGP-Tz-T2E">
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <connections>
-                                                        <action selector="doneButton:" destination="83S-y9-SFp" id="6Tj-WZ-FIe"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTc-Ez-HhA">
-                                        <rect key="frame" x="20" y="485" width="378" height="119"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Veterinarian Info" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2P-zN-lZB">
-                                        <rect key="frame" x="20" y="302" width="227" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tch-0C-Xby">
-                                        <rect key="frame" x="20" y="336" width="378" height="81"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
-                                    </textView>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Notes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qc3-ox-1OC">
-                                        <rect key="frame" x="20" y="443" width="71" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiE-FB-O4J">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="870"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cat Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fF7-El-YsE">
+                                                <rect key="frame" x="151" y="80" width="237" height="34"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fF7-El-YsE" secondAttribute="height" multiplier="7:1" id="et3-FT-iXf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8Q-UY-2fG">
+                                                <rect key="frame" x="20" y="236" width="253" height="35"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="qbn-4S-Bxa"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Jr-sw-UTh">
+                                                <rect key="frame" x="20" y="194" width="191" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="oqX-T8-Xf2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Breed type" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-ym-cGU">
+                                                <rect key="frame" x="151" y="137" width="237" height="35"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="g1e-ym-cGU" secondAttribute="height" multiplier="34:5" id="61V-WH-SlL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-d1-M8v">
+                                                <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
+                                                <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textAttributes key="titleTextAttributes">
+                                                    <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="20"/>
+                                                </textAttributes>
+                                                <items>
+                                                    <navigationItem title="New Cat" id="oKK-UB-bR0">
+                                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="OqO-HS-2ZA">
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <action selector="cancelButton:" destination="83S-y9-SFp" id="6Xe-vx-8I1"/>
+                                                            </connections>
+                                                        </barButtonItem>
+                                                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="VGP-Tz-T2E">
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <action selector="doneButton:" destination="83S-y9-SFp" id="6Tj-WZ-FIe"/>
+                                                            </connections>
+                                                        </barButtonItem>
+                                                    </navigationItem>
+                                                </items>
+                                            </navigationBar>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTc-Ez-HhA">
+                                                <rect key="frame" x="20" y="486" width="368" height="266"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Veterinarian Info" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2P-zN-lZB">
+                                                <rect key="frame" x="20" y="302" width="268" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="XZJ-nK-g8D"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tch-0C-Xby">
+                                                <rect key="frame" x="20" y="344" width="368" height="81"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="81" id="P6c-aN-saa"/>
+                                                </constraints>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textView>
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Notes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qc3-ox-1OC">
+                                                <rect key="frame" x="20" y="451" width="177" height="27"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="27" id="q4R-cF-ada"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCV-WF-L5l">
+                                                <rect key="frame" x="20" y="69" width="110" height="103"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="NCV-WF-L5l" secondAttribute="height" multiplier="109:103" id="Z7Z-qw-S2w"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" backgroundImage="camera.circle" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="uploadCatPhoto:" destination="83S-y9-SFp" eventType="touchUpInside" id="X6T-Vb-M9T"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="h2P-zN-lZB" firstAttribute="top" secondItem="A8Q-UY-2fG" secondAttribute="bottom" constant="31" id="12t-MZ-0sV"/>
+                                            <constraint firstItem="Qc3-ox-1OC" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="4rL-SF-N8H"/>
+                                            <constraint firstAttribute="trailing" secondItem="h2P-zN-lZB" secondAttribute="trailing" constant="126" id="6II-bB-FTs"/>
+                                            <constraint firstItem="h2P-zN-lZB" firstAttribute="top" secondItem="A8Q-UY-2fG" secondAttribute="bottom" constant="31" id="87j-NO-3j5"/>
+                                            <constraint firstItem="WmE-d1-M8v" firstAttribute="top" secondItem="MiE-FB-O4J" secondAttribute="top" symbolic="YES" id="8fj-NF-clL"/>
+                                            <constraint firstItem="Tch-0C-Xby" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="B2y-Yo-4zj"/>
+                                            <constraint firstItem="Qc3-ox-1OC" firstAttribute="top" secondItem="Tch-0C-Xby" secondAttribute="bottom" constant="26" id="D3a-ET-neZ"/>
+                                            <constraint firstItem="g1e-ym-cGU" firstAttribute="top" secondItem="fF7-El-YsE" secondAttribute="bottom" constant="23" id="DOJ-3N-u1H"/>
+                                            <constraint firstItem="pTc-Ez-HhA" firstAttribute="top" secondItem="Qc3-ox-1OC" secondAttribute="bottom" constant="8" id="FJ5-S2-vcH"/>
+                                            <constraint firstAttribute="trailing" secondItem="A8Q-UY-2fG" secondAttribute="trailing" constant="141" id="FsR-9X-zod"/>
+                                            <constraint firstItem="Tch-0C-Xby" firstAttribute="top" secondItem="h2P-zN-lZB" secondAttribute="bottom" constant="8" id="GWN-zW-toq"/>
+                                            <constraint firstItem="pTc-Ez-HhA" firstAttribute="top" secondItem="Qc3-ox-1OC" secondAttribute="bottom" constant="8" id="GmI-k7-qZm"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="top" secondItem="MiE-FB-O4J" secondAttribute="top" constant="194" id="I5a-se-ffT"/>
+                                            <constraint firstAttribute="trailing" secondItem="pTc-Ez-HhA" secondAttribute="trailing" constant="26" id="IGI-rQ-ngU"/>
+                                            <constraint firstItem="fF7-El-YsE" firstAttribute="leading" secondItem="NCV-WF-L5l" secondAttribute="trailing" constant="21" id="JyK-mM-YTN"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="leading" secondItem="Tch-0C-Xby" secondAttribute="leading" id="K8q-Ho-cJq"/>
+                                            <constraint firstItem="NCV-WF-L5l" firstAttribute="top" secondItem="WmE-d1-M8v" secondAttribute="bottom" constant="24.5" id="Kv6-9u-m21"/>
+                                            <constraint firstItem="fF7-El-YsE" firstAttribute="leading" secondItem="NCV-WF-L5l" secondAttribute="trailing" constant="21" id="LKx-zo-lFq"/>
+                                            <constraint firstAttribute="trailing" secondItem="WmE-d1-M8v" secondAttribute="trailing" symbolic="YES" id="MX3-ez-pYZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="pTc-Ez-HhA" secondAttribute="bottom" priority="750" constant="118" id="NU0-dN-ozi"/>
+                                            <constraint firstItem="A8Q-UY-2fG" firstAttribute="top" secondItem="7Jr-sw-UTh" secondAttribute="bottom" constant="8" id="NZ2-Yy-nSk"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="leading" secondItem="h2P-zN-lZB" secondAttribute="leading" id="ODk-4x-tl6"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="leading" secondItem="Qc3-ox-1OC" secondAttribute="leading" id="RCx-h8-e3z"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Jr-sw-UTh" secondAttribute="trailing" constant="203" id="RJa-7e-mB9"/>
+                                            <constraint firstItem="Qc3-ox-1OC" firstAttribute="top" secondItem="Tch-0C-Xby" secondAttribute="bottom" constant="26" id="UXG-2g-dBf"/>
+                                            <constraint firstAttribute="trailing" secondItem="fF7-El-YsE" secondAttribute="trailing" constant="26" id="VYS-K2-z9X"/>
+                                            <constraint firstItem="A8Q-UY-2fG" firstAttribute="top" secondItem="g1e-ym-cGU" secondAttribute="bottom" constant="64" id="b88-EG-QV6"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="bsb-ah-OnY"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="top" secondItem="NCV-WF-L5l" secondAttribute="bottom" constant="21.5" id="cXb-88-NTk"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tch-0C-Xby" secondAttribute="trailing" constant="26" id="chz-vw-UxT"/>
+                                            <constraint firstItem="A8Q-UY-2fG" firstAttribute="top" secondItem="7Jr-sw-UTh" secondAttribute="bottom" constant="8" id="glQ-NU-Xgn"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="top" secondItem="NCV-WF-L5l" secondAttribute="bottom" constant="21.5" id="i3k-zF-hhq"/>
+                                            <constraint firstItem="g1e-ym-cGU" firstAttribute="top" secondItem="fF7-El-YsE" secondAttribute="bottom" constant="23" id="iVs-3k-pQF"/>
+                                            <constraint firstItem="A8Q-UY-2fG" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="ihu-kQ-a90"/>
+                                            <constraint firstItem="NCV-WF-L5l" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="iqL-gr-iv2"/>
+                                            <constraint firstItem="fF7-El-YsE" firstAttribute="top" secondItem="WmE-d1-M8v" secondAttribute="bottom" constant="36" id="jew-qZ-vRr"/>
+                                            <constraint firstItem="7Jr-sw-UTh" firstAttribute="leading" secondItem="pTc-Ez-HhA" secondAttribute="leading" id="mpN-2R-5tQ"/>
+                                            <constraint firstItem="g1e-ym-cGU" firstAttribute="leading" secondItem="NCV-WF-L5l" secondAttribute="trailing" constant="21" id="o1F-kO-wAO"/>
+                                            <constraint firstItem="Tch-0C-Xby" firstAttribute="top" secondItem="h2P-zN-lZB" secondAttribute="bottom" constant="8" id="qHR-tf-6WW"/>
+                                            <constraint firstItem="NCV-WF-L5l" firstAttribute="top" secondItem="WmE-d1-M8v" secondAttribute="bottom" constant="24.5" id="qqo-bY-bBS"/>
+                                            <constraint firstAttribute="trailing" secondItem="Qc3-ox-1OC" secondAttribute="trailing" constant="217" id="rDG-b8-1TT"/>
+                                            <constraint firstItem="h2P-zN-lZB" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="wEu-Tb-8a0"/>
+                                            <constraint firstItem="pTc-Ez-HhA" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" constant="20" id="xVq-Sr-cpA"/>
+                                            <constraint firstItem="WmE-d1-M8v" firstAttribute="leading" secondItem="MiE-FB-O4J" secondAttribute="leading" symbolic="YES" id="zeK-Rq-SlD"/>
+                                            <constraint firstAttribute="trailing" secondItem="g1e-ym-cGU" secondAttribute="trailing" constant="26" id="zhi-CH-8jR"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
+                                <constraints>
+                                    <constraint firstItem="MiE-FB-O4J" firstAttribute="bottom" secondItem="L0I-Fi-ZWr" secondAttribute="bottom" constant="-22" id="5hy-rE-zeN"/>
+                                    <constraint firstItem="MiE-FB-O4J" firstAttribute="leading" secondItem="4yH-hw-SNJ" secondAttribute="leading" id="9QZ-jG-M9L"/>
+                                    <constraint firstItem="MiE-FB-O4J" firstAttribute="height" secondItem="4yH-hw-SNJ" secondAttribute="height" priority="250" constant="126" id="Fjl-q5-zXc"/>
+                                    <constraint firstAttribute="bottom" secondItem="MiE-FB-O4J" secondAttribute="bottom" constant="-126" id="HFU-gd-U3F"/>
+                                    <constraint firstItem="MiE-FB-O4J" firstAttribute="width" secondItem="4yH-hw-SNJ" secondAttribute="width" id="c5G-7r-8ZC"/>
+                                    <constraint firstAttribute="trailing" secondItem="MiE-FB-O4J" secondAttribute="trailing" id="maF-WQ-Ufh"/>
+                                    <constraint firstItem="MiE-FB-O4J" firstAttribute="top" secondItem="4yH-hw-SNJ" secondAttribute="top" id="wlp-pU-KYe"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Poe-kb-rr3"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="L0I-Fi-ZWr"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="MiE-FB-O4J" firstAttribute="leading" secondItem="V6N-Dd-YBG" secondAttribute="leading" id="Drl-MB-Ie1"/>
-                            <constraint firstItem="MiE-FB-O4J" firstAttribute="top" secondItem="V6N-Dd-YBG" secondAttribute="top" id="Iih-aB-Nri"/>
-                            <constraint firstAttribute="trailing" secondItem="MiE-FB-O4J" secondAttribute="trailing" id="Ozg-lB-Oa7"/>
-                            <constraint firstAttribute="bottom" secondItem="MiE-FB-O4J" secondAttribute="bottom" id="hT2-xa-1eB"/>
+                            <constraint firstItem="PVM-rK-wXS" firstAttribute="trailing" secondItem="4yH-hw-SNJ" secondAttribute="trailing" id="exQ-DT-VIQ"/>
+                            <constraint firstItem="4yH-hw-SNJ" firstAttribute="leading" secondItem="PVM-rK-wXS" secondAttribute="leading" id="lZk-vf-neI"/>
+                            <constraint firstItem="4yH-hw-SNJ" firstAttribute="bottom" secondItem="PVM-rK-wXS" secondAttribute="bottom" constant="84" id="piA-xj-C9r"/>
+                            <constraint firstItem="4yH-hw-SNJ" firstAttribute="top" secondItem="PVM-rK-wXS" secondAttribute="top" id="s2U-sr-lR6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PVM-rK-wXS"/>
                     </view>
@@ -405,13 +489,14 @@
                         <outlet property="birthday" destination="A8Q-UY-2fG" id="8n8-0k-tuQ"/>
                         <outlet property="breedType" destination="g1e-ym-cGU" id="Tg1-ES-NdH"/>
                         <outlet property="catName" destination="fF7-El-YsE" id="HOD-f6-89c"/>
+                        <outlet property="catPhotoButton" destination="NCV-WF-L5l" id="z9k-r1-0hG"/>
                         <outlet property="notes" destination="pTc-Ez-HhA" id="92f-5w-ZIL"/>
                         <outlet property="vetInfo" destination="Tch-0C-Xby" id="qvZ-RA-hhf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xoZ-vf-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589.8550724637682" y="-465.40178571428567"/>
+            <point key="canvasLocation" x="1580" y="-468.21589205397305"/>
         </scene>
         <!--Splash Controller-->
         <scene sceneID="BQt-a0-9gx">
