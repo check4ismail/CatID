@@ -17,6 +17,7 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	@IBOutlet weak var vetInfo: UITextView!
 	@IBOutlet weak var notes: UITextView!
 	@IBOutlet weak var catPhotoButton: UIButton!
+	@IBOutlet weak var doneButton: UIBarButtonItem!
 	
 	private let breedPicker = UIPickerView()
 	private let birthdayPicker = UIPickerView()
@@ -35,9 +36,11 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	private var backgroundPhotoExists = false
 	
 	override func viewDidLoad() {
+		
 		setupPicker()	// Setup picker for breed and birthday
 		createToolBars() 	// Add toolbar to dismiss picker
 		setupDaysAndYears()	// Setup number of years and days for birthday picker
+		setupDelegates()	// Setup delegates for textview and textfield
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -64,13 +67,36 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	
 	// MARK: Cancel button action
 	@IBAction func cancelButton(_ sender: UIBarButtonItem) {
-		self.dismiss(animated: true, completion: nil)
+		if areCatCardValuesAllNil() {
+			self.dismiss(animated: true, completion: nil)
+		} else {
+			let alert = UIAlertController(title: "Are you sure you want to discard changes?", message: nil, preferredStyle: .actionSheet)
+			alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive, handler: {(action: UIAlertAction) in
+				self.dismiss(animated: true, completion: nil)
+			}))
+			alert.addAction(UIAlertAction(title: "Keep Editing", style: .cancel, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
 	}
 	
 	// MARK: Done button action
 	@IBAction func doneButton(_ sender: UIBarButtonItem) {
 		save()
 		self.dismiss(animated: true, completion: nil)
+	}
+	
+	private func areCatCardValuesAllNil() -> Bool {
+		
+		if catName.text!.isEmpty &&
+			birthday.text!.isEmpty &&
+			breedType.text!.isEmpty &&
+			vetInfo.text.isEmpty &&
+			notes.text.isEmpty &&
+			!backgroundPhotoExists {
+			return true
+		} else {
+			return false
+		}
 	}
 	
 	// MARK: Saving to Core Data
@@ -83,13 +109,20 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 		
 		let myCat = NSManagedObject(entity: entity, insertInto: managedContext)
 		
-		myCat.setValue(catName.text!, forKey: "name")
-		myCat.setValue(selectedBreed, forKey: "breedType")
-		myCat.setValue(selectedMonth, forKey: "birthdayMonth")
-		myCat.setValue(selectedDay, forKey: "birthdayDay")
-		myCat.setValue(selectedYear, forKey: "birthdayYear")
+		if !catName.text!.isEmpty {
+			myCat.setValue(catName.text!, forKey: "name")
+		}
+		if !breedType.text!.isEmpty {
+			myCat.setValue(selectedBreed, forKey: "breedType")
+		}
+		if !birthday.text!.isEmpty {
+			myCat.setValue(selectedMonth, forKey: "birthdayMonth")
+			myCat.setValue(selectedDay, forKey: "birthdayDay")
+			myCat.setValue(selectedYear, forKey: "birthdayYear")
+		}
 		myCat.setValue(notes.text!, forKey: "notes")
 		myCat.setValue(vetInfo.text, forKey: "vetInfo")
+		
 		if backgroundPhotoExists {
 			let image = catPhotoButton.currentBackgroundImage
 			let imageData = image?.pngData()
@@ -100,6 +133,20 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 			try managedContext.save()
 		} catch let error as NSError {
 			print("Could not save. \(error), \(error.userInfo)")
+		}
+	}
+	
+	func setupDelegates() {
+		catName.delegate = self
+		birthday.delegate = self
+		breedType.delegate = self
+		vetInfo.delegate = self
+		notes.delegate = self
+	}
+	
+	func doneButtonDisabledCheck() {
+		if areCatCardValuesAllNil() {
+			doneButton.isEnabled = false
 		}
 	}
 	
@@ -167,61 +214,6 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 		// Once birthday picker dismissed, set textview
 		birthday.text = "\(selectedMonth) \(selectedDay), \(selectedYear)"
 	}
-	
-//	// MARK: Pickerview methods
-//	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//		if pickerView.tag == 0 {
-//			if component == 0 {
-//				return months[row]
-//			} else if component == 1 {
-//				return "\(days[row])"
-//			} else {
-//				return "\(years[row])"
-//			}
-//		} else {
-//			return CatBreeds.breeds[row]
-//		}
-//	}
-//
-//	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//		if pickerView.tag == 0 {
-//			if component == 0 {
-//				selectedMonth = months[row]
-//				autoSelectMonth(pickerView, row)
-//			} else if component == 1 {
-//				selectedDay = days[row]
-//				autoSelectMonth(pickerView, row)
-//			} else {
-//				selectedYear = years[row]
-//				autoSelectMonth(pickerView, row)
-//			}
-//		} else {
-//			selectedBreed = CatBreeds.breeds[row]
-//			print("Selected breed: \(selectedBreed)")
-//		}
-//	}
-//
-//	func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//		if pickerView.tag == 0 {
-//			return 3
-//		} else {
-//			return 1
-//		}
-//	}
-//
-//	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//		if pickerView.tag == 0 {
-//			if component == 0 {
-//				return months.count
-//			} else if component == 1 {
-//				return days.count
-//			} else {
-//				return years.count
-//			}
-//		} else {
-//			return CatBreeds.breeds.count
-//		}
-//	}
 	
 	// MARK: Helper methods to calculate corresponding months, days, and years
 	private func autoSelectMonth(_ pickerView: UIPickerView, _ row: Int) {
@@ -395,6 +387,33 @@ extension AddCatController: UIPickerViewDelegate {
 			}
 		} else {
 			return CatBreeds.breeds.count
+		}
+	}
+}
+
+// MARK: Textview & Textfield delegates
+extension AddCatController: UITextFieldDelegate, UITextViewDelegate {
+/*
+	If textfield or textview values change, checking is in place to
+	determine if Done button should be enabled.
+	
+	If current textfield/textview is empty and all others are also empty,
+	then Done button will be disabled
+*/
+	func textFieldDidChangeSelection(_ textField: UITextField) {
+		if !textField.text!.isEmpty {
+			doneButton.isEnabled = true
+		} else {
+			doneButtonDisabledCheck()
+		}
+	}
+	
+	func textViewDidChange(_ textView: UITextView) {
+		
+		if !textView.text!.isEmpty {
+			doneButton.isEnabled = true
+		} else {
+			doneButtonDisabledCheck()
 		}
 	}
 }

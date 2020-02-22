@@ -343,7 +343,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-d1-M8v">
-                                                <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                                 <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <textAttributes key="titleTextAttributes">
                                                     <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="20"/>
@@ -356,7 +356,7 @@
                                                                 <action selector="cancelButton:" destination="83S-y9-SFp" id="6Xe-vx-8I1"/>
                                                             </connections>
                                                         </barButtonItem>
-                                                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="VGP-Tz-T2E">
+                                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" style="done" id="VGP-Tz-T2E">
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <connections>
                                                                 <action selector="doneButton:" destination="83S-y9-SFp" id="6Tj-WZ-FIe"/>
@@ -490,6 +490,7 @@
                         <outlet property="breedType" destination="g1e-ym-cGU" id="Tg1-ES-NdH"/>
                         <outlet property="catName" destination="fF7-El-YsE" id="HOD-f6-89c"/>
                         <outlet property="catPhotoButton" destination="NCV-WF-L5l" id="z9k-r1-0hG"/>
+                        <outlet property="doneButton" destination="VGP-Tz-T2E" id="MRk-y6-KJp"/>
                         <outlet property="notes" destination="pTc-Ez-HhA" id="92f-5w-ZIL"/>
                         <outlet property="vetInfo" destination="Tch-0C-Xby" id="qvZ-RA-hhf"/>
                     </connections>
