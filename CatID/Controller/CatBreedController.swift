@@ -37,7 +37,7 @@ class CatBreedController: UIViewController {
 	// Stores breed selected from CatIdController
 	var selectedBreed: String?
 	
-	private var cats: [NSManagedObject] = []
+	private var cats: [Cat] = []
 	private var catMetaData: NSManagedObject?
 	
 	private let bulletPoint: String = "🔵 "
@@ -50,7 +50,8 @@ class CatBreedController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		self.title = selectedBreed
-		load()
+		fetchAllCatDetails()
+
 		let isBreedSaved: Bool = containsBreed()
 		
 		if let breed = selectedBreed {
@@ -69,8 +70,9 @@ class CatBreedController: UIViewController {
 	// Returns true if breed is stored in Core Data
 	// otherwise returns false
 	func containsBreed() -> Bool {
+		
 		for cat in cats {
-			let breedValue = cat.value(forKey: "breed") as! String
+			let breedValue = cat.breed
 			if breedValue == title {
 				catMetaData = cat
 				return true
@@ -81,23 +83,12 @@ class CatBreedController: UIViewController {
 	}
 	
 	// Loads core data objects
-	func load() {
-		//1
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+	func fetchAllCatDetails() {
+		guard let fetchedCats = CoreDataManager.sharedManager.fetchAllCatDetails() else {
 			return
 		}
 		
-		let managedContext = appDelegate.persistentContainer.viewContext
-		
-		//2
-		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Cat")
-		
-		//3
-		do {
-			cats = try managedContext.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
+		cats = fetchedCats
 	}
 	
 	// Fetches temperament, ratings, description and wiki link of breed from API
@@ -235,35 +226,18 @@ class CatBreedController: UIViewController {
 	// Saving cat meta data from API request to Core Data
 	func save(_ wikiLink: String) {
 	  
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-	  
-		// 1
-		let managedContext = appDelegate.persistentContainer.viewContext
-	  
-		// 2
-		let entity = NSEntityDescription.entity(forEntityName: "Cat", in: managedContext)!
-	  
-		let cat = NSManagedObject(entity: entity, insertInto: managedContext)
-	  
 		let imageUrl = CatBreeds.defaultCatPhoto[breed]?.absoluteString
-		// 3
-		cat.setValue(breed, forKeyPath: "breed")
-		cat.setValue(imageUrl, forKeyPath: "imageUrl")
-		cat.setValue(childRatingTextField.text, forKeyPath: "childFriendlyRating")
-		cat.setValue(groomingRatingTextField.text, forKeyPath: "groomingRating")
-		cat.setValue(intelligenceRatingTextField.text, forKeyPath: "intelligenceRating")
-		cat.setValue(sheddingRatingTextField.text, forKeyPath: "sheddingRating")
-		cat.setValue(socialNeedsRatingTextField.text, forKeyPath: "socialNeedsRating")
-		cat.setValue(summaryTextView.text, forKeyPath: "summaryText")
-		cat.setValue(temperament.text, forKeyPath: "temperament")
-		cat.setValue(wikiLink, forKeyPath: "wikiLink")
-	  
-		// 4
-		do {
-			try managedContext.save()
-			cats.append(cat)
-		} catch let error as NSError {
-			print("Could not save. \(error), \(error.userInfo)")
-		}
+		CatDetailedData.data.setData(wikiLink,
+									 temperament.text,
+									 summaryTextView.text,
+									 socialNeedsRatingTextField.text,
+									 sheddingRatingTextField.text,
+									 intelligenceRatingTextField.text,
+									 imageUrl,
+									 groomingRatingTextField.text,
+									 childRatingTextField.text,
+									 breed)
+		
+		CoreDataManager.sharedManager.insertCatDetailedData()
 	}
 }

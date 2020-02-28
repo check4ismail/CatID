@@ -201,7 +201,7 @@ extension CatIdController: UITableViewDelegate, UITableViewDataSource, UITableVi
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		tableView.rowHeight = 85
 		let cell = customCell(at: indexPath)
-		if !CatBreeds.photosRetrieved && Connectivity.isConnectedToInternet {
+		if !CatBreeds.photosRetrieved && Connectivity.isConnectedToInternet && !CatBreeds.isFetchingPhotos {
 			CatBreeds.retrieveCatPhotos()
 			print("Current value: \(CatBreeds.photosRetrieved)")
 		}

@@ -152,11 +152,12 @@ struct CatBreeds {
 	]
 	
 	static var photosRetrieved = false
+	static var isFetchingPhotos = false
 	
 	static func retrieveCatPhotos() {
 		// Fetches all image urls ahead of time
 		print("Starting background task to fetch image urls")
-		
+		isFetchingPhotos = true
 		// Kingfisher should cache on disk, not memory
 		ImageCache.default.memoryStorage.config.totalCostLimit = 1
 		
@@ -190,6 +191,7 @@ struct CatBreeds {
 						print("All links retrieved.")
 						// All cat photos have been retrieved
 						photosRetrieved = true
+						isFetchingPhotos = false
 					}
 				  }.catch { error in
 						print("Error: \(error)")

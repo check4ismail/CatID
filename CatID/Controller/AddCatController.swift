@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddCatController: UIViewController, UIPickerViewDataSource {
+class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
 	
 	@IBOutlet weak var catName: UITextField!
 	@IBOutlet weak var birthday: UITextField!
@@ -18,6 +18,8 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	@IBOutlet weak var notes: UITextView!
 	@IBOutlet weak var catPhotoButton: UIButton!
 	@IBOutlet weak var doneButton: UIBarButtonItem!
+	
+	var delegate: MyCatController?
 	
 	private let breedPicker = UIPickerView()
 	private let birthdayPicker = UIPickerView()
@@ -36,7 +38,6 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	private var backgroundPhotoExists = false
 	
 	override func viewDidLoad() {
-		
 		setupPicker()	// Setup picker for breed and birthday
 		createToolBars() 	// Add toolbar to dismiss picker
 		setupDaysAndYears()	// Setup number of years and days for birthday picker
@@ -82,7 +83,9 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	// MARK: Done button action
 	@IBAction func doneButton(_ sender: UIBarButtonItem) {
 		save()
-		self.dismiss(animated: true, completion: nil)
+		self.dismiss(animated: true) {
+			self.delegate?.modalDismissed()
+		}
 	}
 	
 	private func areCatCardValuesAllNil() -> Bool {
@@ -101,39 +104,28 @@ class AddCatController: UIViewController, UIPickerViewDataSource {
 	
 	// MARK: Saving to Core Data
 	private func save() {
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-		
-		let managedContext = appDelegate.persistentContainer.viewContext
-		
-		let entity = NSEntityDescription.entity(forEntityName: "MyCat", in: managedContext)!
-		
-		let myCat = NSManagedObject(entity: entity, insertInto: managedContext)
 		
 		if !catName.text!.isEmpty {
-			myCat.setValue(catName.text!, forKey: "name")
+			MyCatData.data.name = catName.text!
 		}
 		if !breedType.text!.isEmpty {
-			myCat.setValue(selectedBreed, forKey: "breedType")
+			MyCatData.data.breedType = selectedBreed
 		}
 		if !birthday.text!.isEmpty {
-			myCat.setValue(selectedMonth, forKey: "birthdayMonth")
-			myCat.setValue(selectedDay, forKey: "birthdayDay")
-			myCat.setValue(selectedYear, forKey: "birthdayYear")
+			MyCatData.data.birthdayMonth = selectedMonth
+			MyCatData.data.birthdayDay = selectedDay
+			MyCatData.data.birthdayYear = selectedYear
 		}
-		myCat.setValue(notes.text!, forKey: "notes")
-		myCat.setValue(vetInfo.text, forKey: "vetInfo")
 		
+		MyCatData.data.notes = notes.text!
+		MyCatData.data.vetInfo = vetInfo.text
+
 		if backgroundPhotoExists {
-			let image = catPhotoButton.currentBackgroundImage
-			let imageData = image?.pngData()
-			myCat.setValue(imageData, forKey: "catPhoto")
+			let image = catPhotoButton.currentBackgroundImage?.jpegData(compressionQuality: 0.3)
+			MyCatData.data.catPhoto = image
 		}
 		
-		do {
-			try managedContext.save()
-		} catch let error as NSError {
-			print("Could not save. \(error), \(error.userInfo)")
-		}
+		CoreDataManager.sharedManager.insertMyCat()
 	}
 	
 	func setupDelegates() {
