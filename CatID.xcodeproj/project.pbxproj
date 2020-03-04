@@ -73,6 +73,9 @@
 		21D1D4C22401C9DD00948A5A /* MyCatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1D4C12401C9DD00948A5A /* MyCatData.swift */; };
 		21D1D4C524040ACC00948A5A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1D4C424040ACC00948A5A /* CoreDataManager.swift */; };
 		21D1D4C9240813E700948A5A /* CatDetailedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1D4C8240813E700948A5A /* CatDetailedData.swift */; };
+		21D1D4CB240936D700948A5A /* MyCatDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1D4CA240936D700948A5A /* MyCatDetailsController.swift */; };
+		21D1D4CD24093E8D00948A5A /* CatDetailsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1D4CC24093E8D00948A5A /* CatDetailsTableView.swift */; };
+		21D1D4CF240B094C00948A5A /* UpdateMyCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1D4CE240B094C00948A5A /* UpdateMyCat.swift */; };
 		21E887B9235520560068060F /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E887B8235520560068060F /* Connectivity.swift */; };
 		21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC4233F9C2400E69124 /* CatBreeds.swift */; };
 		21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC2CC8233FB45600E69124 /* CatBreedController.swift */; };
@@ -180,6 +183,9 @@
 		21D1D4C12401C9DD00948A5A /* MyCatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCatData.swift; sourceTree = "<group>"; };
 		21D1D4C424040ACC00948A5A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		21D1D4C8240813E700948A5A /* CatDetailedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailedData.swift; sourceTree = "<group>"; };
+		21D1D4CA240936D700948A5A /* MyCatDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCatDetailsController.swift; sourceTree = "<group>"; };
+		21D1D4CC24093E8D00948A5A /* CatDetailsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailsTableView.swift; sourceTree = "<group>"; };
+		21D1D4CE240B094C00948A5A /* UpdateMyCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyCat.swift; sourceTree = "<group>"; };
 		21E887B8235520560068060F /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		21FC2CC4233F9C2400E69124 /* CatBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreeds.swift; sourceTree = "<group>"; };
 		21FC2CC8233FB45600E69124 /* CatBreedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedController.swift; sourceTree = "<group>"; };
@@ -307,6 +313,9 @@
 				217CF4FD23D8817700998714 /* MyCatController.swift */,
 				21D1D4BF2401C1CA00948A5A /* MyCatTableViewCell.swift */,
 				217CF4FF23DF053400998714 /* AddCatController.swift */,
+				21D1D4CA240936D700948A5A /* MyCatDetailsController.swift */,
+				21D1D4CC24093E8D00948A5A /* CatDetailsTableView.swift */,
+				21D1D4CE240B094C00948A5A /* UpdateMyCat.swift */,
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
 				21FC2CC8233FB45600E69124 /* CatBreedController.swift */,
@@ -779,10 +788,12 @@
 				21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */,
 				21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */,
 				21D1D4C22401C9DD00948A5A /* MyCatData.swift in Sources */,
+				21D1D4CF240B094C00948A5A /* UpdateMyCat.swift in Sources */,
 				21115239235BA4AC0047EE9E /* CatApi.swift in Sources */,
 				21D1D4C524040ACC00948A5A /* CoreDataManager.swift in Sources */,
 				217CF4FE23D8817700998714 /* MyCatController.swift in Sources */,
 				21A52126236B0EC9007FB5E8 /* Router.swift in Sources */,
+				21D1D4CB240936D700948A5A /* MyCatDetailsController.swift in Sources */,
 				217CF50023DF053400998714 /* AddCatController.swift in Sources */,
 				21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */,
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
@@ -791,6 +802,7 @@
 				21D1D4C02401C1CA00948A5A /* MyCatTableViewCell.swift in Sources */,
 				2103F49323A5A37A003B5F6D /* SplashController.swift in Sources */,
 				218D6570233D650400ACDD34 /* SceneDelegate.swift in Sources */,
+				21D1D4CD24093E8D00948A5A /* CatDetailsTableView.swift in Sources */,
 				21FCDB8F23684B13001FFB53 /* CatTableViewCell.swift in Sources */,
 				21FC2CC5233F9C2400E69124 /* CatBreeds.swift in Sources */,
 			);

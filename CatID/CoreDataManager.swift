@@ -56,22 +56,33 @@ class CoreDataManager {
 	func insertMyCat() {
 		let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
 		let myCat = MyCat(context: managedContext)
-		myCat.setValue(MyCatData.data.name, forKey: "name")
-		myCat.setValue(MyCatData.data.breedType, forKey: "breedType")
-		myCat.setValue(MyCatData.data.birthdayMonth, forKey: "birthdayMonth")
-		myCat.setValue(MyCatData.data.birthdayDay, forKey: "birthdayDay")
-		myCat.setValue(MyCatData.data.birthdayYear, forKey: "birthdayYear")
-		myCat.setValue(MyCatData.data.notes, forKey: "notes")
-		myCat.setValue(MyCatData.data.vetInfo, forKey: "vetInfo")
-		myCat.setValue(MyCatData.data.catPhoto, forKey: "catPhoto")
+		myCat.setValue(MyCatData.myCat?.name, forKey: "name")
+		myCat.setValue(MyCatData.myCat?.breedType, forKey: "breedType")
+		myCat.setValue(MyCatData.myCat?.birthdayMonth, forKey: "birthdayMonth")
+		myCat.setValue(MyCatData.myCat?.birthdayDay, forKey: "birthdayDay")
+		myCat.setValue(MyCatData.myCat?.birthdayYear, forKey: "birthdayYear")
+		myCat.setValue(MyCatData.myCat?.notes, forKey: "notes")
+		myCat.setValue(MyCatData.myCat?.vetInfo, forKey: "vetInfo")
+		myCat.setValue(MyCatData.myCat?.catPhoto, forKey: "catPhoto")
 		
 		do {
 			print("Tried to save myCat data.....")
 			try managedContext.save()
 			print("Saved myCat DATA!!")
-			MyCatData.data.clearData()
+			MyCatData.clearMyCat()
 		} catch let error as NSError {
 			print("Could not save. \(error), \(error.userInfo)")
+		}
+	}
+	
+	func updateMyCat() {
+		let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+//		let myCat = MyCatData.myCat
+		
+		do {
+			try managedContext.save()
+		} catch let error as NSError {
+			print("Could not save due to \(error), \(error.userInfo)")
 		}
 	}
 	

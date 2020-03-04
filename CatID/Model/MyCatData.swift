@@ -18,18 +18,11 @@ struct MyCatData {
 	var birthdayYear: Int?
 	var birthdayMonth: String?
 	var birthdayDay: Int?
-	
+	static var myCat: MyCat?
 	static var data = MyCatData()
 	private init() { }
 	
-	mutating func clearData() {
-		vetInfo?.removeAll()
-		notes?.removeAll()
-		name?.removeAll()
-		catPhoto?.removeAll()
-		breedType?.removeAll()
-		birthdayMonth?.removeAll()
-		birthdayDay = nil
-		birthdayYear = nil
+	static func clearMyCat() {
+		myCat = nil
 	}
 }

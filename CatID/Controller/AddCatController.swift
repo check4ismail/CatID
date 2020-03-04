@@ -21,26 +21,29 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	
 	var delegate: MyCatController?
 	
-	private let breedPicker = UIPickerView()
-	private let birthdayPicker = UIPickerView()
+	let breedPicker = UIPickerView()
+	let birthdayPicker = UIPickerView()
 	
-	private var selectedBreed: String = CatBreeds.breeds[0]
-	private var selectedMonth: String = "January"
-	private var selectedDay: Int = 1
-	private var selectedYear: Int = Calendar.current.component(.year, from: Date())
+	var selectedBreed: String = CatBreeds.breeds[0]
+	var selectedMonth: String = "January"
+	var selectedDay: Int = 1
+	var selectedYear: Int = Calendar.current.component(.year, from: Date())
 	
-	private var months = ["January", "February", "March", "April", "May", "June",
-						  "July", "August", "September", "October", "November", "December"]
-	private var days: [Int] = []
-	private var leapYearDays: Int = 29
-	private var years: [Int] = []
+	var months: [String] = []
+	var days: [Int] = []
+	var years: [Int] = []
 	
 	private var backgroundPhotoExists = false
 	
 	override func viewDidLoad() {
 		setupPicker()	// Setup picker for breed and birthday
 		createToolBars() 	// Add toolbar to dismiss picker
-		setupDaysAndYears()	// Setup number of years and days for birthday picker
+		
+		// Setup months, number of years, and days for birthday picker
+		months = setupMonths()
+		years = setupYears()
+		days = setupDays()
+		
 		setupDelegates()	// Setup delegates for textview and textfield
 	}
 	
@@ -50,20 +53,6 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	
 	@IBAction func uploadCatPhoto(_ sender: UIButton) {
 		showAlert()
-	}
-	
-	//Show alert
-	func showAlert() {
-
-		let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-		alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
-			self.openCamera()
-		}))
-		alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
-			self.openGallery()
-		}))
-		alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-		self.present(alert, animated: true, completion: nil)
 	}
 	
 	// MARK: Cancel button action
@@ -106,23 +95,23 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	private func save() {
 		
 		if !catName.text!.isEmpty {
-			MyCatData.data.name = catName.text!
+			MyCatData.myCat?.name = catName.text!
 		}
 		if !breedType.text!.isEmpty {
-			MyCatData.data.breedType = selectedBreed
+			MyCatData.myCat?.breedType = selectedBreed
 		}
 		if !birthday.text!.isEmpty {
-			MyCatData.data.birthdayMonth = selectedMonth
-			MyCatData.data.birthdayDay = selectedDay
-			MyCatData.data.birthdayYear = selectedYear
+			MyCatData.myCat?.birthdayMonth = selectedMonth
+			MyCatData.myCat?.birthdayDay = Int64(selectedDay)
+			MyCatData.myCat?.birthdayYear = Int64(selectedYear)
 		}
 		
-		MyCatData.data.notes = notes.text!
-		MyCatData.data.vetInfo = vetInfo.text
+		MyCatData.myCat?.notes = notes.text!
+		MyCatData.myCat?.vetInfo = vetInfo.text
 
 		if backgroundPhotoExists {
 			let image = catPhotoButton.currentBackgroundImage?.jpegData(compressionQuality: 0.3)
-			MyCatData.data.catPhoto = image
+			MyCatData.myCat?.catPhoto = image
 		}
 		
 		CoreDataManager.sharedManager.insertMyCat()
@@ -139,19 +128,6 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	func doneButtonDisabledCheck() {
 		if areCatCardValuesAllNil() {
 			doneButton.isEnabled = false
-		}
-	}
-	
-	// Years will include 1950 to current year
-	// Days will include 1 to 31
-	func setupDaysAndYears() {
-		let currentYear = Calendar.current.component(.year, from: Date())
-		for i in 1950...currentYear {
-			years.append(i)
-		}
-		years.reverse()
-		for j in 1...31 {
-			days.append(j)
 		}
 	}
 	
@@ -194,7 +170,6 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	// MARK: Keyboard dismiss methods, toolbars for each textview
 	@objc
 	func dismissKeyboardFromBreedPicker() {
-		print("HERE")
 		view.endEditing(true)
 		// Once breed picker dismissed, set textview
 		breedType.text = selectedBreed
@@ -207,7 +182,7 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 		birthday.text = "\(selectedMonth) \(selectedDay), \(selectedYear)"
 	}
 	
-	// MARK: Helper methods to calculate corresponding months, days, and years
+	// Checks that correct day is chosen for the month and year selected
 	private func autoSelectMonth(_ pickerView: UIPickerView, _ row: Int) {
 		let month = selectedMonth
 		let day = selectedDay
@@ -227,48 +202,23 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 			}
 		}
 	}
-	
-	private func daysInSpecificMonth(_ month: String, _ year: Int, _ defaultRow: Int) -> Int {
-		let thirtyFirstIndex = days.count - 1
-		let thirtyIndex = thirtyFirstIndex - 1
-		let twentyNinthIndex = thirtyIndex - 1
-		let twentyEightIndex = twentyNinthIndex - 1
-		
-		switch month {
-		case "April", "June", "September", "November":
-			return thirtyIndex
-		case "February":
-			if leapYear(year) == leapYearDays {
-				return twentyNinthIndex
-			}
-			return twentyEightIndex
-		default:
-			return defaultRow
-		}
-	}
-
-	// Leap year calculation
-	private func leapYear(_ year: Int) -> Int {
-		let divisibleByFour: Bool = (year % 4) == 0
-		let divisibleBy100: Bool = (year % 100) == 0
-		let divisiblyBy400: Bool = (year % 400) == 0
-		
-		if divisibleBy100 {
-			if divisiblyBy400 {
-				return 29
-			}
-		} else {
-			if divisibleByFour {
-				return 29
-			}
-		}
-		
-		return 28
-	}
 }
 
-// MARK: Image picker methods
-extension AddCatController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+// MARK: Image picker methods that can be reused in other view controllers
+extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	
+	//Show alert
+	func showAlert() {
+		let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+		alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+			self.openCamera()
+		}))
+		alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+			self.openGallery()
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
 	
 	// Photo selected from camera
 	func openCamera() {
@@ -302,7 +252,81 @@ extension AddCatController: UIImagePickerControllerDelegate, UINavigationControl
 			self.present(alert, animated: true, completion: nil)
 		}
 	}
+}
+
+// MARK: Re-usable methods to share with all view controllers to setup days and years
+extension UIViewController {
+	// Days will include 1 to 31
+	func setupDays() -> [Int] {
+		var days: [Int] = []
+		for j in 1...31 {
+			days.append(j)
+		}
+		
+		return days
+	}
 	
+	// Years will include 1950 to current year
+	func setupYears() -> [Int] {
+		var years: [Int] = []
+		let currentYear = Calendar.current.component(.year, from: Date())
+		for i in 1950...currentYear {
+			years.append(i)
+		}
+		years.reverse()
+		return years
+	}
+	
+	func setupMonths() -> [String] {
+		return ["January", "February", "March", "April", "May", "June",
+		"July", "August", "September", "October", "November", "December"]
+	}
+	
+	func daysInSpecificMonth(_ month: String, _ year: Int, _ defaultRow: Int) -> Int {
+		let thirtyFirstIndex = setupDays().count - 1
+		let thirtyIndex = thirtyFirstIndex - 1
+		let twentyNinthIndex = thirtyIndex - 1
+		let twentyEightIndex = twentyNinthIndex - 1
+		
+		switch month {
+		case "April", "June", "September", "November":
+			return thirtyIndex
+		case "February":
+			if leapYear(year) == leapYearDays() {
+				return twentyNinthIndex
+			}
+			return twentyEightIndex
+		default:
+			return defaultRow
+		}
+	}
+
+	// Leap year calculation
+	func leapYear(_ year: Int) -> Int {
+		let divisibleByFour: Bool = (year % 4) == 0
+		let divisibleBy100: Bool = (year % 100) == 0
+		let divisiblyBy400: Bool = (year % 400) == 0
+		
+		if divisibleBy100 {
+			if divisiblyBy400 {
+				return 29
+			}
+		} else {
+			if divisibleByFour {
+				return 29
+			}
+		}
+		
+		return 28
+	}
+	
+	func leapYearDays() -> Int {
+		return 29
+	}
+}
+
+// MARK: imagePickerController method specific to AddCatController
+extension AddCatController {
 	// Setting the image once it has been selected by user
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		if var pickedImage = info[.originalImage] as? UIImage {

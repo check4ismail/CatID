@@ -20,6 +20,7 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	
 	private let segueToBreedList = "catBreedSegue"
 	private let segueToAddCat = "addCat"
+	private let segueToDetails = "viewMyCat"
 	private let myCatTag = 0
 	
 	private let cachePhotos = NSCache<NSString, UIImage>()
@@ -36,12 +37,18 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		setupNavigationBar()
 		myCatTableView.delegate = self
 		myCatTableView.dataSource = self
-		myCatTableView.reloadData()
 		if myCatTableView.numberOfRows(inSection: 0) == 0 {
 			myCatTableView.separatorStyle = .none
 		} else {
 			myCatTableView.separatorStyle = .singleLine
 		}
+		
+		print("viewDidLoad from MyCatController")
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		MyCatData.clearMyCat()
+		myCatTableView.reloadData()
 	}
 	
 	func modalDismissed() {
@@ -66,10 +73,21 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == segueToAddCat {
-			let addCatVC: AddCatController = segue.destination as! AddCatController
+			let addCatVC = segue.destination as! AddCatController
 			addCatVC.delegate = self
 		}
+		
+		if segue.identifier == segueToDetails {
+			catInfoToDetailedView()
+		}
 		highlightTagItem(myCatTag, tabBar)
+	}
+	
+	private func catInfoToDetailedView() {
+		let selectedRow = myCatTableView.indexPathForSelectedRow
+		let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: selectedRow!)
+		MyCatData.myCat = myCat
+		myCatTableView.deselectRow(at: selectedRow!, animated: true)
 	}
 	
 	func fetchAllMyCats(){
@@ -140,7 +158,6 @@ extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 		
 		// Hash key to distinguish photos when caching to NSCache
 		let key = "\(myCat.hash)" as NSString
-		print("Hash key for \(myCat.name) is \(myCat.hash)")
 		
 		// Verify that photo actually exists before saving to cache
 		var catPhoto: UIImage = UIImage()
@@ -158,6 +175,11 @@ extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 		cell.populateCell(catData: myCat, catPhoto: catPhoto)
 		
 		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		CatDetailsTableView.segueIdentifier = "MyCatDetailsController"
+		performSegue(withIdentifier: segueToDetails, sender: self)
 	}
 }
 
