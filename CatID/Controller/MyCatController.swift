@@ -37,11 +37,7 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		setupNavigationBar()
 		myCatTableView.delegate = self
 		myCatTableView.dataSource = self
-		if myCatTableView.numberOfRows(inSection: 0) == 0 {
-			myCatTableView.separatorStyle = .none
-		} else {
-			myCatTableView.separatorStyle = .singleLine
-		}
+		displayCorrectSeparatorStyle()
 		
 		print("viewDidLoad from MyCatController")
 	}
@@ -49,6 +45,14 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	override func viewWillAppear(_ animated: Bool) {
 		MyCatData.clearMyCat()
 		myCatTableView.reloadData()
+	}
+	
+	func displayCorrectSeparatorStyle() {
+		if myCatTableView.numberOfRows(inSection: 0) == 0 {
+			myCatTableView.separatorStyle = .none
+		} else {
+			myCatTableView.separatorStyle = .singleLine
+		}
 	}
 	
 	func modalDismissed() {
@@ -114,11 +118,12 @@ extension MyCatController: NSFetchedResultsControllerDelegate {
 	// Persisted data actually changed
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		myCatTableView.endUpdates()
+		displayCorrectSeparatorStyle()
 	}
 	
 	// Actions taken when persisted data changes (dependent on CRUD action)
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-		print("Object changed method called")
+		print("Object changed method called: \(type.rawValue)")
 		switch (type) {
 		case .insert:
 			if let indexPath = newIndexPath {
@@ -127,8 +132,8 @@ extension MyCatController: NSFetchedResultsControllerDelegate {
 			break;
 			
 		case .delete:
-			if let indexPath = indexPath {
-				myCatTableView.insertRows(at: [indexPath], with: .fade)
+			if let deletedRow = indexPath {
+				myCatTableView.deleteRows(at: [deletedRow], with: .automatic)
 			}
 			break;
 		
@@ -180,6 +185,19 @@ extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		CatDetailsTableView.segueIdentifier = "MyCatDetailsController"
 		performSegue(withIdentifier: segueToDetails, sender: self)
+	}
+	
+	// MARK: Delete tableview functions
+	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			print("Deleted")
+			let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: indexPath)
+			CoreDataManager.sharedManager.deleteMyCat(cat: myCat)
+		}
 	}
 }
 

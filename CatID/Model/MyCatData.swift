@@ -25,4 +25,15 @@ struct MyCatData {
 	static func clearMyCat() {
 		myCat = nil
 	}
+	
+	mutating func clearData() {
+		vetInfo?.removeAll()
+		notes?.removeAll()
+		name?.removeAll()
+		catPhoto?.removeAll()
+		breedType?.removeAll()
+		birthdayYear = nil
+		birthdayMonth?.removeAll()
+		birthdayDay = nil
+	}
 }

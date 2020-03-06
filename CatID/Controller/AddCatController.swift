@@ -93,27 +93,26 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	
 	// MARK: Saving to Core Data
 	private func save() {
-		
 		if !catName.text!.isEmpty {
-			MyCatData.myCat?.name = catName.text!
+			MyCatData.data.name = catName.text
 		}
 		if !breedType.text!.isEmpty {
-			MyCatData.myCat?.breedType = selectedBreed
+			MyCatData.data.breedType = selectedBreed
 		}
 		if !birthday.text!.isEmpty {
-			MyCatData.myCat?.birthdayMonth = selectedMonth
-			MyCatData.myCat?.birthdayDay = Int64(selectedDay)
-			MyCatData.myCat?.birthdayYear = Int64(selectedYear)
+			MyCatData.data.birthdayMonth = selectedMonth
+			MyCatData.data.birthdayDay = selectedDay
+			MyCatData.data.birthdayYear = selectedYear
 		}
 		
-		MyCatData.myCat?.notes = notes.text!
-		MyCatData.myCat?.vetInfo = vetInfo.text
+		MyCatData.data.notes = notes.text!
+		MyCatData.data.vetInfo = vetInfo.text
 
 		if backgroundPhotoExists {
 			let image = catPhotoButton.currentBackgroundImage?.jpegData(compressionQuality: 0.3)
-			MyCatData.myCat?.catPhoto = image
+			MyCatData.data.catPhoto = image
 		}
-		
+
 		CoreDataManager.sharedManager.insertMyCat()
 	}
 	
