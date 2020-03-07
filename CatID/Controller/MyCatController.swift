@@ -17,6 +17,7 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	
 	@IBOutlet weak var tabBar: UITabBar!
 	@IBOutlet weak var myCatTableView: UITableView!
+	@IBOutlet weak var addButton: UIBarButtonItem!
 	
 	private let segueToBreedList = "catBreedSegue"
 	private let segueToAddCat = "addCat"
@@ -71,8 +72,19 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		}
 	}
 	
-	@IBAction func addNewCat(_ sender: Any) {
-		performSegue(withIdentifier: segueToAddCat, sender: self)
+	@IBAction func addNewCat(_ sender: UIBarButtonItem) {
+		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+		alert.addAction(UIAlertAction(title: "Add Cat", style: .default, handler: { (action: UIAlertAction) in
+			self.performSegue(withIdentifier: self.segueToAddCat, sender: self)
+		}))
+		alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
+			print("I officially added a new appointment, boss")
+		}))
+		
+		// Currently there's a bug in iOS 12-13
+		// the bug presents UIAlertActionController from appearing directly from the button due
+		// to "breaking constraints"
+		self.present(alert, animated: true)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
