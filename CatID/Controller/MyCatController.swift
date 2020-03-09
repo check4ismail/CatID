@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import EventKitUI
 import CoreData
 
 protocol ModalHandler {
   func modalDismissed()
 }
 
-class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
+class MyCatController: UIViewController, UITabBarDelegate, ModalHandler, EKEventEditViewDelegate {
 	
 	@IBOutlet weak var tabBar: UITabBar!
 	@IBOutlet weak var myCatTableView: UITableView!
@@ -74,18 +75,101 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	
 	@IBAction func addNewCat(_ sender: UIBarButtonItem) {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//		if let cats = CoreDataManager.sharedManager.fetchAllMyCats(), cats.count > 0 {
+//			let alertCatList = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//			for cat in cats {
+//				alertCatList.addAction(UIAlertAction(title: cat.name, style: .default, handler: { action in
+//					print("Oh yeah, it works")
+//				}))
+//			}
+//			alertCatList.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//			alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
+//				self.present(alertCatList, animated: true)
+////				self.authorizeCalendar()
+//			}))
+//		}
+		calendarSetup(alert)
 		alert.addAction(UIAlertAction(title: "Add Cat", style: .default, handler: { (action: UIAlertAction) in
 			self.performSegue(withIdentifier: self.segueToAddCat, sender: self)
 		}))
-		alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
-			print("I officially added a new appointment, boss")
-		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 		
 		// Currently there's a bug in iOS 12-13
 		// the bug presents UIAlertActionController from appearing directly from the button due
 		// to "breaking constraints"
 		self.present(alert, animated: true)
 	}
+	
+	private func calendarSetup(_ alert: UIAlertController) {
+		if let cats = CoreDataManager.sharedManager.fetchAllMyCats(), cats.count > 0 {
+			let alertCatList = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+			for cat in cats {
+				alertCatList.addAction(UIAlertAction(title: cat.name, style: .default, handler: { action in
+					self.authorizeCalendar()
+				}))
+			}
+			alertCatList.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+			alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
+				self.present(alertCatList, animated: true)
+			}))
+		}
+	}
+	
+	private func authorizeCalendar() {
+		switch EKEventStore.authorizationStatus(for: .event) {
+		case .notDetermined:
+			print("I am here")
+			let eventStore = EKEventStore()
+			eventStore.requestAccess(to: .event) { (granted, error) in
+				print("I am here")
+				if granted {
+					DispatchQueue.main.async {
+						self.displayCalender()
+					}
+				} else {
+					print("Not authorized")
+				}
+			}
+		case .authorized:
+			// do stuff
+			self.displayCalender()
+		default:
+			print("Default is here")
+			break
+		}
+	}
+	
+	private func displayCalender() {
+		let eventVC = EKEventEditViewController()
+		eventVC.editViewDelegate = self
+		eventVC.eventStore = EKEventStore()
+		eventVC.navigationItem.title = "TEST"
+		eventVC.setupNavigationBar()
+		eventVC.navigationController?.title = "New Appointment"
+		present(eventVC, animated: true)
+	}
+	
+	func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+		switch action {
+		case .canceled:
+			print("Canceled event")
+			dismiss(animated: true, completion: nil)
+			break
+		case .saved:
+			print("Trying to save event")
+			print(controller.event?.startDate)
+			print(controller.event?.endDate)
+			print("Saved event?")
+			dismiss(animated: true, completion: nil)
+			break
+		default:
+			print("Default")
+		}
+	}
+	
+//	func eventEditViewControllerDefaultCalendar(forNewEvents controller: EKEventEditViewController) -> EKCalendar {
+//
+//	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == segueToAddCat {
