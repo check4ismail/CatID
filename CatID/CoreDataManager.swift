@@ -104,7 +104,7 @@ class CoreDataManager {
 
 		print("Attempting to save past appointment Core Data for \(myCat[row].name)")
 		print("Past appointment start date: \(pastAppts[0].startDate)")
-
+		
 		// Save and update past appointments
 		saveContext()
 	}
