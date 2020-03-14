@@ -20,10 +20,12 @@
         <attribute name="catPhoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="pastAppointments" optional="YES" attributeType="Transformable" customClassName="Events"/>
+        <attribute name="upcomingAppointments" optional="YES" attributeType="Transformable" customClassName="Events"/>
         <attribute name="vetInfo" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Cat" positionX="-54" positionY="-9" width="128" height="193"/>
-        <element name="MyCat" positionX="-54" positionY="63" width="128" height="163"/>
+        <element name="MyCat" positionX="-54" positionY="63" width="128" height="193"/>
     </elements>
 </model>

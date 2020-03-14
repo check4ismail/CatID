@@ -45,67 +45,54 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCatCell" rowHeight="119" id="cM4-Ww-vpt" customClass="MyCatTableViewCell" customModule="CatID" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="119"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCatCell" rowHeight="103" id="cM4-Ww-vpt" customClass="MyCatTableViewCell" customModule="CatID" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cM4-Ww-vpt" id="yXO-6L-TVD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cat Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2cx-VE-9Gm">
-                                                    <rect key="frame" x="128" y="11" width="237" height="39"/>
+                                                    <rect key="frame" x="128" y="11" width="252.5" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="2cx-VE-9Gm" secondAttribute="height" multiplier="49:6" constant="-81.5" id="bvz-IB-crY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cat Breed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-d8-1hs">
-                                                    <rect key="frame" x="128" y="36.5" width="226" height="46"/>
+                                                    <rect key="frame" x="128" y="44" width="226" height="46"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="nSC-d8-1hs" secondAttribute="height" multiplier="233:38" constant="-56.052631578947398" id="Lvm-C9-IrT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UTA-JZ-x2C">
-                                                    <rect key="frame" x="20" y="11" width="92" height="93"/>
+                                                    <rect key="frame" x="20" y="9" width="84" height="84"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="UTA-JZ-x2C" secondAttribute="height" multiplier="87:89" constant="1.0898876404494473" id="BIy-1m-aGG"/>
-                                                        <constraint firstAttribute="width" constant="92" id="k0m-qd-NIP"/>
+                                                        <constraint firstAttribute="width" secondItem="UTA-JZ-x2C" secondAttribute="height" multiplier="87:89" constant="1.8876404494382086" id="BIy-1m-aGG"/>
+                                                        <constraint firstAttribute="width" constant="84" id="k0m-qd-NIP"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Upcoming Appointment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3QP-Y1-UN6">
-                                                    <rect key="frame" x="128" y="73" width="237" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="3QP-Y1-UN6" secondAttribute="height" multiplier="61:8" id="6So-bw-Xy9"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="centerY" secondItem="nSC-d8-1hs" secondAttribute="centerY" constant="-2" id="0wV-tq-SVS"/>
-                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="bottom" secondItem="3QP-Y1-UN6" secondAttribute="bottom" id="4JM-s5-LYd"/>
-                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="top" secondItem="2cx-VE-9Gm" secondAttribute="top" id="7j2-as-ylS"/>
+                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="centerY" secondItem="nSC-d8-1hs" secondAttribute="centerY" constant="-16" id="0wV-tq-SVS"/>
+                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="top" secondItem="2cx-VE-9Gm" secondAttribute="top" constant="-2" id="7j2-as-ylS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="nSC-d8-1hs" secondAttribute="trailing" constant="40" id="I5P-Rz-bga"/>
-                                                <constraint firstItem="2cx-VE-9Gm" firstAttribute="leading" secondItem="UTA-JZ-x2C" secondAttribute="trailing" constant="16" id="JDj-h8-ux3"/>
-                                                <constraint firstItem="nSC-d8-1hs" firstAttribute="leading" secondItem="3QP-Y1-UN6" secondAttribute="leading" id="Q61-XR-xGT"/>
-                                                <constraint firstItem="3QP-Y1-UN6" firstAttribute="top" secondItem="2cx-VE-9Gm" secondAttribute="bottom" constant="23" id="Rp5-vC-xLq"/>
-                                                <constraint firstItem="2cx-VE-9Gm" firstAttribute="centerX" secondItem="3QP-Y1-UN6" secondAttribute="centerX" id="aPv-vc-atC"/>
-                                                <constraint firstItem="nSC-d8-1hs" firstAttribute="top" secondItem="yXO-6L-TVD" secondAttribute="topMargin" constant="25.5" id="eC9-tg-wrJ"/>
-                                                <constraint firstItem="2cx-VE-9Gm" firstAttribute="trailing" secondItem="3QP-Y1-UN6" secondAttribute="trailing" id="eD7-Oc-9OG"/>
-                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="bottom" secondItem="yXO-6L-TVD" secondAttribute="bottomMargin" constant="-4" id="pdR-2y-Psh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="2cx-VE-9Gm" secondAttribute="trailing" constant="29" id="qCk-6O-uTm"/>
+                                                <constraint firstItem="2cx-VE-9Gm" firstAttribute="leading" secondItem="UTA-JZ-x2C" secondAttribute="trailing" constant="24" id="JDj-h8-ux3"/>
+                                                <constraint firstItem="nSC-d8-1hs" firstAttribute="top" secondItem="yXO-6L-TVD" secondAttribute="topMargin" constant="33" id="eC9-tg-wrJ"/>
+                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="bottom" secondItem="yXO-6L-TVD" secondAttribute="bottomMargin" constant="1" id="pdR-2y-Psh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2cx-VE-9Gm" secondAttribute="trailing" constant="13.5" id="qCk-6O-uTm"/>
+                                                <constraint firstItem="nSC-d8-1hs" firstAttribute="leading" secondItem="UTA-JZ-x2C" secondAttribute="trailing" constant="24" id="rrK-Nc-yAs"/>
                                                 <constraint firstItem="UTA-JZ-x2C" firstAttribute="leading" secondItem="yXO-6L-TVD" secondAttribute="leadingMargin" id="xEZ-1L-FGN"/>
-                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="top" secondItem="yXO-6L-TVD" secondAttribute="topMargin" id="xYp-VG-Lrs"/>
+                                                <constraint firstItem="UTA-JZ-x2C" firstAttribute="top" secondItem="yXO-6L-TVD" secondAttribute="topMargin" constant="-2" id="xYp-VG-Lrs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="myCatBreed" destination="nSC-d8-1hs" id="kkn-eS-ReA"/>
                                             <outlet property="myCatName" destination="2cx-VE-9Gm" id="Bei-AY-Gml"/>
                                             <outlet property="myCatPhoto" destination="UTA-JZ-x2C" id="85B-aJ-06K"/>
-                                            <outlet property="upcomingAppt" destination="3QP-Y1-UN6" id="Cey-xp-aHz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

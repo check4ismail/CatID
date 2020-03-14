@@ -14,7 +14,7 @@ protocol ModalHandler {
   func modalDismissed()
 }
 
-class MyCatController: UIViewController, UITabBarDelegate, ModalHandler, EKEventEditViewDelegate {
+class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	
 	@IBOutlet weak var tabBar: UITabBar!
 	@IBOutlet weak var myCatTableView: UITableView!
@@ -24,8 +24,15 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler, EKEvent
 	private let segueToAddCat = "addCat"
 	private let segueToDetails = "viewMyCat"
 	private let myCatTag = 0
+	private var selectedCatForAppt: Int?
+	
+	static var testDate: Date?
+	static var testDateStore: EKEventStore?
+	static var testEventId: String = ""
+	static var formattedDate: String = ""
 	
 	private let cachePhotos = NSCache<NSString, UIImage>()
+	
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .darkContent
@@ -75,23 +82,11 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler, EKEvent
 	
 	@IBAction func addNewCat(_ sender: UIBarButtonItem) {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//		if let cats = CoreDataManager.sharedManager.fetchAllMyCats(), cats.count > 0 {
-//			let alertCatList = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//			for cat in cats {
-//				alertCatList.addAction(UIAlertAction(title: cat.name, style: .default, handler: { action in
-//					print("Oh yeah, it works")
-//				}))
-//			}
-//			alertCatList.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//			alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
-//				self.present(alertCatList, animated: true)
-////				self.authorizeCalendar()
-//			}))
-//		}
-		calendarSetup(alert)
 		alert.addAction(UIAlertAction(title: "Add Cat", style: .default, handler: { (action: UIAlertAction) in
 			self.performSegue(withIdentifier: self.segueToAddCat, sender: self)
 		}))
+		// Setup appointment actionsheet option
+		calendarSetup(alert)
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 		
 		// Currently there's a bug in iOS 12-13
@@ -99,77 +94,6 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler, EKEvent
 		// to "breaking constraints"
 		self.present(alert, animated: true)
 	}
-	
-	private func calendarSetup(_ alert: UIAlertController) {
-		if let cats = CoreDataManager.sharedManager.fetchAllMyCats(), cats.count > 0 {
-			let alertCatList = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-			for cat in cats {
-				alertCatList.addAction(UIAlertAction(title: cat.name, style: .default, handler: { action in
-					self.authorizeCalendar()
-				}))
-			}
-			alertCatList.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-			alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
-				self.present(alertCatList, animated: true)
-			}))
-		}
-	}
-	
-	private func authorizeCalendar() {
-		switch EKEventStore.authorizationStatus(for: .event) {
-		case .notDetermined:
-			print("I am here")
-			let eventStore = EKEventStore()
-			eventStore.requestAccess(to: .event) { (granted, error) in
-				print("I am here")
-				if granted {
-					DispatchQueue.main.async {
-						self.displayCalender()
-					}
-				} else {
-					print("Not authorized")
-				}
-			}
-		case .authorized:
-			// do stuff
-			self.displayCalender()
-		default:
-			print("Default is here")
-			break
-		}
-	}
-	
-	private func displayCalender() {
-		let eventVC = EKEventEditViewController()
-		eventVC.editViewDelegate = self
-		eventVC.eventStore = EKEventStore()
-		eventVC.navigationItem.title = "TEST"
-		eventVC.setupNavigationBar()
-		eventVC.navigationController?.title = "New Appointment"
-		present(eventVC, animated: true)
-	}
-	
-	func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-		switch action {
-		case .canceled:
-			print("Canceled event")
-			dismiss(animated: true, completion: nil)
-			break
-		case .saved:
-			print("Trying to save event")
-			print(controller.event?.startDate)
-			print(controller.event?.endDate)
-			print("Saved event?")
-			dismiss(animated: true, completion: nil)
-			break
-		default:
-			print("Default")
-		}
-	}
-	
-//	func eventEditViewControllerDefaultCalendar(forNewEvents controller: EKEventEditViewController) -> EKCalendar {
-//
-//	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == segueToAddCat {
@@ -204,6 +128,7 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler, EKEvent
 	}
 }
 
+//MARK: NSFetchedResultsControllerDelegate methods to handle local storage CRUD operations
 extension MyCatController: NSFetchedResultsControllerDelegate {
 	
 	// Automatically called before persisted data changes
@@ -219,7 +144,7 @@ extension MyCatController: NSFetchedResultsControllerDelegate {
 	
 	// Actions taken when persisted data changes (dependent on CRUD action)
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-		print("Object changed method called: \(type.rawValue)")
+		print("Object changed method called: \(type)")
 		switch (type) {
 		case .insert:
 			if let indexPath = newIndexPath {
@@ -234,9 +159,11 @@ extension MyCatController: NSFetchedResultsControllerDelegate {
 			break;
 		
 		case .move:
+			print("Move called")
 			break;
 			
 		case .update:
+			myCatTableView.reloadData()
 			break;
 		@unknown default:
 			break;
@@ -254,6 +181,7 @@ extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		print("Value of indexpath is \(indexPath)")
 		// Fetch persisted data based on row
 		let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: indexPath)
 		
@@ -297,6 +225,120 @@ extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 	}
 }
 
+//MARK: Appointment creation methods that take place
+extension MyCatController: EKEventEditViewDelegate {
+	
+	//MARK: Sets up uialert actionsheet of each cat to make an appointment
+	private func calendarSetup(_ alert: UIAlertController) {
+		// To setup an appointment, at least 1 cat should be present
+		if let cats = CoreDataManager.sharedManager.fetchAllMyCats(), cats.count > 0 {
+			let alertCatList = UIAlertController(title: "Appointment for which cat?", message: nil, preferredStyle: .actionSheet)
+			for i in 0..<cats.count {
+				alertCatList.addAction(UIAlertAction(title: cats[i].name, style: .default, handler: { action in
+					// Set selectedCatForAppt to row number
+					self.selectedCatForAppt = i
+					self.authorizeCalendar()
+				}))
+			}
+			alertCatList.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+			alert.addAction(UIAlertAction(title: "New Appointment", style: .default, handler: { (action: UIAlertAction) in
+				self.present(alertCatList, animated: true)
+			}))
+		}
+	}
+		
+	private func authorizeCalendar() {
+		switch EKEventStore.authorizationStatus(for: .event) {
+		case .notDetermined:
+			let eventStore = EKEventStore()
+			eventStore.requestAccess(to: .event) { (granted, error) in
+				if granted {
+					DispatchQueue.main.async {
+						self.displayCalender()
+					}
+				} else {	// If access to calendar is not granted, display auth message
+					self.calendarNeedsAuthAlert()
+				}
+			}
+		case .authorized:
+			self.displayCalender()
+		default:	// If explicitly denied access previously, display auth message
+			calendarNeedsAuthAlert()
+			break
+		}
+	}
+		
+	private func calendarNeedsAuthAlert() {
+		DispatchQueue.main.async {
+			let alert = UIAlertController(title: "Calendar Not Authorized", message: "Adjust your privacy settings so CatID can access your calendar to create an appointment", preferredStyle: .alert)
+			// Directs user to Settings of app to enable calendar authorization
+			alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { action in
+				guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+					return
+				}
+				if UIApplication.shared.canOpenURL(settingsUrl) {
+					UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+						print("Settings opened: \(success)") // Prints true
+					})
+				}
+			}))
+			// Cancel button
+			alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+			// Present alert
+			self.present(alert, animated: true)
+		}
+	}
+		
+	private func displayCalender() {
+		// Setup event view controller
+		let eventVC = EKEventEditViewController()
+		eventVC.editViewDelegate = self
+		eventVC.eventStore = EKEventStore()
+		present(eventVC, animated: true)
+	}
+	
+//	@IBAction func editCalendar(_ sender: UIButton) {
+//		//TODO: Wrap up editing a calendar event
+//		let eventVC = EKEventEditViewController()
+//		eventVC.editViewDelegate = self
+//		let eventStore = EKEventStore()
+//		eventVC.eventStore = eventStore
+//		eventVC.event = eventStore.event(withIdentifier: MyCatController.testEventId)
+//		present(eventVC, animated: true)
+//	}
+	
+	func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+		switch action {
+		case .canceled:
+			print("Canceled event")
+			dismiss(animated: true, completion: nil)
+			break
+		case .saved:
+			print("Trying to save event")
+			// Verify event, startDate, and row are not nil
+			if let event = controller.event,
+			let startDate = event.startDate,
+			let row = selectedCatForAppt {
+				// Setup appointment structure
+				let appointment = Appointment(startDate: event.startDate, endDate: event.endDate, identifier: event.eventIdentifier)
+				
+				if startDate >= Date() {	// Persist appt as upcoming appt via CoreData
+					CoreDataManager.sharedManager.saveUpcomingAppts([appointment], row)
+				} else { // Persist appt as past appt via CoreData
+					CoreDataManager.sharedManager.savePastAppts([appointment], row)
+				}
+			}
+			dismiss(animated: true, completion: nil)
+			break
+		case .deleted:
+			print("Event deleted")
+			break
+		@unknown default:
+			print("Another option other than deleted, saved, canceled was selected")
+		}
+	}
+}
+
 extension UIViewController {
 	// Sets up default color and text for Navigation Bar
 	func setupNavigationBar() {
@@ -309,5 +351,16 @@ extension UIViewController {
 	
 	func highlightTagItem(_ tag: Int, _ tabBar: UITabBar) {
 		tabBar.selectedItem = tabBar.items![tag] as UITabBarItem
+	}
+	
+	// Changes date to a more readable format
+	func dateFormatter(orignalDate: Date) -> String {
+		let format = DateFormatter()
+		format.timeZone = .current
+		format.locale = .current
+		format.amSymbol = "AM"
+		format.pmSymbol = "PM"
+		format.dateFormat = "hh:mma, MM-dd-yyyy"
+		return format.string(from: orignalDate)
 	}
 }

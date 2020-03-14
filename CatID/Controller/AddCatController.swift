@@ -125,7 +125,7 @@ class AddCatController: UIViewController, UIPickerViewDataSource, NSFetchedResul
 	}
 	
 	func doneButtonDisabledCheck() {
-		if areCatCardValuesAllNil() {
+		if areCatCardValuesAllNil() || catName.text!.isEmpty {
 			doneButton.isEnabled = false
 		}
 	}
@@ -417,7 +417,9 @@ extension AddCatController: UITextFieldDelegate, UITextViewDelegate {
 */
 	func textFieldDidChangeSelection(_ textField: UITextField) {
 		if !textField.text!.isEmpty {
-			doneButton.isEnabled = true
+			if !catName.text!.isEmpty {
+				doneButton.isEnabled = true
+			}
 		} else {
 			doneButtonDisabledCheck()
 		}
@@ -426,7 +428,9 @@ extension AddCatController: UITextFieldDelegate, UITextViewDelegate {
 	func textViewDidChange(_ textView: UITextView) {
 		
 		if !textView.text!.isEmpty {
-			doneButton.isEnabled = true
+			if !catName.text!.isEmpty {
+				doneButton.isEnabled = true
+			}
 		} else {
 			doneButtonDisabledCheck()
 		}

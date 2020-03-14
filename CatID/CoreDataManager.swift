@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UIKit
+import EventKit
 
 class CoreDataManager {
 	//1
@@ -85,9 +86,55 @@ class CoreDataManager {
 		}
 	}
 	
+	func savePastAppts(_ pastAppts: [Appointment], _ row: Int) {
+		guard let myCat = CoreDataManager.sharedManager.fetchAllMyCats() else {
+			return
+		}
+
+		// Append events to existing appointments
+		if let eventsObj = myCat[row].pastAppointments {
+			print("Appending past appts in Core Data for \(myCat[row].name)")
+			eventsObj.events += pastAppts
+			eventsObj.events.sort(by: >)
+		} else { // Initialize first appointment
+			print("Initialize past appointment")
+			let events = Events(events: pastAppts)
+			myCat[row].setValue(events, forKey: "pastAppointments")
+		}
+
+		print("Attempting to save past appointment Core Data for \(myCat[row].name)")
+		print("Past appointment start date: \(pastAppts[0].startDate)")
+
+		// Save and update past appointments
+		saveContext()
+	}
+	
+	func saveUpcomingAppts(_ upcomingAppts: [Appointment], _ row: Int) {
+		// Make sure I can fetch all of my cats
+		guard let myCat = CoreDataManager.sharedManager.fetchAllMyCats() else {
+			return
+		}
+		
+		// Append events to existing appointments
+		if let eventsObj = myCat[row].upcomingAppointments {
+			print("Appending upcoming in Core Data for \(myCat[row].name)")
+			eventsObj.events += upcomingAppts
+			eventsObj.events.sort(by: >)
+		} else { // Initialize first appointment
+			print("Initialize upcoming appointment")
+			let events = Events(events: upcomingAppts)
+			myCat[row].setValue(events, forKey: "upcomingAppointments")
+		}
+
+		print("Attempting to save upcoming appointment to Core Data for \(myCat[row].name)")
+		print("Upcoming appointment start date: \(upcomingAppts[0].startDate)")
+
+		// Save and update upcoming appointments
+		saveContext()
+	}
+	
 	func deleteMyCat(cat: MyCat) {
 		let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-		
 		managedContext.delete(cat)
 		
 		do {
@@ -156,23 +203,18 @@ class CoreDataManager {
 	
 	func fetchAllMyCats() -> [MyCat]?{
 	  
-	  /*Before you can do anything with Core Data, you need a managed object context. */
-	  let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+		let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MyCat")
+		// Sort them my name, ascending
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 	  
-	  /*As the name suggests, NSFetchRequest is the class responsible for fetching from Core Data.
-	   
-	   Initializing a fetch request with init(entityName:), fetches all objects of a particular entity. This is what you do here to fetch all Person entities.
-	   */
-	  let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MyCat")
-	  
-	  /*You hand the fetch request over to the managed object context to do the heavy lifting. fetch(_:) returns an array of managed objects meeting the criteria specified by the fetch request.*/
-	  do {
-		let myCat = try managedContext.fetch(fetchRequest)
-		return myCat as? [MyCat]
-	  } catch let error as NSError {
-		print("Could not fetch. \(error), \(error.userInfo)")
-		return nil
-	  }
+		do {
+			let myCat = try managedContext.fetch(fetchRequest)
+			return myCat as? [MyCat]
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+			return nil
+		}
 	}
 	
 	lazy var fetchedResultsControllerCatDetails: NSFetchedResultsController<Cat> = {
