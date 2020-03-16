@@ -111,6 +111,7 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		let selectedRow = myCatTableView.indexPathForSelectedRow
 		let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: selectedRow!)
 		MyCatData.myCat = myCat
+		MyCatData.data.selectedIndexPath = selectedRow
 		myCatTableView.deselectRow(at: selectedRow!, animated: true)
 	}
 	
@@ -181,7 +182,6 @@ extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		print("Value of indexpath is \(indexPath)")
 		// Fetch persisted data based on row
 		let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: indexPath)
 		

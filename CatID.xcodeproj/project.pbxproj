@@ -59,6 +59,8 @@
 		21115239235BA4AC0047EE9E /* CatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21115238235BA4AC0047EE9E /* CatApi.swift */; };
 		2155459C241BBF080051E611 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155459B241BBF080051E611 /* Events.swift */; };
 		2155459E241D65D00051E611 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155459D241D65D00051E611 /* Appointment.swift */; };
+		2163CB8E241FB4080039FEDF /* ViewApptsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163CB8D241FB4080039FEDF /* ViewApptsController.swift */; };
+		2163CB90241FB63C0039FEDF /* ApptsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163CB8F241FB63C0039FEDF /* ApptsTableViewCell.swift */; };
 		217CF4FE23D8817700998714 /* MyCatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4FD23D8817700998714 /* MyCatController.swift */; };
 		217CF50023DF053400998714 /* AddCatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CF4FF23DF053400998714 /* AddCatController.swift */; };
 		218D656E233D650400ACDD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218D656D233D650400ACDD34 /* AppDelegate.swift */; };
@@ -169,6 +171,8 @@
 		21115238235BA4AC0047EE9E /* CatApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApi.swift; sourceTree = "<group>"; };
 		2155459B241BBF080051E611 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		2155459D241D65D00051E611 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		2163CB8D241FB4080039FEDF /* ViewApptsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewApptsController.swift; sourceTree = "<group>"; };
+		2163CB8F241FB63C0039FEDF /* ApptsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApptsTableViewCell.swift; sourceTree = "<group>"; };
 		217CF4FD23D8817700998714 /* MyCatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCatController.swift; sourceTree = "<group>"; };
 		217CF4FF23DF053400998714 /* AddCatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatController.swift; sourceTree = "<group>"; };
 		218D656A233D650400ACDD34 /* CatID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatID.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +323,8 @@
 				217CF4FF23DF053400998714 /* AddCatController.swift */,
 				21D1D4CA240936D700948A5A /* MyCatDetailsController.swift */,
 				21D1D4CC24093E8D00948A5A /* CatDetailsTableView.swift */,
+				2163CB8D241FB4080039FEDF /* ViewApptsController.swift */,
+				2163CB8F241FB63C0039FEDF /* ApptsTableViewCell.swift */,
 				21D1D4CE240B094C00948A5A /* UpdateMyCat.swift */,
 				218D6571233D650400ACDD34 /* CatIdController.swift */,
 				21FCDB8E23684B12001FFB53 /* CatTableViewCell.swift */,
@@ -790,6 +796,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2163CB8E241FB4080039FEDF /* ViewApptsController.swift in Sources */,
 				21D1D4C9240813E700948A5A /* CatDetailedData.swift in Sources */,
 				21FC2CC9233FB45600E69124 /* CatBreedController.swift in Sources */,
 				21BED3AC23797DAE006AD02A /* CatId.xcdatamodeld in Sources */,
@@ -802,6 +809,7 @@
 				2155459E241D65D00051E611 /* Appointment.swift in Sources */,
 				21D1D4CB240936D700948A5A /* MyCatDetailsController.swift in Sources */,
 				217CF50023DF053400998714 /* AddCatController.swift in Sources */,
+				2163CB90241FB63C0039FEDF /* ApptsTableViewCell.swift in Sources */,
 				21A52128236B1D03007FB5E8 /* APIManager.swift in Sources */,
 				218D6572233D650400ACDD34 /* CatIdController.swift in Sources */,
 				2155459C241BBF080051E611 /* Events.swift in Sources */,

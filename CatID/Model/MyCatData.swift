@@ -18,6 +18,7 @@ struct MyCatData {
 	var birthdayYear: Int?
 	var birthdayMonth: String?
 	var birthdayDay: Int?
+	var selectedIndexPath: IndexPath?
 	static var myCat: MyCat?
 	static var data = MyCatData()
 	private init() { }
@@ -35,5 +36,6 @@ struct MyCatData {
 		birthdayYear = nil
 		birthdayMonth?.removeAll()
 		birthdayDay = nil
+		selectedIndexPath = nil
 	}
 }

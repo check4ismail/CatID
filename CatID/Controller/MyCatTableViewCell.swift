@@ -9,10 +9,10 @@
 import UIKit
 
 class MyCatTableViewCell: UITableViewCell {
+	
 	@IBOutlet weak var myCatPhoto: UIImageView!
 	@IBOutlet weak var myCatName: UITextField!
 	@IBOutlet weak var myCatBreed: UITextField!
-	@IBOutlet weak var upcomingAppt: UITextField!
 	
 	private let currentYear = Calendar.current.component(.year, from: Date())
 	
@@ -22,7 +22,6 @@ class MyCatTableViewCell: UITableViewCell {
 			self.myCatPhoto.image = catPhoto
 			self.myCatName.text = catData.name
 			self.myCatBreed.text = catData.breedType
-//			self.upcomingAppt.text = MyCatController.formattedDate
 		}
 	}
 	

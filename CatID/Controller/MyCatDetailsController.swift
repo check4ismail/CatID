@@ -15,7 +15,7 @@ class MyCatDetailsController: UIViewController, UpdateMyCatDelegate {
 	@IBOutlet weak var catImageView: UIImageView!
 	@IBOutlet weak var defaultTextView: UITextView!
 	
-	let segue = "updateMyCat"
+	let segue = "viewMoreCatDetails"
 	var catDetailsTableVC: CatDetailsTableView?
 	
 	override func viewDidLoad() {
@@ -53,7 +53,7 @@ class MyCatDetailsController: UIViewController, UpdateMyCatDelegate {
 			if let destinationVC = segue.destination as? CatDetailsTableView {
 				catDetailsTableVC = destinationVC
 			}
-		} else { // Segue to modal view to edit cat
+		} else if segue.identifier == "viewMoreCatDetails"{ // Segue to modal view to for appt details and option to edit cat details
 			if let destinationVC = segue.destination as? UpdateMyCat {
 				destinationVC.delegate = self
 			}

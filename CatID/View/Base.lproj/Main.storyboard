@@ -782,10 +782,10 @@
             </objects>
             <point key="canvasLocation" x="5215.9420289855079" y="470.75892857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--View Appts Controller-->
         <scene sceneID="Uyx-UO-i4k">
             <objects>
-                <viewController id="c4U-eY-HKY" sceneMemberID="viewController">
+                <viewController id="c4U-eY-HKY" customClass="ViewApptsController" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DtR-yH-rj8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -798,6 +798,9 @@
                                     <navigationItem title="Details" id="YYO-Tb-GXa">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="GAO-B4-HZV">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="doneButton:" destination="c4U-eY-HKY" id="SZs-oT-zjL"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -807,7 +810,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="95" id="a6p-IP-wp0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="myCatInfo" rowHeight="95" id="a6p-IP-wp0" customClass="ApptsTableViewCell" customModule="CatID" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6p-IP-wp0" id="z05-9f-1Ww">
@@ -832,6 +835,10 @@
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="NA4-CI-dS0" id="W6Y-59-Qqr"/>
+                                            <outlet property="locationTextView" destination="Hnw-99-S92" id="6Yi-Fw-DbY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -841,12 +848,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="20"/>
                                 <state key="normal" title="Edit Cat Details"/>
+                                <connections>
+                                    <action selector="editCatDetails:" destination="c4U-eY-HKY" eventType="touchUpInside" id="5KF-mh-2kN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="A5N-qn-bl3"/>
                     </view>
                     <connections>
+                        <outlet property="catInfoTableView" destination="BSe-as-sR5" id="asd-ho-Rge"/>
                         <segue destination="6fo-tX-Kqo" kind="presentation" identifier="updateMyCat" id="ia9-dP-Mxj"/>
                     </connections>
                 </viewController>
@@ -934,7 +945,7 @@
                         <outlet property="catImageView" destination="Ypg-4s-tVA" id="4Bm-kR-kmk"/>
                         <outlet property="defaultTextView" destination="ado-J4-pCG" id="fe0-Nw-BBd"/>
                         <outlet property="nameTextField" destination="raE-lw-fwW" id="neg-dH-iVG"/>
-                        <segue destination="c4U-eY-HKY" kind="presentation" id="6rP-Lz-OQb"/>
+                        <segue destination="c4U-eY-HKY" kind="presentation" identifier="viewMoreCatDetails" id="6rP-Lz-OQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smZ-rP-KTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -946,7 +957,7 @@
             <objects>
                 <tableViewController id="WIT-s7-OYc" customClass="CatDetailsTableView" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yv9-bf-WIE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="601"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="616"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -1184,6 +1195,6 @@
         <image name="person.fill" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AaX-7J-2ck"/>
+        <segue reference="jb3-c0-zdw"/>
     </inferredMetricsTieBreakers>
 </document>
