@@ -360,7 +360,17 @@ extension UIViewController {
 		format.locale = .current
 		format.amSymbol = "AM"
 		format.pmSymbol = "PM"
-		format.dateFormat = "hh:mma, MM-dd-yyyy"
+		format.dateFormat = "MM-dd-yyyy"
 		return format.string(from: orignalDate)
+	}
+	
+	func timeFormatter(originalDate: Date) -> String {
+		let format = DateFormatter()
+		format.timeZone = .current
+		format.locale = .current
+		format.amSymbol = "AM"
+		format.pmSymbol = "PM"
+		format.dateFormat = "hh:mma"
+		return format.string(from: originalDate)
 	}
 }
