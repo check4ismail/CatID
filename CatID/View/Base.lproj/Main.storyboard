@@ -817,34 +817,62 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="172"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="dateFormatter label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NA4-CI-dS0">
-                                                    <rect key="frame" x="20" y="38" width="355" height="47"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateFormatter label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NA4-CI-dS0">
+                                                    <rect key="frame" x="16" y="42" width="355" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="NA4-CI-dS0" secondAttribute="height" multiplier="355:33" id="M3L-vb-pxG"/>
+                                                        <constraint firstAttribute="width" constant="355" id="ruS-0b-5n2"/>
+                                                        <constraint firstAttribute="height" constant="33" id="ytW-hD-HBj"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezu-LY-Dte">
-                                                    <rect key="frame" x="20" y="11" width="312" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezu-LY-Dte">
+                                                    <rect key="frame" x="16" y="11" width="312" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="312" id="6E9-ww-TeY"/>
+                                                        <constraint firstAttribute="width" secondItem="ezu-LY-Dte" secondAttribute="height" multiplier="312:31" id="9H7-ib-Tvc"/>
+                                                        <constraint firstAttribute="height" constant="31" id="J0N-5X-zVt"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Street Address, City, State, zip code" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnw-99-S92">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Street Address, City, State, zip code" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnw-99-S92">
                                                     <rect key="frame" x="14" y="75" width="355" height="82"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="82" id="3k4-uF-ipN"/>
+                                                        <constraint firstAttribute="width" constant="355" id="beB-lF-GQw"/>
+                                                        <constraint firstAttribute="width" secondItem="Hnw-99-S92" secondAttribute="height" multiplier="355:82" id="tm8-qT-98B"/>
+                                                    </constraints>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                 </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NA4-CI-dS0" firstAttribute="leading" secondItem="z05-9f-1Ww" secondAttribute="leadingMargin" id="7lT-G0-pb3"/>
+                                                <constraint firstItem="ezu-LY-Dte" firstAttribute="leading" secondItem="z05-9f-1Ww" secondAttribute="leadingMargin" id="8BO-0p-lgS"/>
+                                                <constraint firstItem="NA4-CI-dS0" firstAttribute="trailing" secondItem="z05-9f-1Ww" secondAttribute="trailingMargin" id="Ijq-TI-D5w"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hnw-99-S92" secondAttribute="trailing" constant="14" id="KM0-bJ-mX7"/>
+                                                <constraint firstItem="Hnw-99-S92" firstAttribute="top" secondItem="NA4-CI-dS0" secondAttribute="bottom" id="WEo-Eg-V71"/>
+                                                <constraint firstItem="ezu-LY-Dte" firstAttribute="top" secondItem="z05-9f-1Ww" secondAttribute="topMargin" id="dmR-d3-ofj"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hnw-99-S92" secondAttribute="bottom" constant="15" id="ew7-vk-yhx"/>
+                                                <constraint firstItem="NA4-CI-dS0" firstAttribute="top" secondItem="ezu-LY-Dte" secondAttribute="bottom" id="gQP-mb-FHs"/>
+                                                <constraint firstItem="NA4-CI-dS0" firstAttribute="top" secondItem="ezu-LY-Dte" secondAttribute="bottom" id="hbS-gj-zIu"/>
+                                                <constraint firstItem="Hnw-99-S92" firstAttribute="leading" secondItem="z05-9f-1Ww" secondAttribute="leading" constant="14" id="rcA-ll-drA"/>
+                                                <constraint firstItem="Hnw-99-S92" firstAttribute="top" secondItem="NA4-CI-dS0" secondAttribute="bottom" id="uyB-Ky-yU9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ezu-LY-Dte" secondAttribute="trailing" constant="43" id="wRk-Oa-2FB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="NA4-CI-dS0" id="W6Y-59-Qqr"/>
+                                            <outlet property="locationHeight" destination="3k4-uF-ipN" id="LGx-pj-yZI"/>
                                             <outlet property="locationTextView" destination="Hnw-99-S92" id="6Yi-Fw-DbY"/>
+                                            <outlet property="titleHeight" destination="J0N-5X-zVt" id="cnG-oE-UmD"/>
                                             <outlet property="titleLabel" destination="ezu-LY-Dte" id="v0o-rd-sbW"/>
                                         </connections>
                                     </tableViewCell>

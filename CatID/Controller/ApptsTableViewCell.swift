@@ -14,23 +14,30 @@ class ApptsTableViewCell: UITableViewCell {
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var locationTextView: UITextView!
 	
+	@IBOutlet weak var locationHeight: NSLayoutConstraint!
+	@IBOutlet weak var titleHeight: NSLayoutConstraint!
+	
+	let defaultLocationHeight: CGFloat = 82
+	let defaultTitleHeight: CGFloat = 31
+	
 	func populateCell(date: String, location: String?, title: String?) {
-		DispatchQueue.main.async {
-			self.dateLabel.text = date
-			if let location = location {
-				self.locationTextView.isHidden = false
-				self.locationTextView.text = location
-			} else {
-				self.locationTextView.isHidden = true
-			}
-			
-			if let title = title {
-				self.titleLabel.isHidden = false
-				self.titleLabel.text = title
-			} else {
-				self.titleLabel.isHidden = true
-			}
+		dateLabel.text = date
+		
+		// See if location if visible, otherwise shift its height
+		if let location = location {
+			locationHeight.constant = defaultLocationHeight
+			locationTextView.text = location
+		} else {
+			print("Location is empty.....so it should be hidden")
+			locationHeight.constant = 0
 		}
-		self.setNeedsLayout()
+		
+		// See if title is available, otherwise shift its height
+		if let title = title {
+			titleHeight.constant = defaultTitleHeight
+			titleLabel.text = title
+		} else {
+			titleHeight.constant = 0
+		}
 	}
 }

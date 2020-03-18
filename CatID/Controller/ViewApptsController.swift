@@ -55,7 +55,7 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 		let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: selectedCat!)
 		let cell = tableView.dequeueReusableCell(withIdentifier: "myCatInfo") as! ApptsTableViewCell
 		var appointment: Appointment?
-		//TODO: This is how I'll be distinguishing between the upcoming and past appointments
+		
 		switch indexPath.section {
 		case 0:
 			if let upcomingAppt = myCat.upcomingAppointments?.events[indexPath.row] {
@@ -71,11 +71,17 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 			print("Error, unexpected section when listing appointments: \(indexPath.section)")
 		}
 		
+		// Retrieve data in a user-readable friendly format
 		let startDate = appointment?.startDate
 		let endDate = appointment?.endDate
 		let apptFormat = "\(dateFormatter(orignalDate: startDate!)), \(timeFormatter(originalDate: startDate!))-\(timeFormatter(originalDate: endDate!))"
 		
 		cell.populateCell(date: apptFormat, location: getLocation(appointment), title: getTitle(appointment))
+		
+		// In case there's no title/location, refresh layout
+		cell.contentView.setNeedsLayout()
+		cell.contentView.layoutIfNeeded()
+		
 		return cell
 	}
 	
