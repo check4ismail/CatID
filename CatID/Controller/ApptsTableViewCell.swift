@@ -39,5 +39,9 @@ class ApptsTableViewCell: UITableViewCell {
 		} else {
 			titleHeight.constant = 0
 		}
+		
+		// In case there's no title/location, refresh layout
+		self.contentView.setNeedsLayout()
+		self.contentView.layoutIfNeeded()
 	}
 }

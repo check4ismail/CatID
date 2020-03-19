@@ -101,9 +101,6 @@ class CoreDataManager {
 			let events = Events(events: pastAppts)
 			myCat[row].setValue(events, forKey: "pastAppointments")
 		}
-
-		print("Attempting to save past appointment Core Data for \(myCat[row].name)")
-		print("Past appointment start date: \(pastAppts[0].startDate)")
 		
 		// Save and update past appointments
 		saveContext()
@@ -119,15 +116,12 @@ class CoreDataManager {
 		if let eventsObj = myCat[row].upcomingAppointments {
 			print("Appending upcoming in Core Data for \(myCat[row].name)")
 			eventsObj.events += upcomingAppts
-			eventsObj.events.sort(by: >)
+			eventsObj.events.sort(by: <)
 		} else { // Initialize first appointment
 			print("Initialize upcoming appointment")
 			let events = Events(events: upcomingAppts)
 			myCat[row].setValue(events, forKey: "upcomingAppointments")
 		}
-
-		print("Attempting to save upcoming appointment to Core Data for \(myCat[row].name)")
-		print("Upcoming appointment start date: \(upcomingAppts[0].startDate)")
 
 		// Save and update upcoming appointments
 		saveContext()

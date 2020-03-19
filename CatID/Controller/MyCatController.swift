@@ -172,6 +172,7 @@ extension MyCatController: NSFetchedResultsControllerDelegate {
 	}
 }
 
+//MARK: Tableview methods
 extension MyCatController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

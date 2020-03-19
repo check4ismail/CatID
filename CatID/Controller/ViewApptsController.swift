@@ -16,15 +16,36 @@ class ViewApptsController: UIViewController {
 	
 	let segue = "updateMyCat"
 	var selectedCat: IndexPath?
+	var selectedAppointment: IndexPath?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		catInfoTableView.delegate = self
 		catInfoTableView.dataSource = self
+		shiftUpcomingApptToPast()
 		
 		selectedCat = MyCatData.data.selectedIndexPath
     }
+	
+	// Because upcoming appointments is sorted by most recent date,
+	// this function checks last element - if it's no longer an upcoming event it's appended to past appointments
+	// An event is considered 'upcoming' if it's >= current Date()
+	func shiftUpcomingApptToPast() {
+		var isOutdated = true
+		while let upcomingAppt = MyCatData.myCat?.upcomingAppointments?.events.first, isOutdated {
+			if upcomingAppt.startDate! < Date() {
+				MyCatData.myCat?.pastAppointments?.events.insert(upcomingAppt, at: 0)
+				MyCatData.myCat?.upcomingAppointments?.events.removeLast()
+				isOutdated = true
+			} else {
+				isOutdated = false
+			}
+		}
+		
+		MyCatData.myCat?.pastAppointments?.events.sort(by: >)
+		CoreDataManager.sharedManager.updateMyCat()
+	}
 	
 	@IBAction func editCatDetails(_ sender: UIButton) {
 		self.performSegue(withIdentifier: segue, sender: self)
@@ -78,10 +99,6 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 		
 		cell.populateCell(date: apptFormat, location: getLocation(appointment), title: getTitle(appointment))
 		
-		// In case there's no title/location, refresh layout
-		cell.contentView.setNeedsLayout()
-		cell.contentView.layoutIfNeeded()
-		
 		return cell
 	}
 	
@@ -105,6 +122,7 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 			appointment = myCat.pastAppointments?.events[indexPath.row]
 		}
 		
+		selectedAppointment = indexPath
 		displayCalendar(appointment)
 		tableView.deselectRow(at: indexPath, animated: false)
 	}
@@ -144,11 +162,6 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 	}
 }
 
-//MARK: NSFetchedResultsControllerDelegate methods to handle local storage CRUD operations
-extension ViewApptsController: NSFetchedResultsControllerDelegate {
-	
-}
-
 // MARK: EKEventEditViewDelegate methods
 extension ViewApptsController: EKEventEditViewDelegate {
 	func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
@@ -156,14 +169,72 @@ extension ViewApptsController: EKEventEditViewDelegate {
 		case .canceled:
 			dismiss(animated: true, completion: nil)
 		case .deleted:
-			//TODO: Delete calendar event here
+			//TODO: implemement delete appointment
+			deleteAppointment()
 			break
 		case .saved:
-			//TODO: Update calendar event here
+			updateAppointment(updatedEvent: controller.event)
+			catInfoTableView.reloadData()
+			dismiss(animated: true, completion: nil)
 			break
 		@unknown default:
 			print("Unknown error from eventEditViewController delegate method, ViewApptsController")
 		}
+	}
+	
+	private func updateAppointment(updatedEvent: EKEvent?) {
+		guard let selectedAppointment = selectedAppointment,
+			let event = updatedEvent else { return }
+		
+		let row = selectedAppointment.row
+		switch selectedAppointment.section {
+		case 0:
+			// Update selected upcoming appointment data
+			MyCatData.myCat?.upcomingAppointments?.events[row].identifier = event.eventIdentifier
+			MyCatData.myCat?.upcomingAppointments?.events[row].startDate = event.startDate
+			MyCatData.myCat?.upcomingAppointments?.events[row].endDate = event.endDate
+			
+			// IF: upcoming appointment turns out to be a past appointment, add it to past appointment
+			// then remove it from upcoming appointments
+			// ELSE: simply sort upcoming appointments
+			if event.startDate < Date() {
+				let pastAppt = MyCatData.myCat?.upcomingAppointments?.events[row]
+				MyCatData.myCat?.pastAppointments?.events.append(pastAppt!)
+				MyCatData.myCat?.pastAppointments?.events.sort(by: >)
+				
+				MyCatData.myCat?.upcomingAppointments?.events.remove(at: row)
+			} else {
+				MyCatData.myCat?.upcomingAppointments?.events.sort(by: <)
+			}
+			break
+		case 1:
+			// Update selected past appointment data
+			MyCatData.myCat?.pastAppointments?.events[row].identifier = event.eventIdentifier
+			MyCatData.myCat?.pastAppointments?.events[row].startDate = event.startDate
+			MyCatData.myCat?.pastAppointments?.events[row].endDate = event.endDate
+			
+			// IF: past appointment turns out to be an upcoming appointment, add it to upcoming appointment
+			// then remove it from past appointments
+			// ELSE: simply sort past appointments
+			if event.startDate > Date() {
+				let upcomingAppt = MyCatData.myCat?.pastAppointments?.events[row]
+				MyCatData.myCat?.upcomingAppointments?.events.append(upcomingAppt!)
+				MyCatData.myCat?.upcomingAppointments?.events.sort(by: <)
+				
+				MyCatData.myCat?.pastAppointments?.events.remove(at: row)
+			} else {
+				MyCatData.myCat?.pastAppointments?.events.sort(by: >)
+			}
+			break
+		default:
+			print("Error - updateAppointment method returned invalid section: \(selectedAppointment.section)")
+		}
+		
+		CoreDataManager.sharedManager.updateMyCat()
+	}
+	
+	private func deleteAppointment() {
+		
 	}
 	
 	private func displayCalendar(_ appointment: Appointment?) {
