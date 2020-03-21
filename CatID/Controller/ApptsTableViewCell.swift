@@ -14,8 +14,9 @@ class ApptsTableViewCell: UITableViewCell {
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var locationTextView: UITextView!
 	
-	@IBOutlet weak var locationHeight: NSLayoutConstraint!
 	@IBOutlet weak var titleHeight: NSLayoutConstraint!
+	@IBOutlet weak var locationHeight: NSLayoutConstraint!
+	
 	
 	let defaultLocationHeight: CGFloat = 82
 	let defaultTitleHeight: CGFloat = 31
