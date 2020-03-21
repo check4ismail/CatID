@@ -19,7 +19,6 @@ class ViewApptsController: UIViewController {
 	
 	var selectedCat: IndexPath?
 	var selectedAppointment: IndexPath?
-	var eventToDelete: String?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -288,14 +287,12 @@ extension ViewApptsController: EKEventEditViewDelegate {
 		switch section {
 		case 0:
 			print("Number of rows in upcoming appointment prior to deletion: \(MyCatData.myCat?.upcomingAppointments?.events.count)")
-			eventToDelete = MyCatData.myCat?.upcomingAppointments?.events[row].identifier
 			MyCatData.myCat?.upcomingAppointments?.events.remove(at: row)
 			CoreDataManager.sharedManager.deleteAppt(type: .upcoming)
 			break
 		
 		case 1:
 			print("Number of rows in past appointment prior to deletion: \(MyCatData.myCat?.pastAppointments?.events.count)")
-			eventToDelete = MyCatData.myCat?.pastAppointments?.events[row].identifier
 			MyCatData.myCat?.pastAppointments?.events.remove(at: row)
 			CoreDataManager.sharedManager.deleteAppt(type: .past)
 			break
