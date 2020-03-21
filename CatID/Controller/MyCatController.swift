@@ -24,6 +24,7 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	private let segueToAddCat = "addCat"
 	private let segueToDetails = "viewMyCat"
 	private let myCatTag = 0
+	private let eventVC = EKEventEditViewController()
 	private var selectedCatForAppt: Int?
 	
 	static var testDate: Date?
@@ -48,6 +49,8 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		myCatTableView.dataSource = self
 		displayCorrectSeparatorStyle()
 		
+		eventVC.editViewDelegate = self
+		eventVC.eventStore = EKEventStore()
 		print("viewDidLoad from MyCatController")
 	}
 	
@@ -291,10 +294,6 @@ extension MyCatController: EKEventEditViewDelegate {
 	}
 		
 	private func displayCalender() {
-		// Setup event view controller
-		let eventVC = EKEventEditViewController()
-		eventVC.editViewDelegate = self
-		eventVC.eventStore = EKEventStore()
 		present(eventVC, animated: true)
 	}
 	

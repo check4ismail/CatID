@@ -15,17 +15,22 @@ class ViewApptsController: UIViewController {
 	@IBOutlet weak var catInfoTableView: UITableView!
 	
 	let segue = "updateMyCat"
+	let eventVC = EKEventEditViewController()
+	
 	var selectedCat: IndexPath?
 	var selectedAppointment: IndexPath?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		shiftUpcomingApptToPast()
+		selectedCat = MyCatData.data.selectedIndexPath
 		
 		catInfoTableView.delegate = self
 		catInfoTableView.dataSource = self
-		shiftUpcomingApptToPast()
 		
-		selectedCat = MyCatData.data.selectedIndexPath
+		// Setup eventVC ahead of time
+		eventVC.editViewDelegate = self
+		eventVC.eventStore = EKEventStore()
     }
 	
 	// Because upcoming appointments is sorted by most recent date,
@@ -230,7 +235,7 @@ extension ViewApptsController: EKEventEditViewDelegate {
 			print("Error - updateAppointment method returned invalid section: \(selectedAppointment.section)")
 		}
 		
-		CoreDataManager.sharedManager.updateMyCat()
+		CoreDataManager.sharedManager.updateAppts()
 	}
 	
 	private func deleteAppointment() {
@@ -242,9 +247,7 @@ extension ViewApptsController: EKEventEditViewDelegate {
 			print("displayCalendar method, appointment without identifier")
 			return
 		}
-		let eventVC = EKEventEditViewController()
-		eventVC.editViewDelegate = self
-		eventVC.eventStore = EKEventStore()
+		
 		eventVC.event = eventVC.eventStore.event(withIdentifier: eventId)
 		self.present(eventVC, animated: true)
 	}

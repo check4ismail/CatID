@@ -96,6 +96,7 @@ class CoreDataManager {
 			print("Appending past appts in Core Data for \(myCat[row].name)")
 			eventsObj.events += pastAppts
 			eventsObj.events.sort(by: >)
+			myCat[row].setValue(eventsObj, forKey: "pastAppointments")
 		} else { // Initialize first appointment
 			print("Initialize past appointment")
 			let events = Events(events: pastAppts)
@@ -103,7 +104,9 @@ class CoreDataManager {
 		}
 		
 		// Save and update past appointments
-		saveContext()
+		updateMyCat()
+		
+		print("Persisted past appointment")
 	}
 	
 	func saveUpcomingAppts(_ upcomingAppts: [Appointment], _ row: Int) {
@@ -117,6 +120,7 @@ class CoreDataManager {
 			print("Appending upcoming in Core Data for \(myCat[row].name)")
 			eventsObj.events += upcomingAppts
 			eventsObj.events.sort(by: <)
+			myCat[row].setValue(eventsObj, forKey: "upcomingAppointments")
 		} else { // Initialize first appointment
 			print("Initialize upcoming appointment")
 			let events = Events(events: upcomingAppts)
@@ -124,7 +128,19 @@ class CoreDataManager {
 		}
 
 		// Save and update upcoming appointments
-		saveContext()
+		updateMyCat()
+		
+		print("Persisted upcoming appointment")
+	}
+	
+	func updateAppts() {
+		let pastAppts = MyCatData.myCat?.pastAppointments
+		let upcomingAppts = MyCatData.myCat?.upcomingAppointments
+		
+		MyCatData.myCat?.setValue(pastAppts, forKey: "pastAppointments")
+		MyCatData.myCat?.setValue(upcomingAppts, forKey: "upcomingAppointments")
+		
+		updateMyCat()
 	}
 	
 	func deleteMyCat(cat: MyCat) {
