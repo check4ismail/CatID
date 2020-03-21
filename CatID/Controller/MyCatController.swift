@@ -24,7 +24,6 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	private let segueToAddCat = "addCat"
 	private let segueToDetails = "viewMyCat"
 	private let myCatTag = 0
-	private let eventVC = EKEventEditViewController()
 	private var selectedCatForAppt: Int?
 	
 	static var testDate: Date?
@@ -33,7 +32,6 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	static var formattedDate: String = ""
 	
 	private let cachePhotos = NSCache<NSString, UIImage>()
-	
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .darkContent
@@ -48,10 +46,6 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		myCatTableView.delegate = self
 		myCatTableView.dataSource = self
 		displayCorrectSeparatorStyle()
-		
-		eventVC.editViewDelegate = self
-		eventVC.eventStore = EKEventStore()
-		print("viewDidLoad from MyCatController")
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -151,26 +145,30 @@ extension MyCatController: NSFetchedResultsControllerDelegate {
 		print("Object changed method called: \(type)")
 		switch (type) {
 		case .insert:
+			print("Insert called")
 			if let indexPath = newIndexPath {
 				myCatTableView.insertRows(at: [indexPath], with: .fade)
 			}
-			break;
+			break
 			
 		case .delete:
+			print("Delete called")
 			if let deletedRow = indexPath {
 				myCatTableView.deleteRows(at: [deletedRow], with: .automatic)
 			}
-			break;
+			break
 		
 		case .move:
 			print("Move called")
-			break;
+			break
 			
 		case .update:
+			print("Update called")
 			myCatTableView.reloadData()
-			break;
+			break
+			
 		@unknown default:
-			break;
+			break
 		}
 	}
 }
@@ -294,18 +292,11 @@ extension MyCatController: EKEventEditViewDelegate {
 	}
 		
 	private func displayCalender() {
+		let eventVC = EKEventEditViewController()
+		eventVC.editViewDelegate = self
+		eventVC.eventStore = EKEventStore()
 		present(eventVC, animated: true)
 	}
-	
-//	@IBAction func editCalendar(_ sender: UIButton) {
-//		//TODO: Wrap up editing a calendar event
-//		let eventVC = EKEventEditViewController()
-//		eventVC.editViewDelegate = self
-//		let eventStore = EKEventStore()
-//		eventVC.eventStore = eventStore
-//		eventVC.event = eventStore.event(withIdentifier: MyCatController.testEventId)
-//		present(eventVC, animated: true)
-//	}
 	
 	func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
 		switch action {

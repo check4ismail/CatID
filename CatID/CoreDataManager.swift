@@ -16,6 +16,11 @@ class CoreDataManager {
 	static let sharedManager = CoreDataManager()
 	private init() {} // Prevent clients from creating another instance.
 	
+	enum AppointmentType {
+		case past
+		case upcoming
+	}
+	
 	//2
 	lazy var persistentContainer: NSPersistentContainer = {
 	  
@@ -139,6 +144,22 @@ class CoreDataManager {
 		
 		MyCatData.myCat?.setValue(pastAppts, forKey: "pastAppointments")
 		MyCatData.myCat?.setValue(upcomingAppts, forKey: "upcomingAppointments")
+		
+		updateMyCat()
+	}
+	
+	func deleteAppt(type: AppointmentType) {
+		print("Delete appt called in core data")
+		switch type {
+		case .past:
+			let pastAppts = MyCatData.myCat?.pastAppointments
+			MyCatData.myCat?.setValue(pastAppts, forKey: "pastAppointments")
+			break
+		case .upcoming:
+			let upcomingAppts = MyCatData.myCat?.upcomingAppointments
+			MyCatData.myCat?.setValue(upcomingAppts, forKey: "upcomingAppointments")
+			break
+		}
 		
 		updateMyCat()
 	}

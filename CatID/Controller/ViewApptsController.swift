@@ -19,6 +19,7 @@ class ViewApptsController: UIViewController {
 	
 	var selectedCat: IndexPath?
 	var selectedAppointment: IndexPath?
+	var eventToDelete: String?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,10 @@ class ViewApptsController: UIViewController {
 		catInfoTableView.delegate = self
 		catInfoTableView.dataSource = self
 		
-		// Setup eventVC ahead of time
-		eventVC.editViewDelegate = self
 		eventVC.eventStore = EKEventStore()
+		
+		print("Number of rows in upcoming appointment prior to deletion: \(MyCatData.myCat?.upcomingAppointments?.events.count)")
+		print("Number of rows in past appointment prior to deletion: \(MyCatData.myCat?.pastAppointments?.events.count)")
     }
 	
 	// Because upcoming appointments is sorted by most recent date,
@@ -140,6 +142,35 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 		return UITableView.automaticDimension
 	}
 	
+	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			// Fetch eventId from indexpath
+			var eventId: String?
+			if indexPath.section == 0 {
+				eventId = MyCatData.myCat?.upcomingAppointments?.events[indexPath.row].identifier
+			} else if indexPath.section == 1 {
+				eventId = MyCatData.myCat?.pastAppointments?.events[indexPath.row].identifier
+			}
+			
+			// Attempt to remove calendar event - if successful, proceed with removing appt data locally
+			let eventStore = EKEventStore()
+			if let eventId = eventId, let event = eventStore.event(withIdentifier: eventId) {
+				do {
+					print("Attempt to remove calendar event")
+					try eventStore.remove(event, span: .thisEvent, commit: true)
+					print("Successfully removed calendar event")
+					deleteAppointment(atIndexPath: indexPath)
+				} catch {
+					print("Error trying to remove event: \(error)")
+				}
+			}
+		}
+	}
+	
 	func getLocation(_ appointment: Appointment?) -> String? {
 		guard let appointment = appointment else {
 			return nil
@@ -165,23 +196,25 @@ extension ViewApptsController: UITableViewDelegate, UITableViewDataSource {
 		}
 		return title
 	}
+	
 }
 
 // MARK: EKEventEditViewDelegate methods
 extension ViewApptsController: EKEventEditViewDelegate {
+	
 	func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+		print("eventEditViewController called")
+		eventVC.editViewDelegate = nil
 		switch action {
 		case .canceled:
-			dismiss(animated: true, completion: nil)
+			controller.dismiss(animated: true, completion: nil)
 		case .deleted:
-			//TODO: implemement delete appointment
 			deleteAppointment()
-			break
+			controller.dismiss(animated: true, completion: nil)
 		case .saved:
 			updateAppointment(updatedEvent: controller.event)
 			catInfoTableView.reloadData()
-			dismiss(animated: true, completion: nil)
-			break
+			controller.dismiss(animated: true, completion: nil)
 		@unknown default:
 			print("Unknown error from eventEditViewController delegate method, ViewApptsController")
 		}
@@ -238,8 +271,41 @@ extension ViewApptsController: EKEventEditViewDelegate {
 		CoreDataManager.sharedManager.updateAppts()
 	}
 	
-	private func deleteAppointment() {
+	private func deleteAppointment(atIndexPath: IndexPath? = nil) {
+		let row: Int
+		let section: Int
+		if let indexPath = atIndexPath {
+			row = indexPath.row
+			section = indexPath.section
+		} else {
+			row = selectedAppointment!.row
+			section = selectedAppointment!.section
+		}
 		
+		print("Delete appointment method is executing")
+		print("Current value of section: \(section)")
+		print("Current value of row: \(row)")
+		switch section {
+		case 0:
+			print("Number of rows in upcoming appointment prior to deletion: \(MyCatData.myCat?.upcomingAppointments?.events.count)")
+			eventToDelete = MyCatData.myCat?.upcomingAppointments?.events[row].identifier
+			MyCatData.myCat?.upcomingAppointments?.events.remove(at: row)
+			CoreDataManager.sharedManager.deleteAppt(type: .upcoming)
+			break
+		
+		case 1:
+			print("Number of rows in past appointment prior to deletion: \(MyCatData.myCat?.pastAppointments?.events.count)")
+			eventToDelete = MyCatData.myCat?.pastAppointments?.events[row].identifier
+			MyCatData.myCat?.pastAppointments?.events.remove(at: row)
+			CoreDataManager.sharedManager.deleteAppt(type: .past)
+			break
+			
+		default:
+			print("Error - deleteAppointment method returned invalid section: \(section)")
+		}
+		
+		let indexPath : IndexPath = [section, row]
+		catInfoTableView.deleteRows(at: [indexPath], with: .automatic)
 	}
 	
 	private func displayCalendar(_ appointment: Appointment?) {
@@ -247,7 +313,7 @@ extension ViewApptsController: EKEventEditViewDelegate {
 			print("displayCalendar method, appointment without identifier")
 			return
 		}
-		
+		eventVC.editViewDelegate = self
 		eventVC.event = eventVC.eventStore.event(withIdentifier: eventId)
 		self.present(eventVC, animated: true)
 	}
