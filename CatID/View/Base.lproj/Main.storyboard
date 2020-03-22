@@ -52,7 +52,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cat Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2cx-VE-9Gm">
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cat Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2cx-VE-9Gm">
                                                     <rect key="frame" x="128" y="11" width="252.5" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="2cx-VE-9Gm" secondAttribute="height" multiplier="49:6" constant="-81.5" id="bvz-IB-crY"/>
@@ -60,7 +60,7 @@
                                                     <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cat Breed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-d8-1hs">
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cat Breed" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-d8-1hs">
                                                     <rect key="frame" x="128" y="44" width="226" height="46"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="nSC-d8-1hs" secondAttribute="height" multiplier="233:38" constant="-56.052631578947398" id="Lvm-C9-IrT"/>
@@ -333,10 +333,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="870"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cat Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fF7-El-YsE">
-                                                <rect key="frame" x="151" y="80" width="237" height="34"/>
+                                                <rect key="frame" x="150" y="81" width="238" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="fF7-El-YsE" secondAttribute="height" multiplier="7:1" id="et3-FT-iXf"/>
+                                                    <constraint firstAttribute="width" secondItem="fF7-El-YsE" secondAttribute="height" multiplier="7:1" id="Gcd-Ew-tGm"/>
+                                                    <constraint firstAttribute="width" constant="238" id="Q1y-3Z-1kO"/>
+                                                    <constraint firstAttribute="height" constant="34" id="pXj-sa-VeI"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -345,6 +347,7 @@
                                                 <rect key="frame" x="20" y="236" width="253" height="35"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" secondItem="A8Q-UY-2fG" secondAttribute="height" multiplier="253:35" id="hcZ-tF-eyr"/>
                                                     <constraint firstAttribute="height" constant="35" id="qbn-4S-Bxa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
@@ -354,21 +357,24 @@
                                                 <rect key="frame" x="20" y="194" width="191" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="oqX-T8-Xf2"/>
+                                                    <constraint firstAttribute="width" secondItem="7Jr-sw-UTh" secondAttribute="height" multiplier="191:34" id="x4Y-8t-9ay"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Breed type" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-ym-cGU">
-                                                <rect key="frame" x="151" y="137" width="237" height="35"/>
+                                                <rect key="frame" x="150" y="138" width="238" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="g1e-ym-cGU" secondAttribute="height" multiplier="34:5" id="61V-WH-SlL"/>
+                                                    <constraint firstAttribute="width" constant="238" id="7Gf-h5-eY7"/>
+                                                    <constraint firstAttribute="width" secondItem="g1e-ym-cGU" secondAttribute="height" multiplier="7:1" id="9LF-6U-dOT"/>
+                                                    <constraint firstAttribute="height" constant="34" id="bAq-GQ-E46"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-d1-M8v">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                                 <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <textAttributes key="titleTextAttributes">
                                                     <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="20"/>
@@ -393,6 +399,9 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTc-Ez-HhA">
                                                 <rect key="frame" x="20" y="486" width="368" height="266"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="pTc-Ez-HhA" secondAttribute="height" multiplier="184:133" id="1IK-gS-fNh"/>
+                                                </constraints>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -401,6 +410,7 @@
                                                 <rect key="frame" x="20" y="302" width="268" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="XZJ-nK-g8D"/>
+                                                    <constraint firstAttribute="width" secondItem="h2P-zN-lZB" secondAttribute="height" multiplier="134:17" id="rTT-ok-kac"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -410,6 +420,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="81" id="P6c-aN-saa"/>
+                                                    <constraint firstAttribute="width" secondItem="Tch-0C-Xby" secondAttribute="height" multiplier="368:81" id="uQe-vj-HT4"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
@@ -418,15 +429,18 @@
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Notes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qc3-ox-1OC">
                                                 <rect key="frame" x="20" y="451" width="177" height="27"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Qc3-ox-1OC" secondAttribute="height" multiplier="59:9" id="B6j-Jb-neQ"/>
                                                     <constraint firstAttribute="height" constant="27" id="q4R-cF-ada"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCV-WF-L5l">
-                                                <rect key="frame" x="20" y="69" width="110" height="103"/>
+                                                <rect key="frame" x="20" y="70" width="109" height="102"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="NCV-WF-L5l" secondAttribute="height" multiplier="109:103" id="Z7Z-qw-S2w"/>
+                                                    <constraint firstAttribute="height" constant="103" id="Fy2-4T-dYG"/>
+                                                    <constraint firstAttribute="width" constant="109" id="gkH-JK-adE"/>
+                                                    <constraint firstAttribute="width" secondItem="NCV-WF-L5l" secondAttribute="height" multiplier="109:103" id="jzK-LN-JiT"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" backgroundImage="camera.circle" catalog="system">
@@ -801,7 +815,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="BSe-as-sR5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="BSe-as-sR5">
                                 <rect key="frame" x="0.0" y="178" width="414" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -812,7 +826,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="172"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateFormatter label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NA4-CI-dS0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateFormatter label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NA4-CI-dS0">
                                                     <rect key="frame" x="16" y="42" width="355" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="PcZ-K6-7k4"/>
@@ -823,7 +837,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezu-LY-Dte">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezu-LY-Dte">
                                                     <rect key="frame" x="16" y="11" width="312" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="Iky-Gs-gRh"/>
@@ -834,7 +848,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Street Address, City, State, zip code" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnw-99-S92">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Street Address, City, State, zip code" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnw-99-S92">
                                                     <rect key="frame" x="14" y="75" width="355" height="82"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
@@ -871,9 +885,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUa-4u-Cxl">
-                                <rect key="frame" x="0.0" y="77" width="414" height="57"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUa-4u-Cxl">
+                                <rect key="frame" x="0.0" y="77" width="414" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YUa-4u-Cxl" secondAttribute="height" multiplier="414:55" id="7UQ-Er-Ge2"/>
+                                    <constraint firstAttribute="width" constant="414" id="UNy-gI-fyu"/>
+                                    <constraint firstAttribute="height" constant="55" id="voi-oV-hgO"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="20"/>
                                 <state key="normal" title="Edit Cat Details"/>
                                 <connections>
@@ -885,12 +904,12 @@
                         <constraints>
                             <constraint firstItem="HGv-ha-MSu" firstAttribute="leading" secondItem="A5N-qn-bl3" secondAttribute="leading" id="727-mH-bFL"/>
                             <constraint firstItem="BSe-as-sR5" firstAttribute="leading" secondItem="A5N-qn-bl3" secondAttribute="leading" id="7oQ-K6-UOX"/>
-                            <constraint firstItem="BSe-as-sR5" firstAttribute="top" secondItem="YUa-4u-Cxl" secondAttribute="bottom" constant="44" id="8Rb-Ls-kXp"/>
+                            <constraint firstItem="BSe-as-sR5" firstAttribute="top" secondItem="YUa-4u-Cxl" secondAttribute="bottom" constant="46" id="8Rb-Ls-kXp"/>
                             <constraint firstAttribute="bottom" secondItem="BSe-as-sR5" secondAttribute="bottom" id="CTc-zW-nue"/>
                             <constraint firstItem="HGv-ha-MSu" firstAttribute="top" secondItem="A5N-qn-bl3" secondAttribute="top" id="HCX-GE-noW"/>
                             <constraint firstItem="YUa-4u-Cxl" firstAttribute="trailing" secondItem="A5N-qn-bl3" secondAttribute="trailing" id="JZW-89-sIF"/>
                             <constraint firstItem="YUa-4u-Cxl" firstAttribute="leading" secondItem="A5N-qn-bl3" secondAttribute="leading" id="MEO-aa-ItN"/>
-                            <constraint firstItem="BSe-as-sR5" firstAttribute="top" secondItem="YUa-4u-Cxl" secondAttribute="bottom" constant="44" id="YhH-ff-Pa9"/>
+                            <constraint firstItem="BSe-as-sR5" firstAttribute="top" secondItem="YUa-4u-Cxl" secondAttribute="bottom" constant="46" id="YhH-ff-Pa9"/>
                             <constraint firstItem="YUa-4u-Cxl" firstAttribute="top" secondItem="HGv-ha-MSu" secondAttribute="bottom" constant="33" id="iRM-cG-s09"/>
                             <constraint firstItem="YUa-4u-Cxl" firstAttribute="top" secondItem="HGv-ha-MSu" secondAttribute="bottom" constant="33" id="pxK-yZ-qWe"/>
                             <constraint firstItem="BSe-as-sR5" firstAttribute="trailing" secondItem="A5N-qn-bl3" secondAttribute="trailing" id="sEC-g9-Qix"/>
@@ -900,6 +919,7 @@
                     </view>
                     <connections>
                         <outlet property="catInfoTableView" destination="BSe-as-sR5" id="asd-ho-Rge"/>
+                        <outlet property="navigationBar" destination="HGv-ha-MSu" id="cNR-UW-f19"/>
                         <segue destination="6fo-tX-Kqo" kind="presentation" identifier="updateMyCat" id="ia9-dP-Mxj"/>
                     </connections>
                 </viewController>
@@ -918,43 +938,60 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWV-fB-4V0">
                                 <rect key="frame" x="0.0" y="88" width="414" height="184"/>
                                 <subviews>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raE-lw-fwW">
-                                        <rect key="frame" x="30" y="115" width="356" height="49"/>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raE-lw-fwW">
+                                        <rect key="frame" x="8" y="115" width="398" height="61"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="49" id="QNa-O9-fmh"/>
+                                            <constraint firstAttribute="height" constant="61" id="QNa-O9-fmh"/>
+                                            <constraint firstAttribute="width" constant="398" id="QyD-4Y-Eov"/>
+                                            <constraint firstAttribute="width" secondItem="raE-lw-fwW" secondAttribute="height" multiplier="398:61" id="eOy-KV-Bwp"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="61" id="z25-oe-OYq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="30"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ypg-4s-tVA">
-                                        <rect key="frame" x="137" y="8" width="141" height="99"/>
+                                        <rect key="frame" x="136" y="8" width="142" height="99"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="142" id="0wd-VG-uhE"/>
+                                            <constraint firstAttribute="width" secondItem="Ypg-4s-tVA" secondAttribute="height" multiplier="142:99" id="3ot-Aq-IuO"/>
+                                            <constraint firstAttribute="width" constant="142" id="hLf-Z4-tt8"/>
+                                        </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="😺" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ado-J4-pCG">
-                                        <rect key="frame" x="132" y="7" width="151" height="100"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="😺" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ado-J4-pCG">
+                                        <rect key="frame" x="131.5" y="7" width="151" height="100"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ado-J4-pCG" secondAttribute="height" multiplier="151:100" id="5VQ-8V-eo3"/>
+                                            <constraint firstAttribute="height" constant="100" id="Lwq-x5-aWU"/>
+                                            <constraint firstAttribute="width" constant="151" id="aC3-z6-qyB"/>
+                                        </constraints>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="86"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Ypg-4s-tVA" secondAttribute="trailing" constant="136" id="8wr-dt-RIU"/>
+                                    <constraint firstItem="ado-J4-pCG" firstAttribute="centerX" secondItem="OWV-fB-4V0" secondAttribute="centerX" id="2lb-PZ-75q"/>
+                                    <constraint firstAttribute="trailing" secondItem="ado-J4-pCG" secondAttribute="trailing" priority="999" constant="131" id="9lN-S2-nce"/>
+                                    <constraint firstItem="Ypg-4s-tVA" firstAttribute="centerX" secondItem="OWV-fB-4V0" secondAttribute="centerX" id="DhL-eL-ao4"/>
+                                    <constraint firstItem="raE-lw-fwW" firstAttribute="top" secondItem="ado-J4-pCG" secondAttribute="bottom" constant="8" id="Dtg-eQ-vqI"/>
                                     <constraint firstItem="ado-J4-pCG" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="top" constant="7" id="RdQ-xG-Ia9"/>
-                                    <constraint firstAttribute="trailing" secondItem="ado-J4-pCG" secondAttribute="trailing" constant="131" id="WPu-tE-smp"/>
-                                    <constraint firstAttribute="trailing" secondItem="raE-lw-fwW" secondAttribute="trailing" constant="28" id="Zfg-ep-fwr"/>
-                                    <constraint firstItem="raE-lw-fwW" firstAttribute="leading" secondItem="OWV-fB-4V0" secondAttribute="leading" constant="30" id="gQL-Js-oKf"/>
+                                    <constraint firstItem="ado-J4-pCG" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="top" constant="7" id="VuW-HD-GgT"/>
+                                    <constraint firstItem="raE-lw-fwW" firstAttribute="centerX" secondItem="OWV-fB-4V0" secondAttribute="centerX" id="Y6Y-9r-lwM"/>
                                     <constraint firstItem="raE-lw-fwW" firstAttribute="top" secondItem="Ypg-4s-tVA" secondAttribute="bottom" constant="8" id="jSG-NI-gay"/>
-                                    <constraint firstItem="ado-J4-pCG" firstAttribute="leading" secondItem="OWV-fB-4V0" secondAttribute="leading" constant="132" id="opl-Eo-ZXI"/>
+                                    <constraint firstItem="ado-J4-pCG" firstAttribute="leading" secondItem="OWV-fB-4V0" secondAttribute="leading" priority="999" constant="132" id="opl-Eo-ZXI"/>
                                     <constraint firstItem="raE-lw-fwW" firstAttribute="top" secondItem="ado-J4-pCG" secondAttribute="bottom" constant="8" id="qNq-4i-xwo"/>
-                                    <constraint firstItem="Ypg-4s-tVA" firstAttribute="leading" secondItem="OWV-fB-4V0" secondAttribute="leading" constant="137" id="rvn-K5-gZV"/>
-                                    <constraint firstAttribute="bottom" secondItem="raE-lw-fwW" secondAttribute="bottom" constant="20" symbolic="YES" id="sRO-Sh-wpD"/>
+                                    <constraint firstAttribute="bottom" secondItem="raE-lw-fwW" secondAttribute="bottom" constant="8" id="sRO-Sh-wpD"/>
                                     <constraint firstItem="Ypg-4s-tVA" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="top" constant="8" id="wWV-pz-tjk"/>
                                     <constraint firstItem="raE-lw-fwW" firstAttribute="top" secondItem="Ypg-4s-tVA" secondAttribute="bottom" constant="8" id="xDO-mw-TK6"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2g-aE-9E2">
                                 <rect key="frame" x="0.0" y="280" width="414" height="616"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="G2g-aE-9E2" secondAttribute="height" multiplier="207:308" id="35n-94-CZ5"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="WIT-s7-OYc" kind="embed" identifier="viewCatOnly" id="jb3-c0-zdw"/>
                                 </connections>
@@ -962,15 +999,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="G2g-aE-9E2" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="bottom" constant="8" id="1bP-fM-poL"/>
+                            <constraint firstItem="G2g-aE-9E2" firstAttribute="trailing" secondItem="DcD-Jh-aOu" secondAttribute="trailing" id="2Ws-p7-OBT"/>
                             <constraint firstItem="OWV-fB-4V0" firstAttribute="trailing" secondItem="DcD-Jh-aOu" secondAttribute="trailing" id="3EV-p0-wlx"/>
-                            <constraint firstItem="OWV-fB-4V0" firstAttribute="leading" secondItem="DcD-Jh-aOu" secondAttribute="leading" id="5H9-3W-k37"/>
+                            <constraint firstItem="OWV-fB-4V0" firstAttribute="top" secondItem="DcD-Jh-aOu" secondAttribute="top" id="4Af-Yj-OEj"/>
+                            <constraint firstItem="G2g-aE-9E2" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="bottom" constant="8" id="6cS-aW-Fkc"/>
                             <constraint firstItem="G2g-aE-9E2" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="bottom" constant="8" symbolic="YES" id="BSN-VM-YP1"/>
                             <constraint firstItem="G2g-aE-9E2" firstAttribute="leading" secondItem="DcD-Jh-aOu" secondAttribute="leading" id="C78-7G-mWe"/>
+                            <constraint firstItem="G2g-aE-9E2" firstAttribute="leading" secondItem="DcD-Jh-aOu" secondAttribute="leading" id="Dj6-lu-wAZ"/>
                             <constraint firstItem="G2g-aE-9E2" firstAttribute="trailing" secondItem="DcD-Jh-aOu" secondAttribute="trailing" id="IW9-wz-OLc"/>
+                            <constraint firstItem="OWV-fB-4V0" firstAttribute="leading" secondItem="DcD-Jh-aOu" secondAttribute="leading" id="NQh-sW-4eb"/>
                             <constraint firstItem="OWV-fB-4V0" firstAttribute="top" secondItem="DcD-Jh-aOu" secondAttribute="top" id="QWH-YD-F0n"/>
+                            <constraint firstItem="G2g-aE-9E2" firstAttribute="top" secondItem="nvg-oO-afi" secondAttribute="top" constant="280" id="XZf-z1-J90"/>
                             <constraint firstItem="G2g-aE-9E2" firstAttribute="top" secondItem="OWV-fB-4V0" secondAttribute="bottom" constant="8" symbolic="YES" id="gjj-zi-xK9"/>
                             <constraint firstAttribute="bottom" secondItem="G2g-aE-9E2" secondAttribute="bottom" id="vBV-5a-L8p"/>
-                            <constraint firstItem="G2g-aE-9E2" firstAttribute="top" secondItem="nvg-oO-afi" secondAttribute="top" constant="280" id="xxG-Ar-2jc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DcD-Jh-aOu"/>
                     </view>
@@ -992,14 +1034,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smZ-rP-KTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="946"/>
+            <point key="canvasLocation" x="818.84057971014499" y="945.53571428571422"/>
         </scene>
         <!--Cat Details Table View-->
         <scene sceneID="aDx-ue-a0f">
             <objects>
                 <tableViewController id="WIT-s7-OYc" customClass="CatDetailsTableView" customModule="CatID" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yv9-bf-WIE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="616"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="578"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -1012,19 +1054,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Breed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYH-Xy-ypz">
-                                                    <rect key="frame" x="20" y="11" width="97" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Breed" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYH-Xy-ypz">
+                                                    <rect key="frame" x="20" y="11" width="349" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="iq1-Pi-eNx"/>
+                                                        <constraint firstAttribute="width" constant="349" id="rT1-Ta-2Ha"/>
+                                                        <constraint firstAttribute="width" secondItem="nYH-Xy-ypz" secondAttribute="height" multiplier="349:34" id="sp4-Uv-hFo"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSO-Tv-N3R">
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSO-Tv-N3R">
                                                     <rect key="frame" x="20" y="53" width="334" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="334" id="AMp-S0-u23"/>
+                                                        <constraint firstAttribute="width" secondItem="pSO-Tv-N3R" secondAttribute="height" multiplier="167:17" id="DdP-cP-3a7"/>
+                                                        <constraint firstAttribute="height" constant="34" id="Qtu-0f-497"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pSO-Tv-N3R" firstAttribute="top" secondItem="nYH-Xy-ypz" secondAttribute="bottom" constant="8" id="2sX-XH-0gC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nYH-Xy-ypz" secondAttribute="trailing" constant="25" id="4xi-xK-OzN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pSO-Tv-N3R" secondAttribute="trailing" constant="40" id="NYh-Pw-2zX"/>
+                                                <constraint firstItem="nYH-Xy-ypz" firstAttribute="top" secondItem="3fk-TP-GiJ" secondAttribute="topMargin" id="Ron-cQ-wFb"/>
+                                                <constraint firstItem="pSO-Tv-N3R" firstAttribute="leading" secondItem="3fk-TP-GiJ" secondAttribute="leadingMargin" id="XtG-8v-STS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pSO-Tv-N3R" secondAttribute="bottom" constant="1" id="nZz-oi-Uf8"/>
+                                                <constraint firstItem="nYH-Xy-ypz" firstAttribute="leading" secondItem="3fk-TP-GiJ" secondAttribute="leadingMargin" id="oTS-S1-ujE"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.84999999999999998"/>
                                     </tableViewCell>
@@ -1035,19 +1094,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mWz-pd-t6K">
-                                                    <rect key="frame" x="20" y="11" width="97" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mWz-pd-t6K">
+                                                    <rect key="frame" x="20" y="11" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="374" id="1LL-Cm-LBg"/>
+                                                        <constraint firstAttribute="height" constant="34" id="46h-zA-CFr"/>
+                                                        <constraint firstAttribute="width" secondItem="mWz-pd-t6K" secondAttribute="height" multiplier="11:1" id="U9i-Ll-qHv"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j2f-fd-6wO">
+                                                <textField opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j2f-fd-6wO">
                                                     <rect key="frame" x="20" y="53" width="374" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="374" id="1BD-tz-eR8"/>
+                                                        <constraint firstAttribute="height" constant="34" id="uze-rE-2d9"/>
+                                                        <constraint firstAttribute="width" secondItem="j2f-fd-6wO" secondAttribute="height" multiplier="11:1" id="vl8-vE-ZGe"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mWz-pd-t6K" firstAttribute="leading" secondItem="Mq7-3B-R9C" secondAttribute="leadingMargin" id="0vz-Qe-s3E"/>
+                                                <constraint firstItem="j2f-fd-6wO" firstAttribute="leading" secondItem="Mq7-3B-R9C" secondAttribute="leadingMargin" id="74V-3q-t26"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mWz-pd-t6K" secondAttribute="trailing" id="BjU-ib-9bq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="j2f-fd-6wO" secondAttribute="bottom" constant="6" id="Khb-F6-Ukd"/>
+                                                <constraint firstItem="j2f-fd-6wO" firstAttribute="top" secondItem="mWz-pd-t6K" secondAttribute="bottom" constant="8" id="QQy-2d-kng"/>
+                                                <constraint firstItem="mWz-pd-t6K" firstAttribute="top" secondItem="Mq7-3B-R9C" secondAttribute="topMargin" id="pyh-X2-9xb"/>
+                                                <constraint firstItem="j2f-fd-6wO" firstAttribute="trailing" secondItem="Mq7-3B-R9C" secondAttribute="trailingMargin" id="ytt-gn-Yw1"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="165" id="Nrl-8K-1Gc">
@@ -1057,21 +1133,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7i-sM-fpq">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B7i-sM-fpq">
                                                     <rect key="frame" x="20" y="50" width="374" height="104"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="374" id="B6Q-Q1-SYg"/>
+                                                        <constraint firstAttribute="height" constant="104" id="H3y-4M-sgo"/>
+                                                        <constraint firstAttribute="width" secondItem="B7i-sM-fpq" secondAttribute="height" multiplier="187:52" id="oJK-dR-rsW"/>
+                                                    </constraints>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Veterinarian Info" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KHu-As-fyy">
-                                                    <rect key="frame" x="20" y="8" width="264" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Veterinarian Info" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KHu-As-fyy">
+                                                    <rect key="frame" x="20" y="8" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="DGK-BS-Iuy"/>
+                                                        <constraint firstAttribute="width" secondItem="KHu-As-fyy" secondAttribute="height" multiplier="11:1" id="XXS-Nl-HG4"/>
+                                                        <constraint firstAttribute="width" constant="374" id="kah-96-edn"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="B7i-sM-fpq" firstAttribute="top" secondItem="KHu-As-fyy" secondAttribute="bottom" constant="8" id="1ij-0e-ydD"/>
+                                                <constraint firstItem="B7i-sM-fpq" firstAttribute="leading" secondItem="Dm9-CM-i3q" secondAttribute="leadingMargin" id="3ar-UC-IUG"/>
+                                                <constraint firstItem="KHu-As-fyy" firstAttribute="leading" secondItem="Dm9-CM-i3q" secondAttribute="leadingMargin" id="LOi-he-L5B"/>
+                                                <constraint firstItem="B7i-sM-fpq" firstAttribute="bottom" secondItem="Dm9-CM-i3q" secondAttribute="bottomMargin" id="bjE-HK-0jS"/>
+                                                <constraint firstItem="KHu-As-fyy" firstAttribute="top" secondItem="Dm9-CM-i3q" secondAttribute="topMargin" constant="-3" id="das-zH-lGc"/>
+                                                <constraint firstItem="B7i-sM-fpq" firstAttribute="trailing" secondItem="Dm9-CM-i3q" secondAttribute="trailingMargin" id="gMV-yb-Upw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KHu-As-fyy" secondAttribute="trailing" id="nHB-Ko-V5O"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="185" id="H32-L0-oPb">
@@ -1081,21 +1174,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="185"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vsx-HF-M3d">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vsx-HF-M3d">
                                                     <rect key="frame" x="20" y="50" width="374" height="104"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Vsx-HF-M3d" secondAttribute="height" multiplier="187:52" id="Fbv-pm-Ocf"/>
+                                                        <constraint firstAttribute="width" constant="374" id="Wm9-o4-7ks"/>
+                                                        <constraint firstAttribute="height" constant="104" id="uj3-DI-vtK"/>
+                                                    </constraints>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3UJ-3Q-0B7">
-                                                    <rect key="frame" x="20" y="8" width="264" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Notes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3UJ-3Q-0B7">
+                                                    <rect key="frame" x="20" y="8" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="5qX-Iz-7Mh"/>
+                                                        <constraint firstAttribute="width" secondItem="3UJ-3Q-0B7" secondAttribute="height" multiplier="11:1" id="Pgr-fj-CUs"/>
+                                                        <constraint firstAttribute="width" constant="374" id="eIS-4F-59W"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Vsx-HF-M3d" secondAttribute="bottom" constant="20" id="9zb-Ne-Q0O"/>
+                                                <constraint firstItem="Vsx-HF-M3d" firstAttribute="top" secondItem="3UJ-3Q-0B7" secondAttribute="bottom" constant="8" id="BSS-y7-uj2"/>
+                                                <constraint firstItem="3UJ-3Q-0B7" firstAttribute="leading" secondItem="dbQ-G9-Rn0" secondAttribute="leadingMargin" id="R3F-u4-WZr"/>
+                                                <constraint firstItem="Vsx-HF-M3d" firstAttribute="leading" secondItem="dbQ-G9-Rn0" secondAttribute="leadingMargin" id="WWN-mJ-RDD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3UJ-3Q-0B7" secondAttribute="trailing" id="hri-e1-WHA"/>
+                                                <constraint firstItem="3UJ-3Q-0B7" firstAttribute="top" secondItem="dbQ-G9-Rn0" secondAttribute="topMargin" constant="-3" id="ltE-OH-1au"/>
+                                                <constraint firstItem="Vsx-HF-M3d" firstAttribute="trailing" secondItem="dbQ-G9-Rn0" secondAttribute="trailingMargin" id="v2h-Lt-w6x"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1125,19 +1235,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFk-64-1gT">
-                                <rect key="frame" x="0.0" y="56" width="414" height="182"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFk-64-1gT">
+                                <rect key="frame" x="0.0" y="66" width="414" height="181"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cat Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2P0-nP-2y0">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cat Name" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2P0-nP-2y0">
                                         <rect key="frame" x="8" y="140" width="398" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="2P0-nP-2y0" secondAttribute="height" multiplier="199:22" id="00E-Wi-bv4"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="30"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRC-ZC-4Ui">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRC-ZC-4Ui">
                                         <rect key="frame" x="144" y="12.5" width="126" height="119"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="PRC-ZC-4Ui" secondAttribute="height" multiplier="21:20" id="Rk0-aQ-SrW"/>
+                                            <constraint firstAttribute="width" constant="126" id="vbA-eP-1kk"/>
+                                            <constraint firstAttribute="height" constant="120" id="xaV-q3-pBQ"/>
+                                        </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" backgroundImage="camera.circle" catalog="system"/>
                                         <connections>
@@ -1145,10 +1260,28 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="2P0-nP-2y0" firstAttribute="top" secondItem="WFk-64-1gT" secondAttribute="top" constant="140" id="2WB-lg-H12"/>
+                                    <constraint firstItem="PRC-ZC-4Ui" firstAttribute="centerX" secondItem="WFk-64-1gT" secondAttribute="centerX" id="93M-FY-rSa"/>
+                                    <constraint firstItem="PRC-ZC-4Ui" firstAttribute="leading" secondItem="WFk-64-1gT" secondAttribute="leading" priority="999" constant="144" id="CdY-7v-rWN"/>
+                                    <constraint firstItem="2P0-nP-2y0" firstAttribute="top" secondItem="PRC-ZC-4Ui" secondAttribute="bottom" constant="8" id="NDN-LV-NUL"/>
+                                    <constraint firstItem="PRC-ZC-4Ui" firstAttribute="top" secondItem="WFk-64-1gT" secondAttribute="top" constant="12" id="Qyq-ef-axW"/>
+                                    <constraint firstAttribute="trailing" secondItem="2P0-nP-2y0" secondAttribute="trailing" constant="8" id="XzL-qV-Ajv"/>
+                                    <constraint firstItem="2P0-nP-2y0" firstAttribute="top" secondItem="PRC-ZC-4Ui" secondAttribute="bottom" constant="8" id="iRF-8e-Mod"/>
+                                    <constraint firstItem="2P0-nP-2y0" firstAttribute="leading" secondItem="WFk-64-1gT" secondAttribute="leading" constant="8" id="ray-za-IVv"/>
+                                    <constraint firstAttribute="bottom" secondItem="2P0-nP-2y0" secondAttribute="bottom" constant="-3" id="sTV-zC-58i"/>
+                                    <constraint firstAttribute="trailing" secondItem="PRC-ZC-4Ui" secondAttribute="trailing" priority="999" constant="144" id="sxY-bZ-06Y"/>
+                                    <constraint firstItem="PRC-ZC-4Ui" firstAttribute="top" secondItem="WFk-64-1gT" secondAttribute="top" constant="12" id="yRk-TH-YmQ"/>
+                                </constraints>
                             </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hdd-f8-REa">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrc-0w-OdA">
+                                <rect key="frame" x="0.0" y="264" width="414" height="578"/>
+                                <connections>
+                                    <segue destination="WIT-s7-OYc" kind="embed" identifier="editCat" id="AaX-7J-2ck"/>
+                                </connections>
+                            </containerView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdd-f8-REa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <color key="barTintColor" red="0.34509803921568627" green="0.80000000000000004" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem id="iel-u8-BDg">
@@ -1167,15 +1300,23 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wrc-0w-OdA">
-                                <rect key="frame" x="0.0" y="241" width="414" height="601"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="WIT-s7-OYc" kind="embed" identifier="editCat" id="AaX-7J-2ck"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WFk-64-1gT" firstAttribute="trailing" secondItem="b8I-00-mMp" secondAttribute="trailing" id="2ow-eH-Wkd"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="leading" secondItem="Hdd-f8-REa" secondAttribute="leading" id="4z5-wd-X4h"/>
+                            <constraint firstItem="WFk-64-1gT" firstAttribute="leading" secondItem="b8I-00-mMp" secondAttribute="leading" id="BAI-Uh-mOh"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="leading" secondItem="b8I-00-mMp" secondAttribute="leading" id="CZo-Z8-b4K"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="trailing" secondItem="Hdd-f8-REa" secondAttribute="trailing" id="GNG-X8-339"/>
+                            <constraint firstItem="WFk-64-1gT" firstAttribute="top" secondItem="Hdd-f8-REa" secondAttribute="bottom" constant="10" id="N7T-aZ-7f9"/>
+                            <constraint firstItem="Hdd-f8-REa" firstAttribute="top" secondItem="b8I-00-mMp" secondAttribute="top" id="Of8-G4-TbF"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="top" secondItem="WFk-64-1gT" secondAttribute="bottom" constant="17" id="aHm-uU-oJ7"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="trailing" secondItem="b8I-00-mMp" secondAttribute="trailing" id="cwq-xe-oca"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="top" secondItem="WFk-64-1gT" secondAttribute="bottom" constant="17" id="h9q-gu-Ute"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="top" secondItem="WFk-64-1gT" secondAttribute="bottom" constant="17" id="kKs-f6-png"/>
+                            <constraint firstItem="wrc-0w-OdA" firstAttribute="top" secondItem="gBb-kQ-m5x" secondAttribute="top" constant="264" id="prB-R3-YUS"/>
+                            <constraint firstAttribute="bottom" secondItem="wrc-0w-OdA" secondAttribute="bottom" id="vqD-SD-DrT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="b8I-00-mMp"/>
                     </view>
                     <connections>
@@ -1187,7 +1328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJG-Js-qcr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2780" y="946"/>
+            <point key="canvasLocation" x="2779.7101449275365" y="945.53571428571422"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zx7-EO-nej">
@@ -1237,6 +1378,6 @@
         <image name="person.fill" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jb3-c0-zdw"/>
+        <segue reference="AaX-7J-2ck"/>
     </inferredMetricsTieBreakers>
 </document>

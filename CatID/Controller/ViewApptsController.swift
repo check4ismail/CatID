@@ -13,6 +13,7 @@ import EventKitUI
 class ViewApptsController: UIViewController {
 
 	@IBOutlet weak var catInfoTableView: UITableView!
+	@IBOutlet weak var navigationBar: UINavigationBar!
 	
 	let segue = "updateMyCat"
 	let eventVC = EKEventEditViewController()
@@ -22,6 +23,7 @@ class ViewApptsController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		setupNavBarFont()
 		shiftUpcomingApptToPast()
 		selectedCat = MyCatData.data.selectedIndexPath
 		
@@ -29,10 +31,15 @@ class ViewApptsController: UIViewController {
 		catInfoTableView.dataSource = self
 		
 		eventVC.eventStore = EKEventStore()
-		
-		print("Number of rows in upcoming appointment prior to deletion: \(MyCatData.myCat?.upcomingAppointments?.events.count)")
-		print("Number of rows in past appointment prior to deletion: \(MyCatData.myCat?.pastAppointments?.events.count)")
     }
+	
+	func setupNavBarFont() {
+		navigationBar.barTintColor = UIColor.init(hexString: "58cced")
+		
+		let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font: UIFont(name: "SFProRounded-Semibold", size: 20)!]
+		navigationBar.titleTextAttributes = textAttributes
+		navigationBar.tintColor = .black
+	}
 	
 	// Because upcoming appointments is sorted by most recent date,
 	// this function checks last element - if it's no longer an upcoming event it's appended to past appointments
