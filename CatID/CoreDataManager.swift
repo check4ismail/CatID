@@ -42,11 +42,8 @@ class CoreDataManager {
 	  if context.hasChanges {
 		do {
 		  try context.save()
-		} catch {
-		  // Replace this implementation with code to handle the error appropriately.
-		  // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-		  let nserror = error as NSError
-		  print("Unresolved error \(nserror), \(nserror.userInfo)")
+		} catch let error as NSError {
+			print("Could not save due to \(error), \(error.userInfo)")
 		}
 	  }
 	}
@@ -82,13 +79,16 @@ class CoreDataManager {
 	}
 	
 	func updateMyCat() {
-		let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+		MyCatData.myCat?.setValue(MyCatData.myCat?.name, forKey: "name")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.breedType, forKey: "breedType")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.birthdayMonth, forKey: "birthdayMonth")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.birthdayDay, forKey: "birthdayDay")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.birthdayYear, forKey: "birthdayYear")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.notes, forKey: "notes")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.vetInfo, forKey: "vetInfo")
+		MyCatData.myCat?.setValue(MyCatData.myCat?.catPhoto, forKey: "catPhoto")
 		
-		do {
-			try managedContext.save()
-		} catch let error as NSError {
-			print("Could not save due to \(error), \(error.userInfo)")
-		}
+		saveContext()
 	}
 	
 	func savePastAppts(_ pastAppts: [Appointment], _ row: Int) {
@@ -109,7 +109,7 @@ class CoreDataManager {
 		}
 		
 		// Save and update past appointments
-		updateMyCat()
+		saveContext()
 		
 		print("Persisted past appointment")
 	}
@@ -133,7 +133,7 @@ class CoreDataManager {
 		}
 
 		// Save and update upcoming appointments
-		updateMyCat()
+		saveContext()
 		
 		print("Persisted upcoming appointment")
 	}
@@ -145,7 +145,7 @@ class CoreDataManager {
 		MyCatData.myCat?.setValue(pastAppts, forKey: "pastAppointments")
 		MyCatData.myCat?.setValue(upcomingAppts, forKey: "upcomingAppointments")
 		
-		updateMyCat()
+		saveContext()
 	}
 	
 	func deleteAppt(type: AppointmentType) {
@@ -161,7 +161,7 @@ class CoreDataManager {
 			break
 		}
 		
-		updateMyCat()
+		saveContext()
 	}
 	
 	func deleteMyCat(cat: MyCat) {

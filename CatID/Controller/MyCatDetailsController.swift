@@ -54,7 +54,7 @@ class MyCatDetailsController: UIViewController, UpdateMyCatDelegate {
 				catDetailsTableVC = destinationVC
 			}
 		} else if segue.identifier == "viewMoreCatDetails"{ // Segue to modal view to for appt details and option to edit cat details
-			if let destinationVC = segue.destination as? UpdateMyCat {
+			if let destinationVC = segue.destination as? ViewApptsController {
 				destinationVC.delegate = self
 			}
 		}
@@ -62,6 +62,7 @@ class MyCatDetailsController: UIViewController, UpdateMyCatDelegate {
 	
 	// MARK: Delegate method of UpdateMyCatDelegate
 	func updateMyCatModalDismissed() {
+		print("Delegate method here")
 		fillNameAndImage()	// Update text fields in current view
 		catDetailsTableVC?.populateTextFields()	// Update fields in catdetailstableview
 	}

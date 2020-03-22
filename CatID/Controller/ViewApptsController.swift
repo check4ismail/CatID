@@ -20,6 +20,7 @@ class ViewApptsController: UIViewController {
 	
 	var selectedCat: IndexPath?
 	var selectedAppointment: IndexPath?
+	var delegate: UpdateMyCatDelegate?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class ViewApptsController: UIViewController {
 		}
 		
 		MyCatData.myCat?.pastAppointments?.events.sort(by: >)
-		CoreDataManager.sharedManager.updateMyCat()
+		CoreDataManager.sharedManager.updateAppts()
 	}
 	
 	@IBAction func editCatDetails(_ sender: UIButton) {
@@ -68,6 +69,13 @@ class ViewApptsController: UIViewController {
 		self.dismiss(animated: true, completion: nil)
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "updateMyCat"{ // Segue to modal view to for appt details and option to edit cat details
+			if let destinationVC = segue.destination as? UpdateMyCat {
+				destinationVC.delegate = self.delegate
+			}
+		}
+	}
 }
 
 // MARK: Tableview methods
