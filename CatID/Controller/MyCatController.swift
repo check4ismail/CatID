@@ -39,21 +39,28 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	
 	override func viewDidLoad() {
 		fetchAllMyCats()
+		
+		// Set tab bar delegate, then call method to highlight tab bar with orange color
 		tabBar.delegate = self
 		highlightTagItem(myCatTag, tabBar)
 		
 		setupNavigationBar()
+		
+		// Setup tableview delegates
 		myCatTableView.delegate = self
 		myCatTableView.dataSource = self
+		
 		displayCorrectSeparatorStyle()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-		MyCatData.clearMyCat()
-		myCatTableView.reloadData()
+		MyCatData.clearMyCat()		///Remove data from static var for less memory
+		myCatTableView.reloadData()	/// Reload tableview to see updated cat info
 	}
 	
 	func displayCorrectSeparatorStyle() {
+		//IF: tableview is empty, separator style is none
+		//ELSE: tableview separator is singleLine
 		if myCatTableView.numberOfRows(inSection: 0) == 0 {
 			myCatTableView.separatorStyle = .none
 		} else {
@@ -65,18 +72,18 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 		print("Modal dismissed called")
 	}
 	
+	//MARK: Tabbar delegate function(s)
 	func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 		let tabBarItemTag = item.tag
 		switch tabBarItemTag {
 		case 1:
 			performSegue(withIdentifier: segueToBreedList, sender: self)
-		case 2:
-			print("Working on it")
 		default:
 			print("Nothing happens because it's the same tag")
 		}
 	}
 	
+	//MARK: Add new cat
 	@IBAction func addNewCat(_ sender: UIBarButtonItem) {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 		alert.addAction(UIAlertAction(title: "Add Cat", style: .default, handler: { (action: UIAlertAction) in
@@ -105,10 +112,14 @@ class MyCatController: UIViewController, UITabBarDelegate, ModalHandler {
 	}
 	
 	private func catInfoToDetailedView() {
+		// Set selected row and cat that was selected
 		let selectedRow = myCatTableView.indexPathForSelectedRow
 		let myCat = CoreDataManager.sharedManager.fetchedResultsControllerMyCat.object(at: selectedRow!)
+		
+		// Pass myCat data to static variable
 		MyCatData.myCat = myCat
 		MyCatData.data.selectedIndexPath = selectedRow
+		
 		myCatTableView.deselectRow(at: selectedRow!, animated: true)
 	}
 	
@@ -292,6 +303,7 @@ extension MyCatController: EKEventEditViewDelegate {
 	}
 		
 	private func displayCalender() {
+		//Setup EKEventEditViewController then present
 		let eventVC = EKEventEditViewController()
 		eventVC.editViewDelegate = self
 		eventVC.eventStore = EKEventStore()
@@ -355,6 +367,7 @@ extension UIViewController {
 		return format.string(from: orignalDate)
 	}
 	
+	// Changes date's time to a more readable format
 	func timeFormatter(originalDate: Date) -> String {
 		let format = DateFormatter()
 		format.timeZone = .current

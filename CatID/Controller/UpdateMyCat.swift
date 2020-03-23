@@ -33,7 +33,7 @@ class UpdateMyCat: UIViewController, UITextFieldDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.view.addSubview(catDetailsTableView)
+		self.view.addSubview(catDetailsTableView)	// Add container view, static tableview
 		
 		if let catImageData = MyCatData.myCat?.catPhoto {
 			let catImage = UIImage(data: catImageData)
@@ -58,6 +58,7 @@ class UpdateMyCat: UIViewController, UITextFieldDelegate {
 		self.dismiss(animated: true, completion: nil)
 	}
 	
+	// MARK: Save updated cat info to core data
 	private func save() {
 		
 		if catNameChanged {

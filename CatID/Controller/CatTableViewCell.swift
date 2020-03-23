@@ -66,10 +66,6 @@ class CatTableViewCell: UITableViewCell {
                 completionHandler: { _ in
 					self.setNeedsLayout()
 					self.catBreedPhoto.image = self.catBreedPhoto.image?.af_imageRoundedIntoCircle()
-//					self.catBreedPhoto.layer.cornerRadius = self.catBreedPhoto.frame.size.width / 2
-//					self.catBreedPhoto.clipsToBounds = true
-//					self.catBreedPhoto.contentMode = UIView.ContentMode.scaleAspectFill
-					
 			})
 		}
     }

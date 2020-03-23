@@ -233,8 +233,6 @@ struct CatBreeds {
 		return (imageUrls[breed]?[lastIndex], imageUrls[breed]?[0])
 	}
 	
-//	static private func newPhotoGenerated()
-	
 	static private func counterGeneratePhotos() -> [Int] {
 		var count: [Int] = []
 		for _ in 0..<breeds.count {

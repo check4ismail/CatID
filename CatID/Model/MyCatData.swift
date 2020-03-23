@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/*
+	Static variable of MyCat is used between several view controllers
+	without the need to rely on Protocols or other means
+*/
 struct MyCatData {
 	var vetInfo: String?
 	var notes: String?

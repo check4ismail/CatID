@@ -9,6 +9,10 @@
 import Foundation
 import EventKit
 
+/*
+	Events is used in order to have an array
+	of appointments added to a single Core Data Entity
+*/
 public class Events: NSObject, NSCoding {
 	
 	public var events: [Appointment] = []

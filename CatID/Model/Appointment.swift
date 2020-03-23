@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+	Customizable Core Data object since EKEvent
+	is not a type that can be stored into Core Data
+*/
 public class Appointment: NSObject, NSCoding {
 	public var startDate: Date?
 	public var endDate: Date?
@@ -43,7 +47,7 @@ public class Appointment: NSObject, NSCoding {
 		self.init(startDate: mStartDate, endDate: mEndDate, identifier: mIdentifier)
 	}
 	
-	// MARK: Operator overloading
+	// MARK: Operator overloading for appointment type
 	static func >(lhs: Appointment, rhs: Appointment) -> Bool {
 		guard checkStartDates(lhs, rhs) else {
 			return false

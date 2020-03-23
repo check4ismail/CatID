@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/*
+	Static variable of CatDetailedData is used between several view controllers
+	without the need to rely on Protocols or other means
+*/
 struct CatDetailedData {
 	var wikiLink: String?
 	var temperament: String?

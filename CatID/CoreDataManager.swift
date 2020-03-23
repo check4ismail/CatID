@@ -11,6 +11,10 @@ import CoreData
 import UIKit
 import EventKit
 
+/*
+	CoreDataManager is used to handle entity CRUD transactions
+	of Cat & MyCat
+*/
 class CoreDataManager {
 	//1
 	static let sharedManager = CoreDataManager()
