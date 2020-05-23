@@ -96,7 +96,7 @@ class CatIDUITests: XCTestCase {
 		// Will verify cat breed detailed appears for each breed
 		
         app.launch()
-		
+		app.tabBars.buttons["Cat Breeds"].tap()
 		for i in 0..<breeds.count {
 			let breed = breeds[i]
 			app.cells.children(matching: .textField).element(boundBy: i).tap()
@@ -126,7 +126,7 @@ class CatIDUITests: XCTestCase {
 	
 	func testSearchBarEachBreed() {
 		app.launch()
-	
+		app.tabBars.buttons["Cat Breeds"].tap()
 		for breed in breeds {
 			/*
 				Tap on search bar, then search for breed.
@@ -135,7 +135,7 @@ class CatIDUITests: XCTestCase {
 			*/
 			app.searchFields["Search"].tap()
 			app.typeText(breed)
-			XCTAssert(app.tables.staticTexts[breed].isHittable)
+			XCTAssert(app.tables.textFields[breed].isHittable)
 			app.searchFields["Search"].buttons["Clear text"].tap()
 			app.buttons["Cancel"].tap()
 		}
